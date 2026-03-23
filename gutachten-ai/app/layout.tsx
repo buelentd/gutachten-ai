@@ -6,13 +6,23 @@ import { Footer } from "@/components/layout/Footer";
 export const metadata: Metadata = {
   title: "gutachter-ki.de | KI-basierte Gutachtenerstellung",
   description: "Automatisieren Sie Ihre Dokumentationsprozesse mit KI. Schnellere Berichte, präzisere Analysen und rechtssichere Ergebnisse.",
-  metadataBase: new URL("https://gutachter-ki.de"),
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="de" className="dark">
+    <html lang="de" suppressHydrationWarning>
       <head>
+        {/* Prevent theme flash */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                var theme = localStorage.getItem('theme') || 'dark';
+                document.documentElement.classList.add(theme);
+              })();
+            `,
+          }}
+        />
         <link
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap"
           rel="stylesheet"
@@ -22,7 +32,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           rel="stylesheet"
         />
       </head>
-      <body className="bg-[#101319] text-[#E1E2EB] antialiased">
+      <body>
         <Navigation />
         {children}
         <Footer />

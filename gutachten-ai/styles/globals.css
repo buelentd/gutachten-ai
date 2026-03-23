@@ -3,101 +3,113 @@
 @tailwind utilities;
 
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap");
 
 @layer base {
+  /* Prevent flash of wrong theme */
   html {
-    color-scheme: dark;
+    font-family: 'Inter', sans-serif;
+  }
+
+  /* DARK MODE (default) */
+  html.dark body {
+    background-color: #101319;
+    color: #E1E2EB;
+  }
+
+  /* LIGHT MODE */
+  html.light body,
+  html:not(.dark) body {
+    background-color: #FFFFFF;
+    color: #1A1A1A;
   }
 
   body {
-    @apply bg-background text-on-background font-sans;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    -webkit-font-smoothing: antialiased;
   }
 
-  /* Technical Line Rule – 0.5px is the system signature */
-  .border-technical {
+  /* Material Icons */
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  }
+
+  /* Technical 0.5px line */
+  .technical-line {
     border-width: 0.5px;
-    border-color: #2a3344;
-  }
-
-  .border-technical-warm {
-    border-width: 0.5px;
-    border-color: #594238;
-  }
-
-  ::selection {
-    @apply bg-primary text-white;
   }
 }
 
-@layer components {
-  /* Material Symbols */
-  .material-symbols-outlined {
-    font-family: "Material Symbols Outlined";
-    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
-    vertical-align: middle;
-    display: inline-block;
+@layer utilities {
+  /* Surface tokens that respond to dark/light */
+  .bg-app {
+    @apply bg-[#101319];
+  }
+  html.light .bg-app {
+    background-color: #FFFFFF;
   }
 
-  /* Button – Primary */
-  .btn-primary {
-    @apply bg-primary text-white text-label-lg font-medium px-6 py-3 rounded-md transition-colors duration-200;
-    border: 0.5px solid #d4561a;
+  .bg-section {
+    @apply bg-[#191C22];
   }
-  .btn-primary:hover {
-    @apply bg-primary-container;
+  html.light .bg-section {
+    background-color: #F5F4F1;
   }
 
-  /* Button – Secondary */
-  .btn-secondary {
-    @apply bg-transparent text-text-primary text-label-lg font-medium px-6 py-3 rounded-md transition-colors duration-200;
-    border: 0.5px solid #2a3344;
+  .bg-card {
+    @apply bg-[#1D2026];
   }
-  .btn-secondary:hover {
-    @apply bg-surface-container;
+  html.light .bg-card {
+    background-color: #EDEAE4;
   }
 
-  /* Card */
-  .card {
-    @apply bg-surface-container-high rounded-card p-8;
-    border: 0.5px solid #2a3344;
+  .bg-card-high {
+    @apply bg-[#272A31];
+  }
+  html.light .bg-card-high {
+    background-color: #E4E1DA;
   }
 
-  /* Section alternation */
-  .section-dark {
-    @apply bg-surface;
+  .text-heading {
+    @apply text-[#F0EDE6];
   }
-  .section-mid {
-    @apply bg-surface-container-low;
-  }
-
-  /* Badge / Chip */
-  .badge {
-    @apply text-label-sm font-medium px-3 py-1 rounded-badge;
-    background: #4d1900;
-    color: #f0956a;
-    border: 0.5px solid #7c2e00;
+  html.light .text-heading {
+    color: #0F0F0F;
   }
 
-  /* Nav link */
-  .nav-link {
-    @apply text-text-secondary text-sm font-medium tracking-tight transition-colors duration-200;
+  .text-body {
+    @apply text-[#E1E2EB];
   }
-  .nav-link:hover,
-  .nav-link.active {
-    @apply text-primary;
+  html.light .text-body {
+    color: #1A1A1A;
   }
 
-  /* Input */
-  .input-field {
-    @apply w-full bg-surface-container text-on-surface text-body-md px-4 py-3 rounded-md outline-none transition-colors duration-200;
-    border: 0.5px solid #2a3344;
+  .text-sub {
+    @apply text-[#E0C0B3];
   }
-  .input-field:focus {
-    border-color: #e8631a;
+  html.light .text-sub {
+    color: #4A3728;
   }
-  .input-field::placeholder {
-    @apply text-text-muted;
+
+  .text-muted {
+    @apply text-[#A0AABB];
+  }
+  html.light .text-muted {
+    color: #6B6B6B;
+  }
+
+  .border-technical {
+    border-width: 0.5px;
+    @apply border-[#2A3344];
+  }
+  html.light .border-technical {
+    border-color: #D4D0C8;
+  }
+
+  .border-warm {
+    border-width: 0.5px;
+    @apply border-[#594238];
+  }
+  html.light .border-warm {
+    border-color: #C8B8A8;
   }
 }
