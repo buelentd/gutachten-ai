@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap");
+
+@layer base {
+  html {
+    @apply dark;
+  }
+
+  body {
+    @apply bg-background text-on-background font-sans;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  /* Technical Line Rule – 0.5px is the system signature */
+  .border-technical {
+    border-width: 0.5px;
+    border-color: #2a3344;
+  }
+
+  .border-technical-warm {
+    border-width: 0.5px;
+    border-color: #594238;
+  }
+
+  ::selection {
+    @apply bg-primary text-white;
+  }
+}
+
+@layer components {
+  /* Material Symbols */
+  .material-symbols-outlined {
+    font-family: "Material Symbols Outlined";
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+    vertical-align: middle;
+    display: inline-block;
+  }
+
+  /* Button – Primary */
+  .btn-primary {
+    @apply bg-primary text-white text-label-lg font-medium px-6 py-3 rounded-md transition-colors duration-200;
+    border: 0.5px solid #d4561a;
+  }
+  .btn-primary:hover {
+    @apply bg-primary-container;
+  }
+
+  /* Button – Secondary */
+  .btn-secondary {
+    @apply bg-transparent text-text-primary text-label-lg font-medium px-6 py-3 rounded-md transition-colors duration-200;
+    border: 0.5px solid #2a3344;
+  }
+  .btn-secondary:hover {
+    @apply bg-surface-container;
+  }
+
+  /* Card */
+  .card {
+    @apply bg-surface-container-high rounded-card p-8;
+    border: 0.5px solid #2a3344;
+  }
+
+  /* Section alternation */
+  .section-dark {
+    @apply bg-surface;
+  }
+  .section-mid {
+    @apply bg-surface-container-low;
+  }
+
+  /* Badge / Chip */
+  .badge {
+    @apply text-label-sm font-medium px-3 py-1 rounded-badge;
+    background: #4d1900;
+    color: #f0956a;
+    border: 0.5px solid #7c2e00;
+  }
+
+  /* Nav link */
+  .nav-link {
+    @apply text-text-secondary text-sm font-medium tracking-tight transition-colors duration-200;
+  }
+  .nav-link:hover,
+  .nav-link.active {
+    @apply text-primary;
+  }
+
+  /* Input */
+  .input-field {
+    @apply w-full bg-surface-container text-on-surface text-body-md px-4 py-3 rounded-md outline-none transition-colors duration-200;
+    border: 0.5px solid #2a3344;
+  }
+  .input-field:focus {
+    border-color: #e8631a;
+  }
+  .input-field::placeholder {
+    @apply text-text-muted;
+  }
+}
