@@ -2,9 +2,10 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 const navLinks = [
-  { href: "/", label: "Startseite" },
+  { href: "/", label: "Home" },
   { href: "/funktionen", label: "Funktionen" },
   { href: "/ablauf", label: "Ablauf" },
   { href: "/blog", label: "Blog" },
@@ -14,26 +15,21 @@ const navLinks = [
 export function Navigation() {
   const pathname = usePathname();
 
-  // Don't show marketing nav in studio
-  if (pathname?.startsWith("/studio")) return null;
-
   return (
-    <header className="fixed top-0 w-full z-50 bg-[#101319]/90 backdrop-blur-md" style={{ borderBottom: "0.5px solid #2A3344" }}>
+    <header className="fixed top-0 w-full z-50 bg-[#101319]/90 dark:bg-[#101319]/90 backdrop-blur-md border-b-[0.5px] border-[#2A3344]">
       <nav className="flex justify-between items-center max-w-7xl mx-auto px-6 h-16">
-        {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
-          <span className="material-symbols-outlined text-primary text-2xl">architecture</span>
+          <span className="material-symbols-outlined text-[#E8631A]">architecture</span>
           <span className="text-xl font-medium tracking-tighter text-[#F0EDE6]">gutachter-ki.de</span>
         </Link>
 
-        {/* Desktop nav */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-8 font-medium text-sm tracking-tight text-[#E0C0B3]">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className={`text-sm font-medium tracking-tight transition-colors duration-200 ${
-                pathname === link.href ? "text-primary" : "text-[#E0C0B3] hover:text-primary"
+              className={`transition-colors duration-200 hover:text-[#E8631A] ${
+                pathname === link.href ? "text-[#E8631A]" : ""
               }`}
             >
               {link.label}
@@ -41,15 +37,14 @@ export function Navigation() {
           ))}
         </div>
 
-        {/* CTA */}
         <div className="flex items-center gap-3">
-          <Link href="/kontakt" className="hidden md:inline-flex btn-primary text-sm">
-            Demo anfragen
+          <ThemeToggle />
+          <Link
+            href="/kontakt"
+            className="bg-[#E8631A] text-white px-5 py-2 rounded-lg text-sm font-medium hover:opacity-90 active:scale-95 transition-all"
+          >
+            Anfrage stellen
           </Link>
-          {/* Mobile menu placeholder */}
-          <button className="md:hidden text-on-surface p-2">
-            <span className="material-symbols-outlined">menu</span>
-          </button>
         </div>
       </nav>
     </header>

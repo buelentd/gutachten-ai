@@ -4,8 +4,8 @@ import { Navigation } from "@/components/layout/Navigation";
 import { Footer } from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
-  title: "gutachter-ki.de | KI-Assistent für Bausachverständige",
-  description: "Weniger Büroarbeit. Mehr Zeit für das Wesentliche. KI-gestützte Gutachtenerstellung für Bausachverständige.",
+  title: "gutachter-ki.de | KI-basierte Gutachtenerstellung",
+  description: "Automatisieren Sie Ihre Dokumentationsprozesse mit KI. Schnellere Berichte, präzisere Analysen und rechtssichere Ergebnisse.",
   metadataBase: new URL("https://gutachter-ki.de"),
 };
 
@@ -22,9 +22,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           rel="stylesheet"
         />
       </head>
-      <body className="bg-background text-on-background antialiased">
+      <body className="bg-[#101319] text-[#E1E2EB] antialiased">
         <Navigation />
-        <main>{children}</main>
+        {children}
         <Footer />
       </body>
     </html>
