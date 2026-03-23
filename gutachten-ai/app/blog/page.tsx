@@ -1,10 +1,9 @@
-export default function Blog() {
+export default function BlogPost({ params }: { params: { slug: string } }) {
   return (
     <main>
       <section className="section-hero">
         <div className="container">
-          <h1>Blog</h1>
-          <p className="hero-sub">Aktuelles aus der Welt der KI-gestützten Gutachtenerstellung.</p>
+          <h1>Blogbeitrag</h1>
         </div>
       </section>
     </main>
