@@ -6,32 +6,30 @@ export function ThemeToggle() {
   const [dark, setDark] = useState(true);
 
   useEffect(() => {
-    const isDark = document.documentElement.classList.contains("dark");
+    // Read current state from html element (set by anti-flash script)
+    const isDark = document.documentElement.classList.contains('dark');
     setDark(isDark);
   }, []);
 
   const toggle = () => {
-    const html = document.documentElement;
-    if (dark) {
-      html.classList.remove("dark");
-      html.classList.add("light");
-      localStorage.setItem("theme", "light");
+    const next = !dark;
+    setDark(next);
+    if (next) {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
     } else {
-      html.classList.remove("light");
-      html.classList.add("dark");
-      localStorage.setItem("theme", "dark");
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
     }
-    setDark(!dark);
   };
 
   return (
     <button
       onClick={toggle}
       aria-label="Theme wechseln"
-      className="w-9 h-9 flex items-center justify-center rounded-lg border-technical hover:bg-[#272A31] dark:hover:bg-[#272A31] light:hover:bg-[#E4E1DA] transition-colors"
-      title={dark ? "Zu hellem Modus wechseln" : "Zu dunklem Modus wechseln"}
+      className="w-9 h-9 flex items-center justify-center rounded-lg border-[0.5px] border-[#2A3344] hover:bg-[#272A31] transition-colors"
     >
-      <span className="material-symbols-outlined text-xl text-[#E0C0B3] dark:text-[#E0C0B3]">
+      <span className="material-symbols-outlined text-[#E0C0B3] text-xl">
         {dark ? "light_mode" : "dark_mode"}
       </span>
     </button>

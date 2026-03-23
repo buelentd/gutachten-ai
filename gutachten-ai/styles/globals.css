@@ -2,114 +2,62 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap");
-
 @layer base {
-  /* Prevent flash of wrong theme */
+  :root {
+    --color-surface: #ffffff;
+    --color-surface-container-low: #f5f5f5;
+    --color-surface-container: #eeeeee;
+    --color-surface-container-high: #e0e0e0;
+    --color-on-surface: #1a1a1a;
+    --color-on-surface-variant: #444444;
+    --color-outline: #999999;
+    --color-outline-variant: #cccccc;
+    --color-technical-line: #dddddd;
+  }
+
+  .dark {
+    --color-surface: #101319;
+    --color-surface-container-low: #191c22;
+    --color-surface-container: #1d2026;
+    --color-surface-container-high: #272a31;
+    --color-on-surface: #e1e2eb;
+    --color-on-surface-variant: #e0c0b3;
+    --color-outline: #a88a7f;
+    --color-outline-variant: #594238;
+    --color-technical-line: #2a3344;
+  }
+
   html {
-    font-family: 'Inter', sans-serif;
+    color-scheme: light;
   }
 
-  /* DARK MODE (default) */
-  html.dark body {
-    background-color: #101319;
-    color: #E1E2EB;
-  }
-
-  /* LIGHT MODE */
-  html.light body,
-  html:not(.dark) body {
-    background-color: #FFFFFF;
-    color: #1A1A1A;
+  html.dark {
+    color-scheme: dark;
   }
 
   body {
-    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
-    -webkit-font-smoothing: antialiased;
+    background-color: var(--color-surface);
+    color: var(--color-on-surface);
+    font-family: 'Inter', sans-serif;
   }
 
-  /* Material Icons */
   .material-symbols-outlined {
     font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
   }
 
-  /* Technical 0.5px line */
   .technical-line {
     border-width: 0.5px;
   }
 }
 
 @layer utilities {
-  /* Surface tokens that respond to dark/light */
-  .bg-app {
-    @apply bg-[#101319];
-  }
-  html.light .bg-app {
-    background-color: #FFFFFF;
-  }
-
-  .bg-section {
-    @apply bg-[#191C22];
-  }
-  html.light .bg-section {
-    background-color: #F5F4F1;
-  }
-
-  .bg-card {
-    @apply bg-[#1D2026];
-  }
-  html.light .bg-card {
-    background-color: #EDEAE4;
-  }
-
-  .bg-card-high {
-    @apply bg-[#272A31];
-  }
-  html.light .bg-card-high {
-    background-color: #E4E1DA;
-  }
-
-  .text-heading {
-    @apply text-[#F0EDE6];
-  }
-  html.light .text-heading {
-    color: #0F0F0F;
-  }
-
-  .text-body {
-    @apply text-[#E1E2EB];
-  }
-  html.light .text-body {
-    color: #1A1A1A;
-  }
-
-  .text-sub {
-    @apply text-[#E0C0B3];
-  }
-  html.light .text-sub {
-    color: #4A3728;
-  }
-
-  .text-muted {
-    @apply text-[#A0AABB];
-  }
-  html.light .text-muted {
-    color: #6B6B6B;
-  }
-
-  .border-technical {
-    border-width: 0.5px;
-    @apply border-[#2A3344];
-  }
-  html.light .border-technical {
-    border-color: #D4D0C8;
-  }
-
-  .border-warm {
-    border-width: 0.5px;
-    @apply border-[#594238];
-  }
-  html.light .border-warm {
-    border-color: #C8B8A8;
-  }
+  .text-surface { color: var(--color-surface); }
+  .bg-surface { background-color: var(--color-surface); }
+  .bg-surface-container-low { background-color: var(--color-surface-container-low); }
+  .bg-surface-container { background-color: var(--color-surface-container); }
+  .bg-surface-container-high { background-color: var(--color-surface-container-high); }
+  .text-on-surface { color: var(--color-on-surface); }
+  .text-on-surface-variant { color: var(--color-on-surface-variant); }
+  .border-technical { border-color: var(--color-technical-line); border-width: 0.5px; }
+  .border-outline-variant { border-color: var(--color-outline-variant); }
 }

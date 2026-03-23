@@ -10,56 +10,49 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Brand
+        // CSS variable tokens — respond to dark/light class
+        "surface": "var(--color-surface)",
+        "surface-container-low": "var(--color-surface-container-low)",
+        "surface-container": "var(--color-surface-container)",
+        "surface-container-high": "var(--color-surface-container-high)",
+        "on-surface": "var(--color-on-surface)",
+        "on-surface-variant": "var(--color-on-surface-variant)",
+        "outline": "var(--color-outline)",
+        "outline-variant": "var(--color-outline-variant)",
+        "technical-line": "var(--color-technical-line)",
+        // Static brand colors
         "brand-orange": "#E8631A",
-        "brand-orange-container": "#EE671F",
-
-        // Dark mode surfaces (default)
-        "surface":               "#101319",
-        "surface-dim":           "#101319",
-        "surface-container-low": "#191C22",
-        "surface-container":     "#1D2026",
-        "surface-container-high":"#272A31",
-        "surface-container-highest": "#32353B",
-
-        // Dark mode text
-        "on-surface":            "#E1E2EB",
-        "on-surface-variant":    "#E0C0B3",
-        "text-heading":          "#F0EDE6",
-        "text-muted":            "#A0AABB",
-
-        // Borders dark
-        "technical-dark":        "#2A3344",
-        "technical-warm":        "#594238",
-
-        // Light mode surfaces
-        "light-surface":         "#FFFFFF",
-        "light-container-low":   "#F5F4F1",
-        "light-container":       "#EDEAE4",
-        "light-container-high":  "#E4E1DA",
-
-        // Light mode text
-        "light-on-surface":      "#1A1A1A",
-        "light-on-variant":      "#4A3728",
-        "light-heading":         "#0F0F0F",
-        "light-muted":           "#6B6B6B",
-
-        // Borders light
-        "technical-light":       "#D4D0C8",
-
-        // Shared accent
-        "primary":               "#E8631A",
-        "primary-dim":           "#FFB596",
-        "error":                 "#FFB4AB",
+        "primary-container": "#EE671F",
+        "on-primary-container": "#4D1900",
+        "primary": "#FFB596",
+        // Static surface colors (dark only, used directly)
+        "surface-dark": "#101319",
+        "surface-dark-low": "#191C22",
+        "surface-dark-high": "#272A31",
+        "surface-dark-highest": "#32353B",
+        // Static text colors (dark only, used directly in sections that are always dark)
+        "text-primary": "#F0EDE6",
+        "text-secondary": "#E0C0B3",
+        "text-muted": "#A0AABB",
+        // Semantic
+        "background": "var(--color-surface)",
+        "on-background": "var(--color-on-surface)",
       },
       fontFamily: {
         sans: ["Inter", "sans-serif"],
+        headline: ["Inter", "sans-serif"],
+        body: ["Inter", "sans-serif"],
+        label: ["Inter", "sans-serif"],
       },
-      borderWidth: {
-        "0.5": "0.5px",
-      },
-      maxWidth: {
-        content: "80rem",
+      borderRadius: {
+        DEFAULT: "0.125rem",
+        sm: "0.125rem",
+        md: "0.25rem",
+        lg: "0.25rem",
+        xl: "0.5rem",
+        "2xl": "0.75rem",
+        "3xl": "1.5rem",
+        full: "9999px",
       },
     },
   },
