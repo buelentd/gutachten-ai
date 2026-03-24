@@ -1,5 +1,13 @@
 import Link from "next/link";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Ablauf — So funktioniert die KI-Gutachten Integration",
+  description: "In 3 Schritten zur digitalen Gutachtenerstellung: Anfrage, Onboarding, Loslegen. Einfache Integration in Ihren bestehenden Workflow.",
+  alternates: { canonical: "https://gutachten-ai.de/ablauf" },
+};
+
 export default function Ablauf() {
   return (
     <main className="pt-32 pb-24">

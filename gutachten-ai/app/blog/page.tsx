@@ -1,5 +1,13 @@
 import Link from "next/link";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Blog — KI im Bauwesen und Gutachtenwesen",
+  description: "Fachwissen für Bausachverständige: KI-Technologie, DIN-Normen, DSGVO und digitale Transformation im Gutachtenwesen.",
+  alternates: { canonical: "https://gutachten-ai.de/blog" },
+};
+
 export default function Blog() {
   return (
     <main className="pt-32 pb-24 max-w-7xl mx-auto px-6">
@@ -22,7 +30,7 @@ export default function Blog() {
           </div>
           <h2 className="text-3xl font-medium text-on-surface mb-4 group-hover:text-[#E8631A] transition-colors">KI im Alltag: Der neue Standard für Baugutachter</h2>
           <p className="text-on-surface-variant leading-relaxed text-lg mb-6 max-w-2xl">Wie automatisierte Bilderkennung und LLMs die Dokumentationsgeschwindigkeit verdreifachen, ohne die juristische Belastbarkeit zu gefährden.</p>
-          <Link className="inline-flex items-center gap-2 text-[#E8631A] font-medium hover:gap-4 transition-all" href="/blog/ki-im-alltag">
+          <Link className="inline-flex items-center gap-2 text-[#E8631A] font-medium hover:gap-4 transition-all" href="/blog/ki-gutachten-2025">
             <span>Weiterlesen</span>
             <span className="material-symbols-outlined text-sm">arrow_forward</span>
           </Link>
@@ -30,8 +38,8 @@ export default function Blog() {
 
         <div className="md:col-span-4 flex flex-col gap-12">
           {[
-            { title: "DIN-Normen und KI: Rechtssichere Dokumentation", date: "08. Mai 2026", desc: "Die Einhaltung aktueller DIN-Normen ist das Fundament jedes Gutachtens. Erfahren Sie, wie unsere KI-Modelle diese Standards in Echtzeit validieren.", slug: "din-normen", src: "https://lh3.googleusercontent.com/aida-public/AB6AXuBfsx-wxwWb8G3yd-wA96shdblsuhECekaFRHRStaWgtxzxaXYk6sQlnME8HLxIBod3Rf5DiChTNrs-mFK3KOXwJtZ5lJo0as57pM9QElVflRdla15rB1arr7xjFCERyD3XesmKl2kpYjIDh7tcSdg9jcTGu5jRDzNQg26M0bN3OVWtWbAu7F3STN9LMIaSfX0MNX8s1wgdbFewbeRZFaadhc78794IglDpSZOpeSM9KRKezydBKfLgcXkdv4jkaGGyTgzaLLLpqcmu" },
-            { title: "DSGVO-konform: Datensicherheit bei Hausbegehungen", date: "02. Mai 2026", desc: "Datenschutz beginnt bei der ersten Aufnahme. Wie wir sensible Objektdaten auf deutschen Servern verschlüsseln und verarbeiten.", slug: "dsgvo", src: "https://lh3.googleusercontent.com/aida-public/AB6AXuDe-HdOhQvPVC4MECIgCPVM2Ha2rxmV-Ddhy2YSVALX9HwBaFuHJbJlgrUGQnvLRejQ0cCIIJm96bE5NugHl-dbccwZ5RTFWqTK5p5WtTmCYoJlxPlMAuzNHikEID6OCuLwgg0m_BH7S-sojLTZ9aiPvElplWkjqkqbNe-mTdS6vfxZx-LYKSU0sEBJl_bJZ1tIwJd8HAd6uw99KYvxHa9i0t_ebxFt-BUjdWXzr6c902XXeiJf7T_fbxc2G4Inuq1GIL_rjfxAGJXb" },
+            { title: "DIN-Normen und KI: Rechtssichere Dokumentation", date: "08. Mai 2026", desc: "Die Einhaltung aktueller DIN-Normen ist das Fundament jedes Gutachtens. Erfahren Sie, wie unsere KI-Modelle diese Standards in Echtzeit validieren.", slug: "din-normen-ki", src: "https://lh3.googleusercontent.com/aida-public/AB6AXuBfsx-wxwWb8G3yd-wA96shdblsuhECekaFRHRStaWgtxzxaXYk6sQlnME8HLxIBod3Rf5DiChTNrs-mFK3KOXwJtZ5lJo0as57pM9QElVflRdla15rB1arr7xjFCERyD3XesmKl2kpYjIDh7tcSdg9jcTGu5jRDzNQg26M0bN3OVWtWbAu7F3STN9LMIaSfX0MNX8s1wgdbFewbeRZFaadhc78794IglDpSZOpeSM9KRKezydBKfLgcXkdv4jkaGGyTgzaLLLpqcmu" },
+            { title: "DSGVO-konform: Datensicherheit bei Hausbegehungen", date: "02. Mai 2026", desc: "Datenschutz beginnt bei der ersten Aufnahme. Wie wir sensible Objektdaten auf deutschen Servern verschlüsseln und verarbeiten.", slug: "zeitersparnis-bausachverstaendige", src: "https://lh3.googleusercontent.com/aida-public/AB6AXuDe-HdOhQvPVC4MECIgCPVM2Ha2rxmV-Ddhy2YSVALX9HwBaFuHJbJlgrUGQnvLRejQ0cCIIJm96bE5NugHl-dbccwZ5RTFWqTK5p5WtTmCYoJlxPlMAuzNHikEID6OCuLwgg0m_BH7S-sojLTZ9aiPvElplWkjqkqbNe-mTdS6vfxZx-LYKSU0sEBJl_bJZ1tIwJd8HAd6uw99KYvxHa9i0t_ebxFt-BUjdWXzr6c902XXeiJf7T_fbxc2G4Inuq1GIL_rjfxAGJXb" },
           ].map((post, i) => (
             <div key={i}>
               {i > 0 && <div className="h-px bg-technical-line w-full mb-12"></div>}

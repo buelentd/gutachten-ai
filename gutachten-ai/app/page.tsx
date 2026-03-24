@@ -1,5 +1,14 @@
 import Link from "next/link";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "KI-Gutachtenerstellung für Bausachverständige",
+  description: "Automatisieren Sie Ihre Gutachtenerstellung mit KI. 85% Zeitersparnis, DIN-normkonform, DSGVO-konform. Für Bausachverständige in Deutschland.",
+  alternates: { canonical: "https://gutachten-ai.de" },
+  openGraph: { url: "https://gutachten-ai.de" },
+};
+
 export default function Home() {
   return (
     <main>

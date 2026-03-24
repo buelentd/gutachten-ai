@@ -9,6 +9,14 @@ const features = [
   { icon: "receipt_long", title: "Rechnungen", desc: "Automatisierte Erstellung von JVEG-konformen Rechnungen oder Honorarberechnungen nach Zeitaufwand. Integrieren Sie Ihre Stundensätze nahtlos.", example: "Ein-Klick-Erstellung der Gesamtabrechnung nach Abschluss des Gutachtens inkl. aller Nebenkosten.", imgSrc: "https://lh3.googleusercontent.com/aida-public/AB6AXuBZYWBqa-Z36nramZlsZQt-pu-KEEeFGJ-QOfUkoydtxtbC5DG91E_eaQOCjblLkg7VTf9aJh7CNZrDcaXXxgsbucjOMRjieFddIZD942eIkBYIN1HTDxBG9R2si6gHsCwk2yDfsCtJkW4A-GZtbkIFLoFeSinDC1wqGvpF1JPllQU0yP_YzZbLW8IE_3JxtFsSEnHrjErxnYvzgiuPYfGLxd2p0Vb97cZTq4Smbb8oVDWexR6fFGuaLP2KnSyoMQ0aIkdzVJfspxBk", reverse: true },
 ];
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Funktionen — KI-Gutachten Software",
+  description: "KI-Texterstellung, Schadensfoto-Analyse, DIN-Normen, Sprach-Transkription und mehr. Alle Funktionen der KI-Gutachtensoftware im Überblick.",
+  alternates: { canonical: "https://gutachten-ai.de/funktionen" },
+};
+
 export default function Funktionen() {
   return (
     <main className="pt-32 pb-24">
