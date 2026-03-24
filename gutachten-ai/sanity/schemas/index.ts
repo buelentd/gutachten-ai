@@ -1,36 +1,21 @@
-import { defineField, defineType, defineArrayMember } from "sanity";
+import blockContent from "./blockContent";
+import post from "./post";
+import author from "./author";
+import homePage from "./homePage";
+import funktionenPage from "./funktionenPage";
+import ablaufPage from "./ablaufPage";
+import kontaktPage from "./kontaktPage";
+import navigation from "./navigation";
 
-export const category = defineType({
-  name: "category",
-  title: "Kategorie",
-  type: "document",
-  fields: [
-    defineField({ name: "title", title: "Titel", type: "string" }),
-    defineField({ name: "description", title: "Beschreibung", type: "text" }),
-  ],
-});
-
-export const blockContent = defineType({
-  name: "blockContent",
-  title: "Block Content",
-  type: "array",
-  of: [
-    defineArrayMember({
-      type: "block",
-      styles: [
-        { title: "Normal", value: "normal" },
-        { title: "H2", value: "h2" },
-        { title: "H3", value: "h3" },
-        { title: "Quote", value: "blockquote" },
-      ],
-      marks: {
-        decorators: [
-          { title: "Bold", value: "strong" },
-          { title: "Italic", value: "em" },
-          { title: "Code", value: "code" },
-        ],
-      },
-    }),
-    defineArrayMember({ type: "image", options: { hotspot: true } }),
-  ],
-});
+export const schemaTypes = [
+  // Pages
+  homePage,
+  funktionenPage,
+  ablaufPage,
+  kontaktPage,
+  navigation,
+  // Blog
+  post,
+  author,
+  blockContent,
+];
