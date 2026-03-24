@@ -13,5 +13,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/blog/ki-gutachten-2025`, lastModified: new Date("2026-03-24"), changeFrequency: "monthly", priority: 0.7 },
     { url: `${base}/blog/din-normen-ki`, lastModified: new Date("2026-03-20"), changeFrequency: "monthly", priority: 0.7 },
     { url: `${base}/blog/zeitersparnis-bausachverstaendige`, lastModified: new Date("2026-03-15"), changeFrequency: "monthly", priority: 0.7 },
+    { url: `${base}/blog/bausachverstaendiger-software-vergleich`, lastModified: new Date("2026-03-31"), changeFrequency: "monthly", priority: 0.7 },
+    { url: `${base}/blog/feuchtigkeitsschaeden-gutachten`, lastModified: new Date("2026-03-28"), changeFrequency: "monthly", priority: 0.7 },
+    { url: `${base}/blog/jveg-honorar-berechnen`, lastModified: new Date("2026-03-25"), changeFrequency: "monthly", priority: 0.7 },
   ];
 }
