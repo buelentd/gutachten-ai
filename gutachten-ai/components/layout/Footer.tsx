@@ -28,20 +28,15 @@ export function Footer() {
         </div>
         <div className="flex flex-wrap justify-center gap-x-8 gap-y-4">
           {links.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`font-normal text-xs hover:text-[#E8631A] transition-colors ${
-                pathname === link.href ? "text-[#F0EDE6]" : "text-[#A0AABB]"
-              }`}
-            >
+            <Link key={link.href} href={link.href}
+              className={`font-normal text-xs hover:text-[#E8631A] transition-colors ${pathname === link.href ? "text-[#F0EDE6]" : "text-[#A0AABB]"}`}>
               {link.label}
             </Link>
           ))}
         </div>
       </div>
       <div className="max-w-7xl mx-auto px-8 pb-8 text-center">
-        <span className="font-normal text-xs leading-relaxed text-[#594238]">
+        <span className="font-normal text-xs text-[#594238]">
           © 2026 gutachter-ki.de • Server in Deutschland • DSGVO-konform • Made in Germany
         </span>
       </div>
