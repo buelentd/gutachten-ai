@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 async function getAllPosts() {
   try {
     return await client.fetch(
-      groq`*[_type == "post"] | order(publishedAt desc) { title, "slug": slug.current, category, publishedAt, excerpt }`
+      groq`*[_type == "post"] | order(publishedAt desc) { title, "slug": slug.current, category, publishedAt, excerpt, "image": mainImage.asset->url }`
     );
   } catch { return []; }
 }
@@ -72,8 +72,13 @@ export default async function Blog() {
               </span>
             </div>
             <div className="md:col-span-4 hidden md:flex items-center justify-center">
-              <div className="w-full aspect-square rounded-xl bg-surface-container flex items-center justify-center border-[0.5px] border-technical-line">
-                <span className="material-symbols-outlined text-6xl text-[#E8631A]/30">article</span>
+              <div className="w-full aspect-video rounded-xl overflow-hidden border-[0.5px] border-technical-line">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={featured.image || "https://lh3.googleusercontent.com/aida-public/AB6AXuBSreBcnnEQnNd69Biiu6784mLwxbXbXuw2sOR4XHSjQSa8eRAn5mMQB9CizSeq_wHg4ejofBCRARWEX55XelgK4JPej5Yrv-1FLjoREtHIiedaLWJuex3lhMN0muziOLf_8WtJftur3PDceYNWzri8AUijFsWLpP9aZCBfJYUyGgriZYZUHmAjvVn7v2_k_ntOKcoJ_O87YqQwQ85m9q4N9flCU4kNRXvjRy_lcAoiyeUkkVAgmHSrQ4S9Z1PIHRiXnPrILdEnfKrX"}
+                  alt={featured.title}
+                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                />
               </div>
             </div>
           </div>
