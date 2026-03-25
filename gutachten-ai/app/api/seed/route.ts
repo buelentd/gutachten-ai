@@ -9,108 +9,80 @@ const client = createClient({
   useCdn: false,
 });
 
+const posts = [
+  {
+    _id: "post-software-vergleich",
+    slug: "bausachverstaendiger-software-vergleich",
+    title: "Bausachverständiger Software Vergleich 2026",
+    category: "Vergleich",
+    publishedAt: "2026-03-31T00:00:00Z",
+    excerpt: "Welche Software nutzen Bausachverständige 2026? Wir vergleichen die wichtigsten Tools für Gutachtenerstellung, Dokumentation und Abrechnung.",
+  },
+  {
+    _id: "post-feuchtigkeitsschaeden",
+    slug: "feuchtigkeitsschaeden-gutachten",
+    title: "Feuchtigkeitsschäden im Baugutachten: Ursachen, Normen und Dokumentation",
+    category: "Fachthema",
+    publishedAt: "2026-03-28T00:00:00Z",
+    excerpt: "Wie Bausachverständige Feuchtigkeitsschäden fachgerecht dokumentieren und bewerten — mit aktuellen DIN-Normen und KI-Unterstützung.",
+  },
+  {
+    _id: "post-jveg",
+    slug: "jveg-honorar-berechnen",
+    title: "JVEG Honorar berechnen: So rechnen Sachverständige korrekt ab",
+    category: "Abrechnung",
+    publishedAt: "2026-03-25T00:00:00Z",
+    excerpt: "Stundensätze, Nebenkosten, Fahrtkosten — ein vollständiger Leitfaden zur JVEG-Abrechnung für gerichtlich bestellte Sachverständige.",
+  },
+  {
+    _id: "post-ki-gutachten",
+    slug: "ki-gutachten-2025",
+    title: "KI in der Gutachtenerstellung 2025: Was Bausachverständige jetzt wissen müssen",
+    category: "Technologie",
+    publishedAt: "2026-03-24T00:00:00Z",
+    excerpt: "Künstliche Intelligenz verändert die Gutachtenerstellung grundlegend. Welche KI-Technologien 2025 relevant sind und wie Sachverständige davon profitieren.",
+  },
+  {
+    _id: "post-din-normen",
+    slug: "din-normen-ki",
+    title: "DIN-Normen und KI: Wie Software rechtssichere Baugutachten erstellt",
+    category: "Recht & Normen",
+    publishedAt: "2026-03-20T00:00:00Z",
+    excerpt: "Wie KI-Software aktuelle DIN-Normen und VOB-Regelungen in die Gutachtenerstellung integriert und Sachverständigen rechtssichere Dokumentation ermöglicht.",
+  },
+  {
+    _id: "post-zeitersparnis",
+    slug: "zeitersparnis-bausachverstaendige",
+    title: "85% weniger Zeit für Gutachten: So nutzen Bausachverständige KI richtig",
+    category: "Praxis",
+    publishedAt: "2026-03-15T00:00:00Z",
+    excerpt: "Wie Bausachverständige durch KI-Software bis zu 85% ihrer Bearbeitungszeit einsparen und gleichzeitig die Qualität steigern.",
+  },
+];
+
 export async function GET() {
   try {
-    // Home Page
-    await client.createOrReplace({
-      _id: "homePage",
-      _type: "homePage",
-      heroBadge: "KI-GESTÜTZTE PRÄZISION",
-      heroTitle: "Die Zukunft der Bau-Gutachten.",
-      heroSubtext: "Automatisieren Sie Ihre Dokumentationsprozesse mit künstlicher Intelligenz. Schnellere Berichte, präzisere Analysen und rechtssichere Ergebnisse für professionelle Bausachverständige.",
-      heroPrimaryButton: "Jetzt kostenlos testen",
-      heroSecondaryButton: "Demo vereinbaren",
-      stats: [
-        { _key: "s1", value: "85%", label: "Zeitersparnis", highlight: true },
-        { _key: "s2", value: "2.4k+", label: "Gutachten erstellt", highlight: false },
-        { _key: "s3", value: "100%", label: "Rechtssicher (DSGVO)", highlight: false },
-        { _key: "s4", value: "< 5min", label: "Erstellungsdauer", highlight: false },
-      ],
-      problemTitle: "Warum wir die Branche verändern.",
-      problemSubtext: "Herkömmliche Gutachtenerstellung ist zeitaufwendig und fehleranfällig. Unsere KI-Technologie setzt neue Standards in Sachen Effizienz.",
-      problemItems: [
-        "Stundenlange manuelle Texterstellung und Formatierung.",
-        "Inkonsistente Formulierungen und Übertragungsfehler.",
-        "Hoher administrativer Aufwand bei der Bildverwaltung.",
-      ],
-      solutionItems: [
-        "Automatisierte Berichte basierend auf Ihren Notizen und Fotos.",
-        "Standardisierte, fachlich präzise Textbausteine.",
-        "Nahtlose Integration von digitalen Vor-Ort-Aufnahmen.",
-      ],
-      features: [
-        { _key: "f1", icon: "description", title: "KI-Texterstellung", description: "Präzise Fachformulierungen auf Knopfdruck, angepasst an Ihren individuellen Schreibstil." },
-        { _key: "f2", icon: "photo_library", title: "Bild-KI-Analyse", description: "Automatische Schadenserkennung und Klassifizierung direkt in Ihren Fotos." },
-        { _key: "f3", icon: "cloud_sync", title: "Cloud Synchronisation", description: "Echtzeit-Abgleich Ihrer Daten zwischen Baustelle und Büro ohne Datenverlust." },
-        { _key: "f4", icon: "gavel", title: "Rechtssicherheit", description: "Ständige Aktualisierung auf Basis geltender Normen und Verordnungen." },
-        { _key: "f5", icon: "shield", title: "DSGVO Konform", description: "Verschlüsselte Datenhaltung ausschließlich auf deutschen Servern." },
-        { _key: "f6", icon: "api", title: "Schnittstellen", description: "Einfacher Export in Word, PDF oder direkt in Ihre Branchensoftware." },
-      ],
-      offerTitle: "Starten Sie digital durch.",
-      offerSubtext: "Testen Sie die volle Funktionalität 14 Tage lang unverbindlich.",
-      offerItems: ["Unbegrenzte Gutachten", "KI-Text-Assistent inkl.", "Premium-Support 24/7"],
-      ctaTitle: "Bereit für das nächste Level?",
-      ctaSubtext: "Schließen Sie sich über 500 Sachverständigen an, die ihre Arbeit bereits mit unserer KI optimieren.",
-    });
+    // Seiteninhalte
+    await client.createOrReplace({ _id: "homePage", _type: "homePage", heroBadge: "KI-GESTÜTZTE PRÄZISION", heroTitle: "Die Zukunft der Bau-Gutachten.", heroSubtext: "Automatisieren Sie Ihre Dokumentationsprozesse mit künstlicher Intelligenz. Schnellere Berichte, präzisere Analysen und rechtssichere Ergebnisse für professionelle Bausachverständige.", heroPrimaryButton: "Jetzt kostenlos testen", heroSecondaryButton: "Demo vereinbaren", stats: [{ _key: "s1", value: "85%", label: "Zeitersparnis", highlight: true }, { _key: "s2", value: "2.4k+", label: "Gutachten erstellt", highlight: false }, { _key: "s3", value: "100%", label: "Rechtssicher (DSGVO)", highlight: false }, { _key: "s4", value: "< 5min", label: "Erstellungsdauer", highlight: false }], problemTitle: "Warum wir die Branche verändern.", problemSubtext: "Herkömmliche Gutachtenerstellung ist zeitaufwendig und fehleranfällig. Unsere KI-Technologie setzt neue Standards.", problemItems: ["Stundenlange manuelle Texterstellung und Formatierung.", "Inkonsistente Formulierungen und Übertragungsfehler.", "Hoher administrativer Aufwand bei der Bildverwaltung."], solutionItems: ["Automatisierte Berichte basierend auf Ihren Notizen und Fotos.", "Standardisierte, fachlich präzise Textbausteine.", "Nahtlose Integration von digitalen Vor-Ort-Aufnahmen."], features: [{ _key: "f1", icon: "description", title: "KI-Texterstellung", description: "Präzise Fachformulierungen auf Knopfdruck." }, { _key: "f2", icon: "photo_library", title: "Bild-KI-Analyse", description: "Automatische Schadenserkennung in Ihren Fotos." }, { _key: "f3", icon: "cloud_sync", title: "Cloud Synchronisation", description: "Echtzeit-Abgleich zwischen Baustelle und Büro." }, { _key: "f4", icon: "gavel", title: "Rechtssicherheit", description: "Ständige Aktualisierung auf Basis geltender Normen." }, { _key: "f5", icon: "shield", title: "DSGVO Konform", description: "Verschlüsselte Datenhaltung auf deutschen Servern." }, { _key: "f6", icon: "api", title: "Schnittstellen", description: "Export in Word, PDF oder Ihre Branchensoftware." }], offerTitle: "Starten Sie digital durch.", offerSubtext: "Testen Sie die volle Funktionalität 14 Tage lang unverbindlich.", offerItems: ["Unbegrenzte Gutachten", "KI-Text-Assistent inkl.", "Premium-Support 24/7"], ctaTitle: "Bereit für das nächste Level?", ctaSubtext: "Schließen Sie sich über 500 Sachverständigen an, die ihre Arbeit bereits mit unserer KI optimieren." });
 
-    // Ablauf Page
-    await client.createOrReplace({
-      _id: "ablaufPage",
-      _type: "ablaufPage",
-      heroLabel: "Implementierung",
-      heroTitle: "Vom Erstkontakt zur fertigen",
-      heroTitleHighlight: "Expertise.",
-      heroSubtext: "Effizienz beginnt bei der Einführung. Wir haben einen strukturierten Prozess entwickelt, der Ihre bestehenden Workflows respektiert und digital transformiert.",
-      steps: [
-        { _key: "step1", number: "01", title: "Anfrage", description: "Wir analysieren Ihren aktuellen Bedarf und prüfen die Kompatibilität Ihrer Datenstruktur mit unserer KI-Engine.", items: ["Erstgespräch & Bedarfsanalyse", "Daten-Checkup"] },
-        { _key: "step2", number: "02", title: "Onboarding", description: "Integration der Schnittstellen und Training Ihres Teams auf die spezifischen Module Ihres Fachbereichs.", items: ["Setup & Integration", "Live-Schulung via Web-App"] },
-        { _key: "step3", number: "03", title: "Loslegen", description: "Ab Tag 1 profitieren Sie von automatisierten Gutachten-Entwürfen und digitaler Beweissicherung.", items: ["Voller Funktionsumfang", "Support & Optimierung"] },
-      ],
-      timeline: [
-        { _key: "t1", day: "0", label: "Tag 0", sublabel: "Kick-off Meeting", isRocket: false },
-        { _key: "t2", day: "7", label: "Woche 1", sublabel: "Systemkonfiguration", isRocket: false },
-        { _key: "t3", day: "14", label: "Woche 2", sublabel: "Mitarbeiter-Training", isRocket: false },
-        { _key: "t4", day: "", label: "Laufend", sublabel: "Skalierung & Updates", isRocket: true },
-      ],
-      trustItems: [
-        { _key: "tr1", icon: "security", title: "Sicherheit & Datenschutz", description: "Ihre Daten verlassen niemals deutschen Boden. Unsere Server sind ISO 27001 zertifiziert und vollständig DSGVO-konform." },
-        { _key: "tr2", icon: "settings_input_component", title: "Technische Integration", description: "Dank unserer modernen REST-API lässt sich gutachten-ai.de nahtlos in Ihre bestehende Branchensoftware integrieren." },
-      ],
-      ctaTitle: "Bereit für den digitalen Vorsprung?",
-      ctaSubtext: "Sichern Sie sich jetzt ein unverbindliches Beratungsgespräch und erfahren Sie, wie wir Ihren Arbeitsalltag revolutionieren können.",
-      ctaPrimaryButton: "Kostenloses Gespräch buchen",
-      ctaSecondaryButton: "Funktionen ansehen",
-    });
+    // Blog-Artikel
+    for (const post of posts) {
+      await client.createOrReplace({
+        _id: post._id,
+        _type: "post",
+        title: post.title,
+        slug: { _type: "slug", current: post.slug },
+        category: post.category,
+        publishedAt: post.publishedAt,
+        excerpt: post.excerpt,
+      });
+    }
 
-    // Kontakt Page
-    await client.createOrReplace({
-      _id: "kontaktPage",
-      _type: "kontaktPage",
-      heroLabel: "Kontakt",
-      heroTitle: "Präzision beginnt beim ersten Gespräch.",
-      contactName: "Thomas Müller",
-      contactRole: "Leiter Kundenerfolg",
-      contactQuote: "Wir verstehen, dass im Gutachterwesen jedes Detail zählt. Unser Team steht Ihnen zur Seite.",
-      trustItems: [
-        { _key: "k1", icon: "verified_user", title: "DSGVO-konform", description: "Alle Daten werden ausschließlich auf deutschen Servern verarbeitet." },
-        { _key: "k2", icon: "timer", title: "Reaktionszeit", description: "Rückmeldung innerhalb von 24 Stunden an Werktagen." },
-        { _key: "k3", icon: "map", title: "Standort Berlin", description: "Technologie entwickelt in Deutschland für den lokalen Markt." },
-      ],
+    return NextResponse.json({
+      success: true,
+      message: `Seiteninhalte + ${posts.length} Blogartikel erfolgreich eingespielt.`,
     });
-
-    // Navigation
-    await client.createOrReplace({
-      _id: "navigation",
-      _type: "navigation",
-      logoText: "gutachten-ai.de",
-      ctaButton: "Anfrage stellen",
-      footerTagline: "Die Zukunft der professionellen Gutachtenerstellung. Präzise, sicher und effizient.",
-      footerCopyright: "© 2026 gutachten-ai.de • Server in Deutschland • DSGVO-konform • Made in Germany",
-    });
-
-    return NextResponse.json({ success: true, message: "Alle Inhalte erfolgreich in Sanity eingespielt." });
   } catch (error) {
-    console.error("Seed error:", error);
     return NextResponse.json({ success: false, error: String(error) }, { status: 500 });
   }
 }

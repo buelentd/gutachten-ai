@@ -7,10 +7,14 @@ export default defineType({
   fields: [
     defineField({ name: "title", title: "Titel", type: "string" }),
     defineField({ name: "slug", title: "Slug", type: "slug", options: { source: "title" } }),
-    defineField({ name: "author", title: "Autor", type: "reference", to: [{ type: "author" }] }),
-    defineField({ name: "mainImage", title: "Hauptbild", type: "image" }),
+    defineField({ name: "category", title: "Kategorie", type: "string",
+      options: { list: ["Technologie", "Recht & Normen", "Praxis", "Vergleich", "Fachthema", "Abrechnung"] }
+    }),
     defineField({ name: "publishedAt", title: "Veröffentlicht am", type: "datetime" }),
-    defineField({ name: "excerpt", title: "Teaser", type: "text" }),
+    defineField({ name: "excerpt", title: "Teaser (kurze Zusammenfassung)", type: "text", rows: 3 }),
     defineField({ name: "body", title: "Inhalt", type: "blockContent" }),
   ],
+  preview: {
+    select: { title: "title", subtitle: "category" },
+  },
 });
