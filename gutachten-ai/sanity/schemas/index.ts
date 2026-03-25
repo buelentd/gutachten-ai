@@ -6,6 +6,7 @@ import funktionenPage from "./funktionenPage";
 import ablaufPage from "./ablaufPage";
 import kontaktPage from "./kontaktPage";
 import navigation from "./navigation";
+import impressum from "./impressum";
 
 export const schemaTypes = [
   // Pages
@@ -14,6 +15,7 @@ export const schemaTypes = [
   ablaufPage,
   kontaktPage,
   navigation,
+  impressum,
   // Blog
   post,
   author,
