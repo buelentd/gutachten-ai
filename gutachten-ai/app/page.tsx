@@ -55,7 +55,7 @@ export default async function Home() {
   return (
     <main>
       {/* Hero */}
-      <section className="relative min-h-[819px] flex items-center bg-[#0F1218] overflow-hidden">
+      <section className="relative min-h-[819px] flex items-center bg-[#0F1218] overflow-hidden pt-16">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="z-10">
             <span className="inline-block py-1 px-3 mb-6 border-[0.5px] border-[#E8631A]/30 text-[#E8631A] text-xs font-medium tracking-widest rounded-full bg-[#E8631A]/5">
