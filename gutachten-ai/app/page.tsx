@@ -74,7 +74,7 @@ export default async function Home() {
               </Link>
             </div>
           </div>
-          <div className="relative hidden md:block">
+          <div className="relative hidden md:block z-0">
             <div className="absolute -inset-20 bg-[#E8631A]/10 blur-[120px] rounded-full"></div>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img alt="Modern architecture drawing" className="relative rounded-2xl border-[0.5px] border-[#2A3344] grayscale hover:grayscale-0 transition-all duration-700 object-cover aspect-[4/5] w-full"
