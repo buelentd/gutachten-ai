@@ -27,12 +27,11 @@
     --color-technical-line: #2a3344;
   }
 
-  /* Dark als harter Default — funktioniert auch ohne JavaScript */
-  html { color-scheme: dark; }
+  html { background-color: #101319; color-scheme: dark; }
 
   body {
-    background-color: #101319;
-    color: #F0EDE6;
+    background-color: var(--color-surface);
+    color: var(--color-on-surface);
     font-family: var(--font-inter, 'Inter', sans-serif);
   }
 
