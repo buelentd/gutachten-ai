@@ -13,6 +13,10 @@ export const metadata: Metadata = {
   keywords: ["Gutachtensoftware Bausachverständige", "KI Gutachten", "Beweisbeschluss Software", "Gutachtenerstellung automatisieren", "Gutachten Software Deutschland"],
   authors: [{ name: "gutachten-ai.de" }],
   creator: "gutachten-ai.de",
+  icons: {
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+  },
   robots: {
     index: true,
     follow: true,
