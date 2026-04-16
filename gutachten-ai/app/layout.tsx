@@ -1,7 +1,15 @@
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import "../styles/globals.css";
 import { Navigation } from "@/components/layout/Navigation";
 import { Footer } from "@/components/layout/Footer";
+
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  display: "swap",
+  variable: "--font-inter",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://gutachten-ai.de"),
@@ -41,97 +49,43 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="de" className="dark" suppressHydrationWarning>
       <head>
-        {/* Theme Script — inline, kein render-blocking */}
+        {/* Theme-Script: dark ist SSR-Default, nur light-mode override */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `try{var t=localStorage.getItem('theme');if(t==='light'){document.documentElement.classList.remove('dark')}else{document.documentElement.classList.add('dark')}}catch(e){}`,
+            __html: `try{if(localStorage.getItem('theme')==='light'){document.documentElement.classList.remove('dark')}}catch(e){}`,
           }}
         />
-
-        {/* Preconnect — DNS early resolve für Google Fonts */}
+        {/* Preconnect für Material Symbols */}
         <link rel="preconnect" href="https://fonts.googleapis.com"/>
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous"/>
-
-        {/* Inter Font — display=swap verhindert FOIT, non-blocking */}
+        {/* Material Symbols — SYNCHRON laden, Icons müssen sofort da sein */}
         {/* eslint-disable-next-line @next/next/no-page-custom-font */}
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap"
-          media="print"
-          // @ts-expect-error onload not typed
-          onLoad="this.media='all'"
-        />
-        <noscript>
-          {/* eslint-disable-next-line @next/next/no-page-custom-font */}
-          <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap"/>
-        </noscript>
-
-        {/* Material Symbols — async load, display=swap */}
-        {/* eslint-disable-next-line @next/next/no-page-custom-font */}
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@400,0&display=swap"
-          media="print"
-          // @ts-expect-error onload not typed
-          onLoad="this.media='all'"
-        />
-        <noscript>
-          {/* eslint-disable-next-line @next/next/no-page-custom-font */}
-          <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@400,0&display=swap"/>
-        </noscript>
-
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@400,0&display=block"/>
         {/* WebSite Schema */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "WebSite",
-              "name": "gutachten-ai.de",
-              "url": "https://gutachten-ai.de",
-              "description": "KI-gestützte Gutachtenerstellung für Bausachverständige",
-              "inLanguage": "de-DE",
-              "publisher": {
-                "@type": "Organization",
-                "name": "gutachten-ai.de",
-                "url": "https://gutachten-ai.de"
-              }
-            })
-          }}
-        />
-
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": "gutachten-ai.de",
+          "url": "https://gutachten-ai.de",
+          "description": "KI-gestützte Gutachtenerstellung für Bausachverständige",
+          "inLanguage": "de-DE",
+          "publisher": { "@type": "Organization", "name": "gutachten-ai.de", "url": "https://gutachten-ai.de" }
+        })}}/>
         {/* SoftwareApplication Schema */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "SoftwareApplication",
-              "name": "Gutachten Assistent",
-              "description": "KI-gestützte Gutachtenerstellung für Bausachverständige — Fallverwaltung, digitale Akte, Beweisfragen-Editor und Export als PDF oder Word.",
-              "url": "https://gutachten-ai.de",
-              "applicationCategory": "BusinessApplication",
-              "operatingSystem": "Web",
-              "offers": {
-                "@type": "Offer",
-                "price": "0",
-                "priceCurrency": "EUR",
-                "description": "Auf Anfrage"
-              },
-              "provider": {
-                "@type": "Organization",
-                "name": "gutachten-ai.de",
-                "url": "https://gutachten-ai.de"
-              },
-              "areaServed": {
-                "@type": "Country",
-                "name": "Germany"
-              }
-            })
-          }}
-        />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          "name": "Gutachten Assistent",
+          "description": "KI-gestützte Gutachtenerstellung für Bausachverständige — Fallverwaltung, digitale Akte, Beweisfragen-Editor und Export als PDF oder Word.",
+          "url": "https://gutachten-ai.de",
+          "applicationCategory": "BusinessApplication",
+          "operatingSystem": "Web",
+          "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR", "description": "Auf Anfrage" },
+          "provider": { "@type": "Organization", "name": "gutachten-ai.de", "url": "https://gutachten-ai.de" },
+          "areaServed": { "@type": "Country", "name": "Germany" }
+        })}}/>
       </head>
-      <body>
+      <body className={inter.variable}>
         <Navigation />
         {children}
         <Footer />

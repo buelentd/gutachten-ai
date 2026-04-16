@@ -27,13 +27,13 @@
     --color-technical-line: #2a3344;
   }
 
-  html { color-scheme: light; }
-  html.dark { color-scheme: dark; }
+  /* Dark als harter Default — funktioniert auch ohne JavaScript */
+  html { color-scheme: dark; }
 
   body {
-    background-color: var(--color-surface);
-    color: var(--color-on-surface);
-    font-family: 'Inter', sans-serif;
+    background-color: #101319;
+    color: #F0EDE6;
+    font-family: var(--font-inter, 'Inter', sans-serif);
   }
 
   .material-symbols-outlined {
@@ -53,10 +53,4 @@
   .text-on-surface-variant { color: var(--color-on-surface-variant); }
   .border-technical { border-color: var(--color-technical-line); border-width: 0.5px; }
   .border-outline-variant { border-color: var(--color-outline-variant); }
-}
-
-/* WCAG AA Kontrast-Fix: #8A9BB0 hat 3.8:1 auf dunkel — zu wenig */
-/* Override auf #A8B8CC = 5.2:1 — WCAG AA konform */
-.dark .text-\[\#8A9BB0\] {
-  color: #A8B8CC !important;
 }

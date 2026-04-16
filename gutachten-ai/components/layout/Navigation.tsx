@@ -18,24 +18,18 @@ export function Navigation() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    setMenuOpen(false);
-  }, [pathname]);
+  useEffect(() => { setMenuOpen(false); }, [pathname]);
 
   return (
     <>
       <header
         className={`fixed top-0 w-full z-50 border-b-[0.5px] border-[#2A3344] transition-all duration-300 ${
-          scrolled
-            ? "bg-[#101319]/95 backdrop-blur-md translate-y-0 opacity-100"
-            : "bg-transparent translate-y-0 opacity-0 pointer-events-none"
+          scrolled ? "bg-[#101319]/95 backdrop-blur-md" : "bg-[#101319]"
         }`}
       >
         <nav className="flex justify-between items-center max-w-7xl mx-auto px-6 h-16">
