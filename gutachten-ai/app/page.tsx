@@ -1,15 +1,19 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { getHomePage } from "@/lib/sanity/queries";
 
 export const metadata: Metadata = {
-  title: "KI-Gutachtenerstellung für Bausachverständige",
-  description: "Automatisieren Sie Ihre Gutachtenerstellung mit KI. Strukturierte Fallverwaltung, digitale Akte und rechtssicherer Export für professionelle Bausachverständige.",
+  title: "Gutachtensoftware für Bausachverständige | gutachten-ai.de",
+  description: "KI-gestützte Gutachtenerstellung für Bausachverständige. Fallverwaltung, digitale Akte und rechtssicherer Export — strukturiert vom Beweisbeschluss bis zum fertigen Gutachten.",
   alternates: { canonical: "https://gutachten-ai.de" },
 };
 
+const HERO_IMAGE = "https://lh3.googleusercontent.com/aida-public/AB6AXuBSreBcnnEQnNd69Biiu6784mLwxbXbXuw2sOR4XHSjQSa8eRAn5mMQB9CizSeq_wHg4ejofBCRARWEX55XelgK4JPej5Yrv-1FLjoREtHIiedaLWJuex3lhMN0muziOLf_8WtJftur3PDceYNWzri8AUijFsWLpP9aZCBfJYUyGgriZYZUHmAjvVn7v2_k_ntOKcoJ_O87YqQwQ85m9q4N9flCU4kNRXvjRy_lcAoiyeUkkVAgmHSrQ4S9Z1PIHRiXnPrILdEnfKrX";
+
 export default async function Home() {
   const cms = await getHomePage().catch(() => null);
+  void cms;
 
   return (
     <main>
@@ -38,11 +42,14 @@ export default async function Home() {
           </div>
           <div className="relative hidden md:block z-0">
             <div className="absolute -inset-20 bg-[#E8631A]/10 blur-[120px] rounded-full"></div>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              alt="Gutachten Assistent App Interface"
-              className="relative rounded-2xl border-[0.5px] border-[#2A3344] grayscale hover:grayscale-0 transition-all duration-700 object-cover aspect-[4/5] w-full"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSreBcnnEQnNd69Biiu6784mLwxbXbXuw2sOR4XHSjQSa8eRAn5mMQB9CizSeq_wHg4ejofBCRARWEX55XelgK4JPej5Yrv-1FLjoREtHIiedaLWJuex3lhMN0muziOLf_8WtJftur3PDceYNWzri8AUijFsWLpP9aZCBfJYUyGgriZYZUHmAjvVn7v2_k_ntOKcoJ_O87YqQwQ85m9q4N9flCU4kNRXvjRy_lcAoiyeUkkVAgmHSrQ4S9Z1PIHRiXnPrILdEnfKrX"
+            {/* LCP-Bild: priority=true lädt es sofort, kein lazy loading */}
+            <Image
+              src={HERO_IMAGE}
+              alt="Gutachten Assistent App — Fallverwaltung und Beweisfragen-Editor für Bausachverständige"
+              width={600}
+              height={750}
+              priority
+              className="relative rounded-2xl border-[0.5px] border-[#2A3344] grayscale hover:grayscale-0 transition-all duration-700 object-cover w-full"
             />
           </div>
         </div>
@@ -143,24 +150,9 @@ export default async function Home() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              {
-                icon: "folder_open",
-                title: "Fallverwaltung",
-                description: "Jeder Fall enthält Akte, Beweisbeschluss, Ortstermin und Gutachten als eigene Bereiche. Verfahrensdaten, Parteien und Kostenvorschuss sind strukturiert erfasst — alles an einem Ort.",
-                href: "/funktionen",
-              },
-              {
-                icon: "inventory_2",
-                title: "Digitale Akte",
-                description: "Fotos, PDFs und Unterlagen werden fallbezogen abgelegt und nach Kategorie gefiltert. Auf einen Blick: was liegt vor, was fehlt noch.",
-                href: "/funktionen",
-              },
-              {
-                icon: "sim_card_download",
-                title: "Gutachten-Export",
-                description: "Das fertige Gutachten wird direkt aus der App als PDF oder Word exportiert — gegliedert nach Beweisfragen, mit Feststellungen und Zusammenfassung.",
-                href: "/funktionen",
-              },
+              { icon: "folder_open", title: "Fallverwaltung", description: "Jeder Fall enthält Akte, Beweisbeschluss, Ortstermin und Gutachten als eigene Bereiche. Verfahrensdaten, Parteien und Kostenvorschuss sind strukturiert erfasst — alles an einem Ort.", href: "/funktionen" },
+              { icon: "inventory_2", title: "Digitale Akte", description: "Fotos, PDFs und Unterlagen werden fallbezogen abgelegt und nach Kategorie gefiltert. Auf einen Blick: was liegt vor, was fehlt noch.", href: "/funktionen" },
+              { icon: "sim_card_download", title: "Gutachten-Export", description: "Das fertige Gutachten wird direkt aus der App als PDF oder Word exportiert — gegliedert nach Beweisfragen, mit Feststellungen und Zusammenfassung.", href: "/funktionen" },
             ].map((card, i) => (
               <Link key={i} href={card.href} className="group p-8 rounded-2xl border-[0.5px] border-[#2A3344] bg-[#1C2333] hover:border-[#E8631A]/40 transition-all">
                 <span className="material-symbols-outlined text-[#E8631A] text-3xl mb-6 block">{card.icon}</span>
@@ -178,7 +170,7 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* 6. ABLAUF — 3 SCHRITTE */}
+      {/* 6. ABLAUF */}
       <section className="py-24 bg-[#0F1218]">
         <div className="max-w-7xl mx-auto px-6">
           <div className="mb-16 text-center">
@@ -188,24 +180,9 @@ export default async function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
             <div className="hidden md:block absolute top-8 left-1/3 right-1/3 h-[0.5px] bg-[#2A3344]"></div>
             {[
-              {
-                step: "01",
-                icon: "create_new_folder",
-                title: "Fall anlegen",
-                description: "Verfahrensdaten, Parteien und Beweisbeschluss erfassen. Der Fall ist sofort einsatzbereit — mit allen relevanten Informationen an einem Ort.",
-              },
-              {
-                step: "02",
-                icon: "upload_file",
-                title: "Unterlagen & Fotos einpflegen",
-                description: "Dokumente in die digitale Akte laden, Fotos vom Ortstermin zuordnen, Notizen und Diktate ergänzen. Alles fallbezogen und filterbar.",
-              },
-              {
-                step: "03",
-                icon: "picture_as_pdf",
-                title: "Gutachten generieren & exportieren",
-                description: "Beweisfragen beantworten, KI-Assistenz nutzen, Zusammenfassung verfassen. Export als PDF oder Word — fertig zur Einreichung.",
-              },
+              { step: "01", icon: "create_new_folder", title: "Fall anlegen", description: "Verfahrensdaten, Parteien und Beweisbeschluss erfassen. Der Fall ist sofort einsatzbereit — mit allen relevanten Informationen an einem Ort." },
+              { step: "02", icon: "upload_file", title: "Unterlagen & Fotos einpflegen", description: "Dokumente in die digitale Akte laden, Fotos vom Ortstermin zuordnen, Notizen und Diktate ergänzen. Alles fallbezogen und filterbar." },
+              { step: "03", icon: "picture_as_pdf", title: "Gutachten generieren & exportieren", description: "Beweisfragen beantworten, KI-Assistenz nutzen, Zusammenfassung verfassen. Export als PDF oder Word — fertig zur Einreichung." },
             ].map((step, i) => (
               <div key={i} className="relative p-8 rounded-2xl border-[0.5px] border-[#2A3344] bg-[#151B27]">
                 <div className="flex items-center gap-4 mb-6">
@@ -225,7 +202,7 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* 7. FÜR WEN IST DAS? */}
+      {/* 7. FÜR WEN */}
       <section className="py-24 bg-[#151B27]">
         <div className="max-w-7xl mx-auto px-6">
           <div className="mb-16 max-w-2xl">
@@ -234,21 +211,9 @@ export default async function Home() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              {
-                icon: "gavel",
-                title: "Öffentlich bestellte und vereidigte Sachverständige",
-                description: "Gerichtsgutachten nach Beweisbeschluss — strukturiert, nachvollziehbar und mit vollständiger Dokumentation aller Feststellungen.",
-              },
-              {
-                icon: "engineering",
-                title: "Freie Bausachverständige",
-                description: "Privatgutachten, Mängelrügen und Zustandsbeschreibungen effizienter erstellen — ohne Abstriche bei der fachlichen Tiefe.",
-              },
-              {
-                icon: "account_balance",
-                title: "Gutachterbüros mit mehreren Sachverständigen",
-                description: "Einheitliche Falldokumentation, gemeinsame Unterlagenablage und nachvollziehbare Gutachtenhistorie für das gesamte Team.",
-              },
+              { icon: "gavel", title: "Öffentlich bestellte und vereidigte Sachverständige", description: "Gerichtsgutachten nach Beweisbeschluss — strukturiert, nachvollziehbar und mit vollständiger Dokumentation aller Feststellungen." },
+              { icon: "engineering", title: "Freie Bausachverständige", description: "Privatgutachten, Mängelrügen und Zustandsbeschreibungen effizienter erstellen — ohne Abstriche bei der fachlichen Tiefe." },
+              { icon: "account_balance", title: "Gutachterbüros mit mehreren Sachverständigen", description: "Einheitliche Falldokumentation, gemeinsame Unterlagenablage und nachvollziehbare Gutachtenhistorie für das gesamte Team." },
             ].map((item, i) => (
               <div key={i} className="p-8 rounded-2xl border-[0.5px] border-[#2A3344] bg-[#1C2333]">
                 <span className="material-symbols-outlined text-[#E8631A] text-3xl mb-6 block">{item.icon}</span>
@@ -260,7 +225,7 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* 8. PROBLEM/LÖSUNG PAARE */}
+      {/* 8. PROBLEM/LÖSUNG */}
       <section className="py-24 bg-[#0F1218]">
         <div className="max-w-7xl mx-auto px-6">
           <div className="mb-16 text-center">
@@ -269,26 +234,10 @@ export default async function Home() {
           </div>
           <div className="space-y-4">
             {[
-              {
-                problem: "Beweisbeschlüsse manuell in eine Gutachtenstruktur überführen.",
-                solution: "Beweisbeschluss hochladen — die App extrahiert die Beweisfragen und legt die Gutachtenstruktur automatisch an.",
-                icon: "description",
-              },
-              {
-                problem: "Hunderte Fotos vom Ortstermin ohne klare Zuordnung zu Beweisfragen.",
-                solution: "Fotos werden in der digitalen Akte dem jeweiligen Fall zugeordnet und sind beim Ausfüllen der Beweisfragen direkt abrufbar.",
-                icon: "photo_library",
-              },
-              {
-                problem: "Notizen und Diktate vom Ortstermin erst später ins Büro übertragen.",
-                solution: "Diktate und Notizen werden direkt im Ortstermin-Modus erfasst und sind sofort im Fall verfügbar — kein Übertragen mehr nötig.",
-                icon: "mic",
-              },
-              {
-                problem: "Gutachten in Word manuell formatieren — mit verrutschten Bildern und inkonsistentem Layout.",
-                solution: "Export auf Knopfdruck: das Gutachten erscheint strukturiert als PDF oder Word, mit allen Feststellungen und der Zusammenfassung.",
-                icon: "sim_card_download",
-              },
+              { problem: "Beweisbeschlüsse manuell in eine Gutachtenstruktur überführen.", solution: "Beweisbeschluss hochladen — die App extrahiert die Beweisfragen und legt die Gutachtenstruktur automatisch an.", icon: "description" },
+              { problem: "Hunderte Fotos vom Ortstermin ohne klare Zuordnung zu Beweisfragen.", solution: "Fotos werden in der digitalen Akte dem jeweiligen Fall zugeordnet und sind beim Ausfüllen der Beweisfragen direkt abrufbar.", icon: "photo_library" },
+              { problem: "Notizen und Diktate vom Ortstermin erst später ins Büro übertragen.", solution: "Diktate und Notizen werden direkt im Ortstermin-Modus erfasst und sind sofort im Fall verfügbar — kein Übertragen mehr nötig.", icon: "mic" },
+              { problem: "Gutachten in Word manuell formatieren — mit verrutschten Bildern und inkonsistentem Layout.", solution: "Export auf Knopfdruck: das Gutachten erscheint strukturiert als PDF oder Word, mit allen Feststellungen und der Zusammenfassung.", icon: "sim_card_download" },
             ].map((pair, i) => (
               <div key={i} className="grid grid-cols-1 md:grid-cols-2 gap-0 rounded-2xl overflow-hidden border-[0.5px] border-[#2A3344]">
                 <div className="p-8 bg-[#151B27] flex items-start gap-4">
@@ -350,30 +299,13 @@ export default async function Home() {
               <h2 className="text-4xl font-medium text-[#F0EDE6] mb-4">Aus dem Blog.</h2>
               <p className="text-[#8A9BB0]">Fachbeiträge rund um KI, Gutachtenwesen und digitale Prozesse für Sachverständige.</p>
             </div>
-            <Link href="/blog" className="hidden md:block text-[#E8631A] text-sm font-medium hover:underline">
-              Alle Beiträge →
-            </Link>
+            <Link href="/blog" className="hidden md:block text-[#E8631A] text-sm font-medium hover:underline">Alle Beiträge →</Link>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              {
-                category: "KI & Recht",
-                title: "EU AI Act und Gutachtenwesen: Was Sachverständige jetzt wissen müssen.",
-                excerpt: "Der EU AI Act klassifiziert KI-Systeme nach Risiko. Welche Anforderungen gelten für KI-gestützte Gutachtenassistenten?",
-                href: "/blog",
-              },
-              {
-                category: "Praxis",
-                title: "Digitale Akte statt Papierordner: Wie Sachverständige Zeit gewinnen.",
-                excerpt: "Eine strukturierte digitale Fallakte spart nicht nur Zeit beim Suchen — sie macht Gutachten nachvollziehbarer und angreifbarer.",
-                href: "/blog",
-              },
-              {
-                category: "Technik",
-                title: "Beweisbeschlüsse automatisch auswerten: Was KI heute schon kann.",
-                excerpt: "Moderne Sprachmodelle können gerichtliche Beweisbeschlüsse analysieren und in strukturierte Gutachtenvorlagen überführen.",
-                href: "/blog",
-              },
+              { category: "KI & Recht", title: "EU AI Act und Gutachtenwesen: Was Sachverständige jetzt wissen müssen.", excerpt: "Der EU AI Act klassifiziert KI-Systeme nach Risiko. Welche Anforderungen gelten für KI-gestützte Gutachtenassistenten?", href: "/blog/eu-ai-act-gutachtenwesen" },
+              { category: "Praxis", title: "Digitale Akte statt Papierordner: Wie Sachverständige Zeit gewinnen.", excerpt: "Eine strukturierte digitale Fallakte spart nicht nur Zeit beim Suchen — sie macht Gutachten nachvollziehbarer.", href: "/blog/digitale-akte-sachverstaendige" },
+              { category: "Technik", title: "Beweisbeschlüsse automatisch auswerten: Was KI heute schon kann.", excerpt: "Moderne Sprachmodelle können gerichtliche Beweisbeschlüsse analysieren und in strukturierte Gutachtenvorlagen überführen.", href: "/blog/beweisbeschluss-ki-auswertung" },
             ].map((post, i) => (
               <Link key={i} href={post.href} className="group p-8 rounded-2xl border-[0.5px] border-[#2A3344] bg-[#151B27] hover:border-[#E8631A]/40 transition-all">
                 <span className="text-xs text-[#E8631A] font-medium tracking-wider uppercase mb-4 block">{post.category}</span>
@@ -382,9 +314,6 @@ export default async function Home() {
               </Link>
             ))}
           </div>
-          <div className="text-center mt-8 md:hidden">
-            <Link href="/blog" className="text-[#E8631A] text-sm font-medium hover:underline">Alle Beiträge →</Link>
-          </div>
         </div>
       </section>
 
@@ -392,19 +321,13 @@ export default async function Home() {
       <section className="py-32 bg-[#101319] overflow-hidden relative">
         <div className="max-w-7xl mx-auto px-6 flex justify-center">
           <div className="w-full max-w-2xl p-12 rounded-3xl border-[0.5px] border-[#E8631A]/40 bg-[#151921] relative">
-            <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#E8631A] text-white text-[10px] font-bold tracking-[0.2em] uppercase px-4 py-1 rounded-full">
-              Früher Zugang
-            </div>
+            <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#E8631A] text-white text-[10px] font-bold tracking-[0.2em] uppercase px-4 py-1 rounded-full">Früher Zugang</div>
             <div className="text-center mb-10">
               <h2 className="text-4xl font-medium text-[#F0EDE6] mb-4">Jetzt mit dem Gutachten Assistenten starten.</h2>
               <p className="text-[#E0C0B3]">Testen Sie den vollen Funktionsumfang unverbindlich — keine Kreditkarte, keine automatische Verlängerung.</p>
             </div>
             <div className="space-y-6 mb-12">
-              {[
-                "Vollständige Fallverwaltung inklusive",
-                "Digitale Akte mit Filterung",
-                "Gutachten-Export als PDF und Word",
-              ].map((item, i) => (
+              {["Vollständige Fallverwaltung inklusive", "Digitale Akte mit Filterung", "Gutachten-Export als PDF und Word"].map((item, i) => (
                 <div key={i} className={`flex items-center justify-between pb-4 ${i < 2 ? "border-b-[0.5px] border-[#2A3344]" : ""}`}>
                   <span className="text-[#E0C0B3]">{item}</span>
                   <span className="material-symbols-outlined text-[#E8631A]">done_all</span>
@@ -422,19 +345,11 @@ export default async function Home() {
       {/* 12. FINAL CTA */}
       <section className="py-24 bg-[#0F1218] text-center">
         <div className="max-w-3xl mx-auto px-6">
-          <h2 className="text-4xl md:text-5xl font-normal tracking-tight text-[#F0EDE6] mb-8">
-            Bereit für strukturierte Gutachtenarbeit?
-          </h2>
-          <p className="text-lg text-[#E0C0B3] mb-12">
-            Weniger manuelle Arbeit, mehr Nachvollziehbarkeit — vom ersten Fall bis zum fertigen Export.
-          </p>
+          <h2 className="text-4xl md:text-5xl font-normal tracking-tight text-[#F0EDE6] mb-8">Bereit für strukturierte Gutachtenarbeit?</h2>
+          <p className="text-lg text-[#E0C0B3] mb-12">Weniger manuelle Arbeit, mehr Nachvollziehbarkeit — vom ersten Fall bis zum fertigen Export.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/kontakt" className="bg-[#E8631A] text-white px-10 py-4 rounded-xl font-medium text-lg hover:opacity-90 transition-all">
-              Zugang anfragen
-            </Link>
-            <Link href="/funktionen" className="border-[0.5px] border-[#2A3344] text-[#F0EDE6] px-10 py-4 rounded-xl font-medium text-lg hover:bg-[#272A31] transition-all">
-              Alle Funktionen ansehen
-            </Link>
+            <Link href="/kontakt" className="bg-[#E8631A] text-white px-10 py-4 rounded-xl font-medium text-lg hover:opacity-90 transition-all">Zugang anfragen</Link>
+            <Link href="/funktionen" className="border-[0.5px] border-[#2A3344] text-[#F0EDE6] px-10 py-4 rounded-xl font-medium text-lg hover:bg-[#272A31] transition-all">Alle Funktionen ansehen</Link>
           </div>
         </div>
       </section>

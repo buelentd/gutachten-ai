@@ -37,22 +37,45 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="de" className="dark" suppressHydrationWarning>
       <head>
+        {/* Theme Script — inline, kein render-blocking */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `
-              try {
-                var theme = localStorage.getItem('theme');
-                if (theme === 'light') {
-                  document.documentElement.classList.remove('dark');
-                } else {
-                  document.documentElement.classList.add('dark');
-                }
-              } catch(e) {}
-            `,
+            __html: `try{var t=localStorage.getItem('theme');if(t==='light'){document.documentElement.classList.remove('dark')}else{document.documentElement.classList.add('dark')}}catch(e){}`,
           }}
         />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet"/>
-        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+        {/* Preconnect — DNS early resolve für Google Fonts */}
+        <link rel="preconnect" href="https://fonts.googleapis.com"/>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous"/>
+
+        {/* Inter Font — display=swap verhindert FOIT, non-blocking */}
+        {/* eslint-disable-next-line @next/next/no-page-custom-font */}
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap"
+          media="print"
+          // @ts-expect-error onload not typed
+          onLoad="this.media='all'"
+        />
+        <noscript>
+          {/* eslint-disable-next-line @next/next/no-page-custom-font */}
+          <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap"/>
+        </noscript>
+
+        {/* Material Symbols — async load, display=swap */}
+        {/* eslint-disable-next-line @next/next/no-page-custom-font */}
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@400,0&display=swap"
+          media="print"
+          // @ts-expect-error onload not typed
+          onLoad="this.media='all'"
+        />
+        <noscript>
+          {/* eslint-disable-next-line @next/next/no-page-custom-font */}
+          <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@400,0&display=swap"/>
+        </noscript>
+
         {/* WebSite Schema */}
         <script
           type="application/ld+json"
@@ -67,11 +90,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               "publisher": {
                 "@type": "Organization",
                 "name": "gutachten-ai.de",
-                "url": "https://gutachten-ai.de",
-              },
+                "url": "https://gutachten-ai.de"
+              }
             })
           }}
         />
+
         {/* SoftwareApplication Schema */}
         <script
           type="application/ld+json"
@@ -88,17 +112,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 "@type": "Offer",
                 "price": "0",
                 "priceCurrency": "EUR",
-                "description": "Auf Anfrage",
+                "description": "Auf Anfrage"
               },
               "provider": {
                 "@type": "Organization",
                 "name": "gutachten-ai.de",
-                "url": "https://gutachten-ai.de",
+                "url": "https://gutachten-ai.de"
               },
               "areaServed": {
                 "@type": "Country",
-                "name": "Germany",
-              },
+                "name": "Germany"
+              }
             })
           }}
         />
