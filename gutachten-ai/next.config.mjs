@@ -15,8 +15,14 @@ const nextConfig = {
   compress: true,
   poweredByHeader: false,
   experimental: {
-    // Zwingt SWC auf moderne Browser — eliminiert Polyfills für Array.at, Object.hasOwn etc.
     browsersListForSwc: true,
+  },
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      // Zwingt Webpack moderne Browser als Target — eliminiert Polyfills
+      config.target = ["web", "es2020"];
+    }
+    return config;
   },
 };
 
