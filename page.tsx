@@ -35,18 +35,7 @@ export default function Home() {
           <div className="relative hidden md:block z-0">
             <HeroCrossfade />
           </div>
-          {/* Mobile: statisches Bild */}
-          <div className="relative block md:hidden w-full mt-4">
-            <Image
-              src="/hero-mobile.webp"
-              alt="Gutachten Assistent — Übersicht für Bausachverständige"
-              width={600}
-              height={400}
-              priority
-              fetchPriority="high"
-              className="object-contain w-full rounded-2xl border-[0.5px] border-[#2A3344]"
-            />
-          </div>
+
         </div>
       </section>
 
