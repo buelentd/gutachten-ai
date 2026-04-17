@@ -42,9 +42,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="de" className="dark" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: `try{if(localStorage.getItem('theme')==='light'){document.documentElement.classList.remove('dark')}}catch(e){}` }} />
-        {/* KEIN preconnect zu fonts.googleapis.com — next/font ist self-hosted */}
-        {/* Material Symbols — async, non-blocking */}
-        <script dangerouslySetInnerHTML={{ __html: `(function(){var l=document.createElement('link');l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@400,0&display=swap';document.head.appendChild(l);})();` }}/>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
           "@context": "https://schema.org", "@type": "WebSite",
           "name": "gutachten-ai.de", "url": "https://gutachten-ai.de",
@@ -66,7 +63,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Navigation />
         {children}
         <Footer />
-        {/* GA4 — lazyOnload: lädt erst wenn Seite vollständig idle ist */}
+        {/* Material Symbols — lazyOnload: lädt erst wenn Seite idle */}
+        <Script id="material-symbols" strategy="lazyOnload">
+          {`(function(){var l=document.createElement('link');l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@400,0&display=swap';document.head.appendChild(l);})();`}
+        </Script>
+        {/* GA4 — lazyOnload */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-MZNP1LYCPH"
           strategy="lazyOnload"
