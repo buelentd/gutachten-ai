@@ -108,7 +108,7 @@ export default function Kontakt() {
                   {/* Email + Telefon */}
                   <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="email" required>E-Mail *</Label>
+                      <Label htmlFor="email" required>E-Mail</Label>
                       <Input id="email" name="email" type="email" required value={form.email} onChange={handleChange} placeholder="max@beispiel.de" />
                     </div>
                     <div className="space-y-2">
@@ -149,7 +149,7 @@ export default function Kontakt() {
 
                   {/* Nachricht */}
                   <div className="space-y-2">
-                    <Label htmlFor="nachricht" required>Nachricht *</Label>
+                    <Label htmlFor="nachricht" required>Nachricht</Label>
                     <Textarea id="nachricht" name="nachricht" required rows={5} value={form.nachricht} onChange={handleChange} placeholder="Wie können wir Ihnen helfen?" />
                   </div>
 
