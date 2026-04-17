@@ -1,46 +1,17 @@
-"use client";
+import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
-import { useState, useEffect } from "react";
+import { HeroCrossfade } from "@/components/HeroCrossfade";
 
-const HeroCrossfade = () => {
-  const [showSecond, setShowSecond] = useState(false);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setShowSecond(prev => !prev);
-    }, 4000);
-    return () => clearInterval(interval);
-  }, []);
-
-  return (
-    <div className="relative w-full aspect-square">
-      <Image
-        src="/hero.webp"
-        alt="Architektur-Blueprint — technische Zeichnung mit orangen Konstruktionslinien für Bausachverständige"
-        fill
-        priority
-        fetchPriority="high"
-        sizes="(max-width: 768px) 0px, 50vw"
-        className="object-contain rounded-2xl border-[0.5px] border-[#2A3344]"
-        style={{ opacity: showSecond ? 0 : 1, transition: "opacity 1.5s ease-in-out" }}
-      />
-      <Image
-        src="/hero-sw.webp"
-        alt="Baustellen-Illustration — Gebäude im Rohbau für Bausachverständige"
-        fill
-        sizes="(max-width: 768px) 0px, 50vw"
-        className="object-contain rounded-2xl border-[0.5px] border-[#2A3344]"
-        style={{ opacity: showSecond ? 1 : 0, transition: "opacity 1.5s ease-in-out" }}
-      />
-    </div>
-  );
+export const metadata: Metadata = {
+  title: "Gutachtensoftware für Bausachverständige | gutachten-ai.de",
+  description: "KI-gestützte Gutachtenerstellung für Bausachverständige. Fallverwaltung, digitale Akte und rechtssicherer Export — strukturiert vom Beweisbeschluss bis zum fertigen Gutachten.",
+  alternates: { canonical: "https://gutachten-ai.de" },
 };
 
 export default function Home() {
   return (
     <main>
-      {/* 1. HERO — blur entfernt (war Ursache für forced reflow + schlechte Mobile Performance) */}
+      {/* 1. HERO */}
       <section className="relative min-h-[819px] flex items-center bg-[#0F1218] overflow-hidden pt-16">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="z-10">
@@ -60,7 +31,6 @@ export default function Home() {
             </div>
           </div>
           <div className="relative hidden md:block z-0">
-            {/* blur-[120px] entfernt — war Ursache für forced reflow */}
             <HeroCrossfade />
           </div>
         </div>
