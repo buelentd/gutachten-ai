@@ -20,8 +20,8 @@ const defaults = {
   ],
   timeline: [
     { day: "0", label: "Tag 0", sublabel: "Kick-off Meeting", isRocket: false },
-    { day: "7", label: "Woche 1", sublabel: "Systemkonfiguration", isRocket: false },
-    { day: "14", label: "Woche 2", sublabel: "Mitarbeiter-Training", isRocket: false },
+    { day: "7", label: "Tag 1", sublabel: "Systemkonfiguration", isRocket: false },
+    { day: "14", label: "Ab Tag 1", sublabel: "Mitarbeiter-Training", isRocket: false },
     { day: "", label: "Laufend", sublabel: "Skalierung & Updates", isRocket: true },
   ],
   trustItems: [
