@@ -42,6 +42,8 @@ export default function Home() {
               alt="Gutachten Assistent — Übersicht für Bausachverständige"
               width={600}
               height={400}
+              priority
+              fetchPriority="high"
               className="object-contain w-full rounded-2xl border-[0.5px] border-[#2A3344]"
             />
           </div>
