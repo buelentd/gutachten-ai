@@ -67,13 +67,22 @@ export function BlogCarousel({ posts, title, subtext, linkText }: Props) {
           ))}
         </div>
         {total > visible && (
-          <div className="flex justify-center gap-2 mt-8">
-            {posts.map((_, i) => (
+          <div className="flex justify-center gap-2 mt-8" role="tablist" aria-label="Blog-Beiträge Navigation">
+            {posts.map((post, i) => (
               <button
                 key={i}
+                role="tab"
+                aria-selected={i === current}
+                aria-label={`Beitrag ${i + 1}: ${post.title}`}
                 onClick={() => setCurrent(i)}
-                className={`w-2 h-2 rounded-full transition-all ${i === current ? "bg-[#E8631A] w-6" : "bg-[#2A3344]"}`}
-              />
+                className="relative flex items-center justify-center w-11 h-11"
+              >
+                <span
+                  className={`block rounded-full transition-all ${
+                    i === current ? "w-6 h-2 bg-[#E8631A]" : "w-2 h-2 bg-[#2A3344]"
+                  }`}
+                />
+              </button>
             ))}
           </div>
         )}

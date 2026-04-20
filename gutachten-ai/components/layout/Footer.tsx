@@ -9,7 +9,6 @@ const links = [
   { href: "/kontakt", label: "Kontakt" },
   { href: "/impressum", label: "Impressum" },
   { href: "/datenschutz", label: "Datenschutz" },
-  { href: "/agb", label: "AGB" },
 ];
 
 export function Footer() {
@@ -20,7 +19,7 @@ export function Footer() {
         <div className="flex flex-col items-center md:items-start gap-4">
           <div className="flex items-center gap-2">
             <span className="material-symbols-outlined text-[#E8631A]">architecture</span>
-            <span className="text-lg font-medium text-[#F0EDE6]">gutachter-ki.de</span>
+            <span className="text-lg font-medium text-[#F0EDE6]">gutachten-ai.de</span>
           </div>
           <p className="font-normal text-xs leading-relaxed text-[#A0AABB] max-w-xs text-center md:text-left">
             Die Zukunft der professionellen Gutachtenerstellung. Präzise, sicher und effizient.
@@ -36,8 +35,8 @@ export function Footer() {
         </div>
       </div>
       <div className="max-w-7xl mx-auto px-8 pb-8 text-center">
-        <span className="font-normal text-xs text-[#594238]">
-          © 2026 gutachter-ki.de • Server in Deutschland • DSGVO-konform • Made in Germany
+        <span className="font-normal text-xs text-[#A0AABB]">
+          © 2026 gutachten-ai.de • Server in Deutschland • DSGVO-konform • Made in Germany
         </span>
       </div>
     </footer>
