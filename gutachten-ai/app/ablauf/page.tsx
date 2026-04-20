@@ -2,45 +2,19 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getAblaufPage } from "@/lib/sanity/queries";
 
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: "Ablauf — So funktioniert die KI-Gutachten Integration",
   description: "In 3 Schritten zur digitalen Gutachtenerstellung: Anfrage, Onboarding, Loslegen.",
   alternates: { canonical: "https://gutachten-ai.de/ablauf" },
 };
 
-const defaults = {
-  heroLabel: "Implementierung",
-  heroTitle: "Vom Erstkontakt zur fertigen",
-  heroTitleHighlight: "Expertise.",
-  heroSubtext: "Effizienz beginnt bei der Einführung. Wir haben einen strukturierten Prozess entwickelt, der Ihre bestehenden Workflows respektiert und digital transformiert.",
-  steps: [
-    { number: "01", title: "Anfrage", description: "Wir analysieren Ihren aktuellen Bedarf und prüfen die Kompatibilität Ihrer Datenstruktur mit unserer KI-Engine.", items: ["Erstgespräch & Bedarfsanalyse", "Daten-Checkup"] },
-    { number: "02", title: "Onboarding", description: "Integration der Schnittstellen und Training Ihres Teams auf die spezifischen Module Ihres Fachbereichs.", items: ["Setup & Integration", "Live-Schulung via Web-App"] },
-    { number: "03", title: "Loslegen", description: "Ab Tag 1 profitieren Sie von automatisierten Gutachten-Entwürfen und digitaler Beweissicherung.", items: ["Voller Funktionsumfang", "Support & Optimierung"] },
-  ],
-  timeline: [
-    { day: "0", label: "Tag 0", sublabel: "Kick-off Meeting", isRocket: false },
-    { day: "7", label: "Tag 1", sublabel: "Systemkonfiguration", isRocket: false },
-    { day: "14", label: "Ab Tag 1", sublabel: "Mitarbeiter-Training", isRocket: false },
-    { day: "", label: "Laufend", sublabel: "Skalierung & Updates", isRocket: true },
-  ],
-  trustItems: [
-    { icon: "security", title: "Sicherheit & Datenschutz", description: "Ihre Daten verlassen niemals deutschen Boden. Unsere Server sind ISO 27001 zertifiziert und vollständig DSGVO-konform." },
-    { icon: "settings_input_component", title: "Technische Integration", description: "Dank unserer modernen REST-API lässt sich gutachten-ai.de nahtlos in Ihre bestehende Branchensoftware integrieren." },
-  ],
-  ctaTitle: "Bereit für den digitalen Vorsprung?",
-  ctaSubtext: "Sichern Sie sich jetzt ein unverbindliches Beratungsgespräch und erfahren Sie, wie wir Ihren Arbeitsalltag revolutionieren können.",
-  ctaPrimaryButton: "Kostenloses Gespräch buchen",
-  ctaSecondaryButton: "Funktionen ansehen",
-};
-
 export default async function Ablauf() {
-  const cms = await getAblaufPage().catch(() => null);
-  const d = { ...defaults, ...cms };
+  const d = await getAblaufPage();
 
   return (
     <main className="pt-32 pb-24">
-      {/* Hero */}
       <section className="max-w-7xl mx-auto px-6 mb-24 text-center md:text-left">
         <div className="grid md:grid-cols-12 gap-8 items-end">
           <div className="md:col-span-7">
@@ -63,7 +37,6 @@ export default async function Ablauf() {
         </div>
       </section>
 
-      {/* Steps */}
       <section className="max-w-7xl mx-auto px-6 mb-32">
         <div className="grid md:grid-cols-3 gap-px bg-outline-variant border-[0.5px] border-outline-variant overflow-hidden rounded-xl">
           {d.steps?.map((step: { number: string; title: string; description: string; items: string[] }, i: number) => (
@@ -85,7 +58,6 @@ export default async function Ablauf() {
         </div>
       </section>
 
-      {/* Timeline */}
       <section className="max-w-7xl mx-auto px-6 mb-32">
         <h2 className="text-3xl font-medium text-on-surface mb-16 text-center">Zeitplan der Einführung</h2>
         <div className="relative">
@@ -107,7 +79,6 @@ export default async function Ablauf() {
         </div>
       </section>
 
-      {/* Trust */}
       <section className="max-w-7xl mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-8">
           {d.trustItems?.map((item: { icon: string; title: string; description: string }, i: number) => (
@@ -126,7 +97,6 @@ export default async function Ablauf() {
         </div>
       </section>
 
-      {/* CTA */}
       <section className="max-w-7xl mx-auto px-6 mt-32">
         <div className="bg-[#EE671F] p-12 md:p-20 rounded-xl relative overflow-hidden">
           <div className="relative z-10 max-w-2xl">

@@ -4,21 +4,28 @@ export default defineType({
   name: "kontaktPage",
   title: "Kontakt",
   type: "document",
+  preview: {
+    prepare: () => ({ title: "Kontaktseite" }),
+  },
   fields: [
-    defineField({ name: "heroLabel", title: "Label (orange)", type: "string" }),
-    defineField({ name: "heroTitle", title: "Titel", type: "string" }),
-    defineField({ name: "contactName", title: "Ansprechpartner Name", type: "string" }),
-    defineField({ name: "contactRole", title: "Ansprechpartner Rolle", type: "string" }),
-    defineField({ name: "contactQuote", title: "Zitat", type: "text" }),
+    defineField({ name: "heroTitle", title: "Hero Titel", type: "string" }),
+    defineField({ name: "heroSubtext", title: "Hero Subtext", type: "text" }),
+    defineField({ name: "contactName", title: "Kontaktperson Name", type: "string" }),
+    defineField({ name: "contactRole", title: "Kontaktperson Rolle", type: "string" }),
+    defineField({ name: "contactText", title: "Kontaktperson Text", type: "text" }),
     defineField({
       name: "trustItems",
-      title: "Vertrauens-Elemente",
+      title: "Vertrauens-Punkte",
       type: "array",
-      of: [{ type: "object", fields: [
-        { name: "icon", title: "Material Symbol Name", type: "string" },
-        { name: "title", title: "Titel", type: "string" },
-        { name: "description", title: "Beschreibung", type: "text" },
-      ]}],
+      of: [{
+        type: "object",
+        preview: { select: { title: "title" } },
+        fields: [
+          { name: "icon", title: "Material Symbol Name", type: "string" },
+          { name: "title", title: "Titel", type: "string" },
+          { name: "description", title: "Beschreibung", type: "text" },
+        ],
+      }],
     }),
   ],
 });

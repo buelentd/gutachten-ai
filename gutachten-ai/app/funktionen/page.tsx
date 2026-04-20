@@ -4,6 +4,8 @@ import Image from "next/image";
 import { getFunktionenPage } from "@/lib/sanity/queries";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: "Funktionen — Gutachtensoftware für Bausachverständige",
   description: "Fallverwaltung, digitale Akte, Beweisfragen-Editor, Ortstermin-Modus und Gutachten-Export als PDF und Word — alle Funktionen des Gutachten Assistenten im Überblick.",
@@ -21,22 +23,21 @@ const faqSchema = {
 };
 
 const features = [
-  { icon: "folder_open", title: "Fallverwaltung", description: "Alle Vorgänge strukturiert an einem Ort: Akte, Beweisbeschluss, Ortstermin und Gutachten sind als eigene Bereiche eines Falls organisiert. So behalten Sie auch bei parallelen Verfahren jederzeit den Überblick.", example: "Ein Fall enthält Verfahrensdaten, alle Parteien, Kostenvorschuss und den vollständigen Beweisbeschluss — alles abrufbar mit einem Klick.", image: "/raumplan-feature.webp", imageAlt: "Grundriss-Übersicht — Fallverwaltung mit strukturierten Beweisfragen und Verfahrensdaten", reverse: false },
-  { icon: "inventory_2", title: "Digitale Akte", description: "Fotos, PDFs und Unterlagen werden fallbezogen abgelegt und sind nach Kategorie filterbar. Die Digitale Akte zeigt auf einen Blick welche Dokumente vorliegen — und welche noch fehlen.", example: "Unterlagen nach Typ filtern: Grundrisse, Gutachten, Rechnungen oder Schriftverkehr — immer sofort auffindbar.", image: "/Konstruktionsdetail-feature.webp", imageAlt: "Konstruktionsdetail — digitale Akte mit Unterlage-Kategorien und Filtern", reverse: true },
-  { icon: "sim_card_download", title: "Gutachten-Export", description: "Das fertige Gutachten wird direkt aus der App als PDF oder Word-Dokument exportiert — strukturiert nach Beweisfragen, mit allen Feststellungen und der Zusammenfassung.", example: "Export auf Knopfdruck: vollständiges Gutachten als DOCX für die eigene Weiterbearbeitung oder als PDF zur Einreichung beim Gericht.", image: "/Pruefbericht-feature.webp", imageAlt: "Prüfbericht-Formular — Gutachten-Export als PDF oder Word strukturiert nach Beweisfragen", reverse: false },
-  { icon: "quiz", title: "Beweisfragen-Editor", description: "Bis zu 18 Beweisfragen pro Fall — jede mit eigenem Editor für Behauptung, Hinweis und Feststellungen. Unterbeweisfragen werden korrekt in die Gutachtenstruktur eingebettet.", example: "BF1 mit Unterbeweisfragen a–f: jede Feststellung separat erfasst und beim Export korrekt strukturiert.", image: "/Konstruktionsdetail-feature.webp", imageAlt: "Baufortschritt-Report — Beweisfragen-Editor mit strukturierten Feststellungen", reverse: true },
+  { icon: "folder_open", title: "Fallverwaltung", description: "Alle Vorgänge strukturiert an einem Ort: Akte, Beweisbeschluss, Ortstermin und Gutachten sind als eigene Bereiche eines Falls organisiert.", example: "Ein Fall enthält Verfahrensdaten, alle Parteien, Kostenvorschuss und den vollständigen Beweisbeschluss — alles abrufbar mit einem Klick.", image: "/raumplan-feature.webp", imageAlt: "Grundriss-Übersicht — Fallverwaltung mit strukturierten Beweisfragen", reverse: false },
+  { icon: "inventory_2", title: "Digitale Akte", description: "Fotos, PDFs und Unterlagen werden fallbezogen abgelegt und sind nach Kategorie filterbar.", example: "Unterlagen nach Typ filtern: Grundrisse, Gutachten, Rechnungen oder Schriftverkehr — immer sofort auffindbar.", image: "/Konstruktionsdetail-feature.webp", imageAlt: "Konstruktionsdetail — digitale Akte mit Unterlage-Kategorien und Filtern", reverse: true },
+  { icon: "sim_card_download", title: "Gutachten-Export", description: "Das fertige Gutachten wird direkt aus der App als PDF oder Word-Dokument exportiert — strukturiert nach Beweisfragen.", example: "Export auf Knopfdruck: vollständiges Gutachten als DOCX oder als PDF zur Einreichung beim Gericht.", image: "/Pruefbericht-feature.webp", imageAlt: "Prüfbericht-Formular — Gutachten-Export als PDF oder Word", reverse: false },
+  { icon: "quiz", title: "Beweisfragen-Editor", description: "Bis zu 18 Beweisfragen pro Fall — jede mit eigenem Editor für Behauptung, Hinweis und Feststellungen.", example: "BF1 mit Unterbeweisfragen a–f: jede Feststellung separat erfasst und beim Export korrekt strukturiert.", image: "/Konstruktionsdetail-feature.webp", imageAlt: "Baufortschritt-Report — Beweisfragen-Editor mit strukturierten Feststellungen", reverse: true },
   { icon: "receipt_long", title: "Rechnungen", description: "Automatisierte Erstellung von JVEG-konformen Rechnungen oder Honorarberechnungen nach Zeitaufwand.", example: "Ein-Klick-Erstellung der Gesamtabrechnung nach Abschluss des Gutachtens inkl. aller Nebenkosten.", image: "/Rechnung-feature.webp", imageAlt: "Rechnungs-Dashboard — JVEG-konforme Honorarabrechnung automatisch erstellt", reverse: false },
 ];
 
 const faq = [
   { question: "Sind meine Daten sicher?", answer: "Ja. Alle Daten werden auf deutschen Servern verarbeitet und sind vollständig DSGVO-konform verschlüsselt." },
   { question: "Ersetzt die KI den menschlichen Gutachter?", answer: "Nein. Die KI dient als Assistenzsystem, das zeitaufwendige Recherche- und Schreibarbeiten übernimmt, damit Sie sich auf die fachliche Bewertung konzentrieren können." },
-  { question: "Wie aktuell sind die DIN-Normen?", answer: "Unsere Datenbank wird kontinuierlich aktualisiert, um stets den neuesten Stand der Technik und aktuelle rechtliche Rahmenbedingungen abzubilden." },
+  { question: "Wie aktuell sind die DIN-Normen?", answer: "Unsere Datenbank wird kontinuierlich aktualisiert, um stets den neuesten Stand der Technik abzubilden." },
 ];
 
 export default async function Funktionen() {
-  const cms = await getFunktionenPage().catch(() => null);
-  void cms;
+  void await getFunktionenPage().catch(() => null);
 
   return (
     <main className="pt-32 pb-24">
@@ -66,13 +67,7 @@ export default async function Funktionen() {
               </div>
             </div>
             <div className={`col-span-12 md:col-span-7 rounded-xl overflow-hidden border-[0.5px] border-outline-variant ${f.reverse ? "order-2 md:order-1" : ""}`}>
-              <Image
-                src={f.image}
-                alt={f.imageAlt}
-                width={800}
-                height={450}
-                className="object-cover w-full h-full"
-              />
+              <Image src={f.image} alt={f.imageAlt} width={800} height={450} className="object-cover w-full h-full" />
             </div>
           </div>
         ))}
