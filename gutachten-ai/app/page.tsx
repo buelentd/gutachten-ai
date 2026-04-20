@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import { HeroCrossfade } from "@/components/HeroCrossfade";
+import { client } from "@/lib/sanity/client";
+import { groq } from "next-sanity";
 
 export const metadata: Metadata = {
   title: "Gutachtensoftware für Bausachverständige | gutachten-ai.de",
@@ -9,7 +10,78 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://gutachten-ai.de" },
 };
 
-export default function Home() {
+async function getHomePage() {
+  try {
+    return await client.fetch(groq`*[_type == "homePage"][0]{
+      heroTitle, heroSubtext, heroPrimaryButton, heroSecondaryButton,
+      stats, problemTitle, problemSubtext, problemItems, solutionItems,
+      features, offerTitle, offerSubtext, offerItems, ctaTitle, ctaSubtext
+    }`);
+  } catch { return null; }
+}
+
+const DEFAULTS = {
+  heroTitle: "Der digitale Assistent für Bausachverständige.",
+  heroSubtext: "Vom Beweisbeschluss bis zum fertigen Gutachten — strukturiert, nachvollziehbar und rechtssicher. Entwickelt für die tägliche Arbeit vor Gericht und vor Ort.",
+  heroPrimaryButton: "Alle Funktionen entdecken",
+  heroSecondaryButton: "So funktioniert es",
+  stats: [
+    { value: "18", label: "Beweisfragen strukturiert", highlight: true },
+    { value: "3", label: "Exportformate (PDF, Word, Druck)", highlight: false },
+    { value: "100%", label: "Datenhoheit beim Sachverständigen", highlight: false },
+    { value: "< 1 Tag", label: "Einarbeitungszeit", highlight: false },
+  ],
+  problemTitle: "Warum der bisherige Weg nicht mehr ausreicht.",
+  problemSubtext: "Gutachten entstehen heute noch überwiegend manuell — trotz hoher Fallzahlen, steigendem Termindruck und wachsender Dokumentationsanforderungen.",
+  problemItems: [
+    "Beweisbeschlüsse manuell übertragen und strukturieren.",
+    "Fotos vom Ortstermin unsortiert und ohne Fallbezug.",
+    "Gutachten-Entwurf in Word — Layout-Frust inklusive.",
+  ],
+  solutionItems: [
+    "Beweisbeschluss hochladen — Struktur entsteht automatisch.",
+    "Unterlagen, Fotos und Notizen fallbezogen in der digitalen Akte.",
+    "Gutachten exportieren als PDF oder Word — strukturiert und fertig.",
+  ],
+  features: [
+    { icon: "folder_open", title: "Fallverwaltung", description: "Akte, Beweisbeschluss, Ortstermin und Gutachten als strukturierte Einheit." },
+    { icon: "inventory_2", title: "Digitale Akte", description: "Unterlagen, Fotos und PDFs fallbezogen abgelegt und filterbar." },
+    { icon: "quiz", title: "Beweisfragen-Editor", description: "18 Beweisfragen mit Behauptung, Hinweis und Feststellungen." },
+    { icon: "mic", title: "Ortstermin-Modus", description: "Fotos, Diktate und Notizen direkt vor Ort erfassen." },
+    { icon: "auto_awesome", title: "KI-Assistent", description: "Textvorschläge und Norm-Matching auf Basis des Beweisbeschlusses." },
+    { icon: "sim_card_download", title: "Export PDF & Word", description: "Fertiges Gutachten strukturiert exportieren — bereit zur Einreichung." },
+  ],
+  offerTitle: "Jetzt mit dem Gutachten Assistenten starten.",
+  offerSubtext: "Testen Sie den vollen Funktionsumfang unverbindlich.",
+  offerItems: [
+    "Vollständige Fallverwaltung inklusive",
+    "Digitale Akte mit Filterung",
+    "Gutachten-Export als PDF und Word",
+  ],
+  ctaTitle: "Bereit für strukturierte Gutachtenarbeit?",
+  ctaSubtext: "Weniger manuelle Arbeit, mehr Nachvollziehbarkeit.",
+};
+
+export default async function Home() {
+  const cms = await getHomePage();
+  const d = {
+    heroTitle: cms?.heroTitle || DEFAULTS.heroTitle,
+    heroSubtext: cms?.heroSubtext || DEFAULTS.heroSubtext,
+    heroPrimaryButton: cms?.heroPrimaryButton || DEFAULTS.heroPrimaryButton,
+    heroSecondaryButton: cms?.heroSecondaryButton || DEFAULTS.heroSecondaryButton,
+    stats: cms?.stats?.length ? cms.stats : DEFAULTS.stats,
+    problemTitle: cms?.problemTitle || DEFAULTS.problemTitle,
+    problemSubtext: cms?.problemSubtext || DEFAULTS.problemSubtext,
+    problemItems: cms?.problemItems?.length ? cms.problemItems : DEFAULTS.problemItems,
+    solutionItems: cms?.solutionItems?.length ? cms.solutionItems : DEFAULTS.solutionItems,
+    features: cms?.features?.length ? cms.features : DEFAULTS.features,
+    offerTitle: cms?.offerTitle || DEFAULTS.offerTitle,
+    offerSubtext: cms?.offerSubtext || DEFAULTS.offerSubtext,
+    offerItems: cms?.offerItems?.length ? cms.offerItems : DEFAULTS.offerItems,
+    ctaTitle: cms?.ctaTitle || DEFAULTS.ctaTitle,
+    ctaSubtext: cms?.ctaSubtext || DEFAULTS.ctaSubtext,
+  };
+
   return (
     <main>
       {/* 1. HERO */}
@@ -17,33 +89,22 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="z-10">
             <h1 className="text-4xl md:text-5xl font-normal tracking-tight leading-[1.1] mb-8 text-[#F0EDE6]">
-              Der digitale Assistent für Bausachverständige.
+              {d.heroTitle}
             </h1>
             <p className="text-lg text-[#E0C0B3] leading-relaxed mb-10 max-w-lg">
-              Vom Beweisbeschluss bis zum fertigen Gutachten — strukturiert, nachvollziehbar und rechtssicher. Entwickelt für die tägliche Arbeit vor Gericht und vor Ort.
+              {d.heroSubtext}
             </p>
             <div className="flex items-center gap-4">
               <Link href="/funktionen" className="bg-[#E8631A] text-white px-8 py-4 rounded-xl font-medium hover:bg-[#E8631A]/90 transition-colors">
-                Alle Funktionen entdecken
+                {d.heroPrimaryButton}
               </Link>
               <Link href="/ablauf" className="border-[0.5px] border-[#2A3344] text-[#F0EDE6] px-8 py-4 rounded-xl font-medium hover:bg-[#272A31] transition-colors">
-                So funktioniert es
+                {d.heroSecondaryButton}
               </Link>
             </div>
           </div>
-          {/* Desktop: Crossfade */}
           <div className="relative hidden md:block z-0">
             <HeroCrossfade />
-          </div>
-          {/* Mobile: statisches Bild */}
-          <div className="relative block md:hidden w-full mt-4">
-            <Image
-              src="/hero-mobile.webp"
-              alt="Gutachten Assistent — Übersicht für Bausachverständige"
-              width={600}
-              height={400}
-              className="object-contain w-full rounded-2xl border-[0.5px] border-[#2A3344]"
-            />
           </div>
         </div>
       </section>
@@ -73,12 +134,7 @@ export default function Home() {
       <section className="bg-[#151B27] border-b-[0.5px] border-[#2A3344]">
         <div className="max-w-7xl mx-auto px-6 py-12">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {[
-              { value: "18", label: "Beweisfragen strukturiert", highlight: true },
-              { value: "3", label: "Exportformate (PDF, Word, Druck)", highlight: false },
-              { value: "100%", label: "Datenhoheit beim Sachverständigen", highlight: false },
-              { value: "< 1 Tag", label: "Einarbeitungszeit", highlight: false },
-            ].map((stat, i) => (
+            {d.stats.map((stat: { value: string; label: string; highlight: boolean }, i: number) => (
               <div key={i} className="text-center md:text-left">
                 <div className={`text-3xl font-medium mb-1 ${stat.highlight ? "text-[#E8631A]" : "text-[#F0EDE6]"}`}>{stat.value}</div>
                 <div className="text-xs text-[#8A9BB0] font-medium tracking-wider uppercase">{stat.label}</div>
@@ -92,8 +148,8 @@ export default function Home() {
       <section className="py-24 bg-[#101319]">
         <div className="max-w-7xl mx-auto px-6">
           <div className="mb-20 max-w-2xl">
-            <h2 className="text-3xl font-medium text-[#F0EDE6] mb-4">Warum der bisherige Weg nicht mehr ausreicht.</h2>
-            <p className="text-[#8A9BB0]">Gutachten entstehen heute noch überwiegend manuell — trotz hoher Fallzahlen, steigendem Termindruck und wachsender Dokumentationsanforderungen.</p>
+            <h2 className="text-3xl font-medium text-[#F0EDE6] mb-4">{d.problemTitle}</h2>
+            <p className="text-[#8A9BB0]">{d.problemSubtext}</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="p-8 rounded-2xl border-[0.5px] border-[#2A3344] bg-[#151B27]">
@@ -102,7 +158,7 @@ export default function Home() {
                 <span className="font-medium text-[#F0EDE6]">Der klassische Weg</span>
               </div>
               <ul className="space-y-4">
-                {["Beweisbeschlüsse manuell übertragen und strukturieren.", "Fotos vom Ortstermin unsortiert und ohne Fallbezug.", "Gutachten-Entwurf in Word — Layout-Frust inklusive."].map((item, i) => (
+                {d.problemItems.map((item: string, i: number) => (
                   <li key={i} className="flex items-start gap-3 text-sm text-[#8A9BB0]">
                     <span className="material-symbols-outlined text-xs mt-1 text-red-400">close</span>{item}
                   </li>
@@ -115,7 +171,7 @@ export default function Home() {
                 <span className="font-medium text-[#F0EDE6]">Mit dem Gutachten Assistenten</span>
               </div>
               <ul className="space-y-4">
-                {["Beweisbeschluss hochladen — Struktur entsteht automatisch.", "Unterlagen, Fotos und Notizen fallbezogen in der digitalen Akte.", "Gutachten exportieren als PDF oder Word — strukturiert und fertig."].map((item, i) => (
+                {d.solutionItems.map((item: string, i: number) => (
                   <li key={i} className="flex items-start gap-3 text-sm text-[#8A9BB0]">
                     <span className="material-symbols-outlined text-xs mt-1 text-[#E8631A]">check</span>{item}
                   </li>
@@ -210,42 +266,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 8. PROBLEM/LÖSUNG */}
-      <section className="py-24 bg-[#0F1218]">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="mb-16 text-center">
-            <h2 className="text-4xl font-medium text-[#F0EDE6] mb-4">Die größten Zeitfresser — und wie wir sie lösen.</h2>
-            <p className="text-[#8A9BB0] max-w-2xl mx-auto">Vier konkrete Probleme aus dem Alltag. Vier Antworten des Gutachten Assistenten.</p>
-          </div>
-          <div className="space-y-4">
-            {[
-              { problem: "Beweisbeschlüsse manuell in eine Gutachtenstruktur überführen.", solution: "Beweisbeschluss hochladen — die App extrahiert Beweisfragen und legt die Struktur automatisch an.", icon: "description" },
-              { problem: "Hunderte Fotos vom Ortstermin ohne klare Zuordnung.", solution: "Fotos werden fallbezogen abgelegt und sind beim Ausfüllen der Beweisfragen abrufbar.", icon: "photo_library" },
-              { problem: "Notizen und Diktate erst später ins Büro übertragen.", solution: "Diktate werden direkt im Ortstermin-Modus erfasst — kein Übertragen nötig.", icon: "mic" },
-              { problem: "Gutachten in Word manuell formatieren.", solution: "Export auf Knopfdruck: strukturiert als PDF oder Word, mit allen Feststellungen.", icon: "sim_card_download" },
-            ].map((pair, i) => (
-              <div key={i} className="grid grid-cols-1 md:grid-cols-2 gap-0 rounded-2xl overflow-hidden border-[0.5px] border-[#2A3344]">
-                <div className="p-8 bg-[#151B27] flex items-start gap-4">
-                  <span className="material-symbols-outlined text-red-400 mt-1 flex-shrink-0">close</span>
-                  <div>
-                    <div className="text-xs text-red-400 font-medium tracking-wider uppercase mb-2">Das Problem</div>
-                    <p className="text-[#8A9BB0] text-sm leading-relaxed">{pair.problem}</p>
-                  </div>
-                </div>
-                <div className="p-8 bg-[#1C2333] border-l-[0.5px] border-[#2A3344] flex items-start gap-4">
-                  <span className="material-symbols-outlined text-[#E8631A] mt-1 flex-shrink-0">{pair.icon}</span>
-                  <div>
-                    <div className="text-xs text-[#E8631A] font-medium tracking-wider uppercase mb-2">Die Lösung</div>
-                    <p className="text-[#8A9BB0] text-sm leading-relaxed">{pair.solution}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 9. FEATURES GRID */}
+      {/* 8. FEATURES GRID */}
       <section className="py-24 bg-[#151B27]">
         <div className="max-w-7xl mx-auto px-6">
           <div className="mb-16 text-center">
@@ -253,14 +274,7 @@ export default function Home() {
             <p className="text-[#8A9BB0] max-w-xl mx-auto">Von der Fallanlage bis zum Export.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-[#2A3344]">
-            {[
-              { icon: "folder_open", title: "Fallverwaltung", description: "Akte, Beweisbeschluss, Ortstermin und Gutachten als strukturierte Einheit." },
-              { icon: "inventory_2", title: "Digitale Akte", description: "Unterlagen, Fotos und PDFs fallbezogen abgelegt und filterbar." },
-              { icon: "quiz", title: "Beweisfragen-Editor", description: "18 Beweisfragen mit Behauptung, Hinweis und Feststellungen." },
-              { icon: "mic", title: "Ortstermin-Modus", description: "Fotos, Diktate und Notizen direkt vor Ort erfassen." },
-              { icon: "auto_awesome", title: "KI-Assistent", description: "Textvorschläge und Norm-Matching auf Basis des Beweisbeschlusses." },
-              { icon: "sim_card_download", title: "Export PDF & Word", description: "Fertiges Gutachten strukturiert exportieren — bereit zur Einreichung." },
-            ].map((f, i) => (
+            {d.features.map((f: { icon: string; title: string; description: string }, i: number) => (
               <div key={i} className="p-10 bg-[#151B27] hover:bg-[#1C2333] transition-colors">
                 <span className="material-symbols-outlined text-[#E8631A] mb-6 block">{f.icon}</span>
                 <h3 className="text-xl font-medium text-[#F0EDE6] mb-4">{f.title}</h3>
@@ -276,7 +290,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 10. BLOG-TEASER */}
+      {/* 9. BLOG-TEASER */}
       <section className="py-24 bg-[#0F1218]">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-end justify-between mb-16">
@@ -302,18 +316,18 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 11. OFFER CARD */}
+      {/* 10. OFFER CARD */}
       <section className="py-32 bg-[#101319]">
         <div className="max-w-7xl mx-auto px-6 flex justify-center">
           <div className="w-full max-w-2xl p-12 rounded-3xl border-[0.5px] border-[#E8631A]/40 bg-[#151921] relative">
             <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#E8631A] text-white text-[10px] font-bold tracking-[0.2em] uppercase px-4 py-1 rounded-full">Früher Zugang</div>
             <div className="text-center mb-10">
-              <h2 className="text-4xl font-medium text-[#F0EDE6] mb-4">Jetzt mit dem Gutachten Assistenten starten.</h2>
-              <p className="text-[#E0C0B3]">Testen Sie den vollen Funktionsumfang unverbindlich.</p>
+              <h2 className="text-4xl font-medium text-[#F0EDE6] mb-4">{d.offerTitle}</h2>
+              <p className="text-[#E0C0B3]">{d.offerSubtext}</p>
             </div>
             <div className="space-y-6 mb-12">
-              {["Vollständige Fallverwaltung inklusive", "Digitale Akte mit Filterung", "Gutachten-Export als PDF und Word"].map((item, i) => (
-                <div key={i} className={`flex items-center justify-between pb-4 ${i < 2 ? "border-b-[0.5px] border-[#2A3344]" : ""}`}>
+              {d.offerItems.map((item: string, i: number) => (
+                <div key={i} className={`flex items-center justify-between pb-4 ${i < d.offerItems.length - 1 ? "border-b-[0.5px] border-[#2A3344]" : ""}`}>
                   <span className="text-[#E0C0B3]">{item}</span>
                   <span className="material-symbols-outlined text-[#E8631A]">done_all</span>
                 </div>
@@ -326,11 +340,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 12. FINAL CTA */}
+      {/* 11. FINAL CTA */}
       <section className="py-24 bg-[#0F1218] text-center">
         <div className="max-w-3xl mx-auto px-6">
-          <h2 className="text-4xl md:text-5xl font-normal tracking-tight text-[#F0EDE6] mb-8">Bereit für strukturierte Gutachtenarbeit?</h2>
-          <p className="text-lg text-[#E0C0B3] mb-12">Weniger manuelle Arbeit, mehr Nachvollziehbarkeit.</p>
+          <h2 className="text-4xl md:text-5xl font-normal tracking-tight text-[#F0EDE6] mb-8">{d.ctaTitle}</h2>
+          <p className="text-lg text-[#E0C0B3] mb-12">{d.ctaSubtext}</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/kontakt" className="bg-[#E8631A] text-white px-10 py-4 rounded-xl font-medium text-lg hover:opacity-90 transition-all">Zugang anfragen</Link>
             <Link href="/funktionen" className="border-[0.5px] border-[#2A3344] text-[#F0EDE6] px-10 py-4 rounded-xl font-medium text-lg hover:bg-[#272A31] transition-all">Alle Funktionen ansehen</Link>
