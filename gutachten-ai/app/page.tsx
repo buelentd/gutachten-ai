@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { HeroCrossfade } from "@/components/HeroCrossfade";
 import { BlogCarousel } from "@/components/BlogCarousel";
+import { Icon } from "@/components/Icon";
 import { client } from "@/lib/sanity/client";
 import { groq } from "next-sanity";
 
@@ -58,7 +59,7 @@ export default async function Home() {
           <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16">
             {d?.trustItems?.map((item: { icon: string; label: string }, i: number) => (
               <div key={i} className="flex items-center gap-2 text-[#8A9BB0]">
-                <span className="material-symbols-outlined text-sm">{item.icon}</span>
+                <Icon name={item.icon} size={16} className="icon-gray" />
                 <span className="text-xs font-medium tracking-wider uppercase">{item.label}</span>
               </div>
             ))}
@@ -90,26 +91,28 @@ export default async function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="p-8 rounded-2xl border-[0.5px] border-[#2A3344] bg-[#151B27]">
               <div className="flex items-center gap-3 mb-6">
-                <span className="material-symbols-outlined text-red-400">warning</span>
+                <Icon name="warning" size={20} className="icon-red" />
                 <span className="font-medium text-[#F0EDE6]">Der klassische Weg</span>
               </div>
               <ul className="space-y-4">
                 {d?.problemItems?.map((item: string, i: number) => (
                   <li key={i} className="flex items-start gap-3 text-sm text-[#8A9BB0]">
-                    <span className="material-symbols-outlined text-xs mt-1 text-red-400">close</span>{item}
+                    <Icon name="close" size={14} className="icon-red mt-0.5 shrink-0" />
+                    {item}
                   </li>
                 ))}
               </ul>
             </div>
             <div className="p-8 rounded-2xl border-[0.5px] border-[#E8631A]/40 bg-[#E8631A]/5">
               <div className="flex items-center gap-3 mb-6">
-                <span className="material-symbols-outlined text-[#E8631A]">auto_awesome</span>
+                <Icon name="auto_awesome" size={20} className="icon-orange" />
                 <span className="font-medium text-[#F0EDE6]">Mit dem Gutachten Assistenten</span>
               </div>
               <ul className="space-y-4">
                 {d?.solutionItems?.map((item: string, i: number) => (
                   <li key={i} className="flex items-start gap-3 text-sm text-[#8A9BB0]">
-                    <span className="material-symbols-outlined text-xs mt-1 text-[#E8631A]">check</span>{item}
+                    <Icon name="check" size={14} className="icon-orange mt-0.5 shrink-0" />
+                    {item}
                   </li>
                 ))}
               </ul>
@@ -118,7 +121,7 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* 5. FEATURES GRID (von Position 8 auf 5 verschoben, Section 5 Teaser entfernt) */}
+      {/* 5. FEATURES GRID */}
       <section className="py-24 bg-[#151B27]">
         <div className="max-w-7xl mx-auto px-6">
           <div className="mb-16 text-center">
@@ -128,7 +131,7 @@ export default async function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-[#2A3344]">
             {d?.features?.map((f: { icon: string; title: string; description: string }, i: number) => (
               <div key={i} className="p-10 bg-[#151B27] hover:bg-[#1C2333] transition-colors">
-                <span className="material-symbols-outlined text-[#E8631A] mb-6 block">{f.icon}</span>
+                <Icon name={f.icon} size={24} className="icon-orange mb-6 block" />
                 <h3 className="text-xl font-medium text-[#F0EDE6] mb-4">{f.title}</h3>
                 <p className="text-sm leading-relaxed text-[#8A9BB0]">{f.description}</p>
               </div>
@@ -155,7 +158,7 @@ export default async function Home() {
               <div key={i} className="relative p-8 rounded-2xl border-[0.5px] border-[#2A3344] bg-[#151B27]">
                 <div className="flex items-center gap-4 mb-6">
                   <span className="text-4xl font-light text-[#E8631A]/30">{step.step}</span>
-                  <span className="material-symbols-outlined text-[#E8631A]">{step.icon}</span>
+                  <Icon name={step.icon} size={24} className="icon-orange" />
                 </div>
                 <h3 className="text-xl font-medium text-[#F0EDE6] mb-3">{step.title}</h3>
                 <p className="text-sm text-[#8A9BB0] leading-relaxed">{step.description}</p>
@@ -180,7 +183,7 @@ export default async function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {d?.fuerWenItems?.map((item: { icon: string; title: string; description: string }, i: number) => (
               <div key={i} className="p-8 rounded-2xl border-[0.5px] border-[#2A3344] bg-[#1C2333]">
-                <span className="material-symbols-outlined text-[#E8631A] text-3xl mb-6 block">{item.icon}</span>
+                <Icon name={item.icon} size={30} className="icon-orange mb-6 block" />
                 <h3 className="text-lg font-medium text-[#F0EDE6] mb-3">{item.title}</h3>
                 <p className="text-sm text-[#8A9BB0] leading-relaxed">{item.description}</p>
               </div>
@@ -212,7 +215,7 @@ export default async function Home() {
               {d?.offerItems?.map((item: string, i: number) => (
                 <div key={i} className={`flex items-center justify-between pb-4 ${i < d.offerItems.length - 1 ? "border-b-[0.5px] border-[#2A3344]" : ""}`}>
                   <span className="text-[#E0C0B3]">{item}</span>
-                  <span className="material-symbols-outlined text-[#E8631A]">done_all</span>
+                  <Icon name="done_all" size={20} className="icon-orange" />
                 </div>
               ))}
             </div>
