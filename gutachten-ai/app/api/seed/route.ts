@@ -16,6 +16,51 @@ function b(key: string, style: string, text: string) {
 export async function GET() {
   try {
 
+    // ─── homePage (NEU) ───────────────────────────────────────────────────────
+    await client.createOrReplace({
+      _id: "homePage",
+      _type: "homePage",
+      heroTitle: "Der digitale Assistent für Bausachverständige.",
+      heroSubtext: "Vom Beweisbeschluss bis zum fertigen Gutachten — strukturiert, nachvollziehbar und rechtssicher. Entwickelt für die tägliche Arbeit vor Gericht und vor Ort.",
+      heroPrimaryButton: "Alle Funktionen entdecken",
+      heroSecondaryButton: "So funktioniert es",
+      stats: [
+        { _key: "s1", value: "18", label: "Beweisfragen strukturiert", highlight: true },
+        { _key: "s2", value: "3", label: "Exportformate (PDF, Word, Druck)", highlight: false },
+        { _key: "s3", value: "100%", label: "Datenhoheit beim Sachverständigen", highlight: false },
+        { _key: "s4", value: "< 1 Tag", label: "Einarbeitungszeit", highlight: false },
+      ],
+      problemTitle: "Warum der bisherige Weg nicht mehr ausreicht.",
+      problemSubtext: "Gutachten entstehen heute noch überwiegend manuell — trotz hoher Fallzahlen, steigendem Termindruck und wachsender Dokumentationsanforderungen.",
+      problemItems: [
+        "Beweisbeschlüsse manuell übertragen und strukturieren.",
+        "Fotos vom Ortstermin unsortiert und ohne Fallbezug.",
+        "Gutachten-Entwurf in Word — Layout-Frust inklusive.",
+      ],
+      solutionItems: [
+        "Beweisbeschluss hochladen — Struktur entsteht automatisch.",
+        "Unterlagen, Fotos und Notizen fallbezogen in der digitalen Akte.",
+        "Gutachten exportieren als PDF oder Word — strukturiert und fertig.",
+      ],
+      features: [
+        { _key: "f1", icon: "folder_open", title: "Fallverwaltung", description: "Akte, Beweisbeschluss, Ortstermin und Gutachten als strukturierte Einheit." },
+        { _key: "f2", icon: "inventory_2", title: "Digitale Akte", description: "Unterlagen, Fotos und PDFs fallbezogen abgelegt und filterbar." },
+        { _key: "f3", icon: "quiz", title: "Beweisfragen-Editor", description: "18 Beweisfragen mit Behauptung, Hinweis und Feststellungen." },
+        { _key: "f4", icon: "mic", title: "Ortstermin-Modus", description: "Fotos, Diktate und Notizen direkt vor Ort erfassen." },
+        { _key: "f5", icon: "auto_awesome", title: "KI-Assistent", description: "Textvorschläge und Norm-Matching auf Basis des Beweisbeschlusses." },
+        { _key: "f6", icon: "sim_card_download", title: "Export PDF & Word", description: "Fertiges Gutachten strukturiert exportieren — bereit zur Einreichung." },
+      ],
+      offerTitle: "Jetzt mit dem Gutachten Assistenten starten.",
+      offerSubtext: "Testen Sie den vollen Funktionsumfang unverbindlich.",
+      offerItems: [
+        "Vollständige Fallverwaltung inklusive",
+        "Digitale Akte mit Filterung",
+        "Gutachten-Export als PDF und Word",
+      ],
+      ctaTitle: "Bereit für strukturierte Gutachtenarbeit?",
+      ctaSubtext: "Weniger manuelle Arbeit, mehr Nachvollziehbarkeit.",
+    });
+
     // ─── 1. zeitersparnis-bausachverstaendige ────────────────────────────────
     await client.createOrReplace({
       _id: "post-zeitersparnis",
@@ -154,7 +199,7 @@ export async function GET() {
         b("b7","h2","Kategorie 3: KI-gestützte Gutachtensoftware"),
         b("b8","normal","Die neueste Generation kombiniert Gutachten-Funktionen mit KI. Nutzer berichten von einer Bearbeitungszeit unter einer Stunde — das entspricht bis zu 85 Prozent Zeitersparnis gegenüber dem traditionellen Word-Ansatz."),
         b("b9","h2","Worauf kommt es bei der Auswahl an?"),
-        b("b10","normal","Entscheidende Kriterien: aktuelle DIN-Normen-Datenbank, DSGVO-konforme Datenhaltung auf deutschen Servern, mobile Nutzbarkeit, JVEG-konforme Abrechnung, kostenloser Testzugang. Software die Daten auf US-amerikanischen Servern verarbeitet ist für den professionellen Einsatz nicht zu empfehlen."),
+        b("b10","normal","Entscheidende Kriterien: aktuelle DIN-Normen-Datenbank, DSGVO-konforme Datenhaltung auf deutschen Servern, mobile Nutzbarkeit, JVEG-konforme Abrechnung, kostenloser Testzugang."),
         b("b11","h2","Fazit: KI ist 2026 kein Nischentool mehr"),
         b("b12","normal","Was 2022 noch Zukunftsmusik war, ist 2026 produktionsreif. Wer heute auf moderne Software umsteigt, sichert sich einen messbaren Wettbewerbsvorteil: mehr Kapazität, schnellere Lieferzeiten, konsistentere Qualität."),
       ],
@@ -225,7 +270,7 @@ export async function GET() {
 
     return NextResponse.json({
       success: true,
-      message: "Alle 9 Blog-Posts erfolgreich in Sanity eingespielt.",
+      message: "homePage + 9 Blog-Posts erfolgreich in Sanity eingespielt.",
     });
 
   } catch (error) {
