@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { Icon } from "@/components/Icon";
 import { client } from "@/lib/sanity/client";
 import { groq } from "next-sanity";
 
@@ -12,9 +13,7 @@ export const metadata: Metadata = {
 };
 
 async function getAllPosts() {
-  return await client.fetch(
-    groq`*[_type == "post"] | order(publishedAt desc) { title, "slug": slug.current, category, publishedAt, excerpt }`
-  );
+  return await client.fetch(groq`*[_type == "post"] | order(publishedAt desc) { title, "slug": slug.current, category, publishedAt, excerpt }`);
 }
 
 function formatDate(dateStr: string) {
@@ -32,7 +31,6 @@ export default async function Blog() {
         <h1 className="text-5xl md:text-6xl font-normal tracking-tight text-on-surface mb-6 max-w-3xl">Expertise im digitalen Zeitalter.</h1>
         <p className="text-on-surface-variant text-lg max-w-2xl leading-relaxed">Aktuelle Einblicke in KI-gestützte Gutachtenerstellung, rechtliche Rahmenbedingungen und digitale Transformation im Bauwesen.</p>
       </div>
-
       {featured && (
         <Link href={`/blog/${featured.slug}`} className="block group mb-24">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center p-8 rounded-2xl border-[0.5px] border-technical-line hover:border-[#E8631A]/40 transition-colors bg-surface-container-low">
@@ -46,25 +44,22 @@ export default async function Blog() {
               <p className="text-on-surface-variant leading-relaxed text-lg mb-6 max-w-2xl">{featured.excerpt}</p>
               <span className="inline-flex items-center gap-2 text-[#E8631A] font-medium group-hover:gap-4 transition-all">
                 <span>Weiterlesen</span>
-                <span className="material-symbols-outlined text-sm">arrow_forward</span>
+                <Icon name="arrow_forward" size={16} className="icon-orange" />
               </span>
             </div>
           </div>
         </Link>
       )}
-
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {rest.map((post: { slug: string; title: string; excerpt: string; category: string; publishedAt: string }) => (
           <Link key={post.slug} href={`/blog/${post.slug}`} className="group block">
             <article className="h-full p-6 rounded-xl border-[0.5px] border-technical-line hover:border-[#E8631A]/40 transition-colors bg-surface-container-low">
-              <div className="flex items-center gap-3 mb-4">
-                {post.category && <span className="text-[#E8631A] text-xs font-medium tracking-widest uppercase">{post.category}</span>}
-              </div>
+              {post.category && <span className="text-[#E8631A] text-xs font-medium tracking-widest uppercase mb-4 block">{post.category}</span>}
               <time className="text-on-surface-variant text-xs mb-3 block">{formatDate(post.publishedAt)}</time>
               <h3 className="text-lg font-medium text-on-surface mb-3 group-hover:text-[#E8631A] transition-colors leading-snug">{post.title}</h3>
               <p className="text-on-surface-variant text-sm leading-relaxed mb-4 line-clamp-3">{post.excerpt}</p>
               <span className="text-[#E8631A] text-sm font-medium inline-flex items-center gap-1 group-hover:gap-3 transition-all">
-                Weiterlesen <span className="material-symbols-outlined text-xs">arrow_forward</span>
+                Weiterlesen <Icon name="arrow_forward" size={14} className="icon-orange" />
               </span>
             </article>
           </Link>

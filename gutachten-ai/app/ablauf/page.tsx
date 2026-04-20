@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Icon } from "@/components/Icon";
 import { getAblaufPage } from "@/lib/sanity/queries";
 
 export const revalidate = 3600;
@@ -48,7 +49,7 @@ export default async function Ablauf() {
                 <ul className="space-y-3 text-sm text-on-surface">
                   {step.items?.map((item: string, j: number) => (
                     <li key={j} className="flex items-center gap-3">
-                      <span className="material-symbols-outlined text-xs text-[#E8631A]">check_circle</span>{item}
+                      <Icon name="check_circle" size={14} className="icon-orange shrink-0" />{item}
                     </li>
                   ))}
                 </ul>
@@ -65,10 +66,10 @@ export default async function Ablauf() {
           <div className="grid md:grid-cols-4 gap-12 relative">
             {d.timeline?.map((item: { day: string; label: string; sublabel: string; isRocket: boolean }, i: number) => (
               <div key={i} className="flex flex-col items-center text-center">
-                <div className={`w-12 h-12 rounded-full flex items-center justify-center mb-6 z-10 ${item.isRocket ? "bg-[#EE671F] text-[#4D1900]" : i === 0 ? "bg-surface border-[0.5px] border-[#FFB596]" : "bg-surface border-[0.5px] border-outline-variant"}`}>
+                <div className={`w-12 h-12 rounded-full flex items-center justify-center mb-6 z-10 ${item.isRocket ? "bg-[#EE671F]" : i === 0 ? "bg-surface border-[0.5px] border-[#FFB596]" : "bg-surface border-[0.5px] border-outline-variant"}`}>
                   {item.isRocket
-                    ? <span className="material-symbols-outlined text-sm">rocket_launch</span>
-                    : <span className={`font-medium ${i === 0 ? "text-[#FFB596]" : "text-on-surface-variant"}`}>{item.day}</span>
+                    ? <Icon name="rocket_launch" size={16} className="icon-dark" />
+                    : <span className={`font-medium text-sm ${i === 0 ? "text-[#FFB596]" : "text-on-surface-variant"}`}>{item.day}</span>
                   }
                 </div>
                 <h4 className="font-medium text-on-surface mb-2">{item.label}</h4>
@@ -85,7 +86,7 @@ export default async function Ablauf() {
             <div key={i} className="bg-surface-container-low p-10 border-[0.5px] border-outline-variant rounded-xl hover:border-[#FFB596] transition-colors">
               <div className="flex items-start gap-6">
                 <div className="w-12 h-12 bg-surface-container-high rounded flex items-center justify-center shrink-0">
-                  <span className="material-symbols-outlined text-[#FFB596]" style={{ fontVariationSettings: "'FILL' 1" }}>{item.icon}</span>
+                  <Icon name={item.icon} size={20} className="icon-gray" />
                 </div>
                 <div>
                   <h3 className="text-2xl font-medium text-on-surface mb-4">{item.title}</h3>

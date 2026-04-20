@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Icon } from "@/components/Icon";
 import { client } from "@/lib/sanity/client";
 import { groq } from "next-sanity";
 import { PortableText } from "@portabletext/react";
@@ -34,33 +35,20 @@ export async function generateStaticParams() {
 
 const ptComponents = {
   block: {
-    normal: ({ children }: { children?: React.ReactNode }) => (
-      <p className="text-on-surface-variant leading-relaxed mb-6">{children}</p>
-    ),
-    h2: ({ children }: { children?: React.ReactNode }) => (
-      <h2 className="text-2xl font-medium text-on-surface mt-12 mb-4">{children}</h2>
-    ),
-    h3: ({ children }: { children?: React.ReactNode }) => (
-      <h3 className="text-xl font-medium text-on-surface mt-8 mb-3">{children}</h3>
-    ),
+    normal: ({ children }: { children?: React.ReactNode }) => <p className="text-on-surface-variant leading-relaxed mb-6">{children}</p>,
+    h2: ({ children }: { children?: React.ReactNode }) => <h2 className="text-2xl font-medium text-on-surface mt-12 mb-4">{children}</h2>,
+    h3: ({ children }: { children?: React.ReactNode }) => <h3 className="text-xl font-medium text-on-surface mt-8 mb-3">{children}</h3>,
   },
   marks: {
-    strong: ({ children }: { children?: React.ReactNode }) => (
-      <strong className="font-medium text-on-surface">{children}</strong>
-    ),
-    em: ({ children }: { children?: React.ReactNode }) => (
-      <em className="italic">{children}</em>
-    ),
+    strong: ({ children }: { children?: React.ReactNode }) => <strong className="font-medium text-on-surface">{children}</strong>,
+    em: ({ children }: { children?: React.ReactNode }) => <em className="italic">{children}</em>,
   },
 };
 
 export default async function BlogPost({ params }: { params: { slug: string } }) {
   const post = await getPost(params.slug);
   if (!post) notFound();
-
-  const date = post.publishedAt
-    ? new Date(post.publishedAt).toLocaleDateString("de-DE", { day: "numeric", month: "long", year: "numeric" })
-    : "";
+  const date = post.publishedAt ? new Date(post.publishedAt).toLocaleDateString("de-DE", { day: "numeric", month: "long", year: "numeric" }) : "";
 
   return (
     <main className="pt-32 pb-24">
@@ -73,11 +61,7 @@ export default async function BlogPost({ params }: { params: { slug: string } })
           <h1 className="text-4xl md:text-5xl font-normal tracking-tight leading-tight text-on-surface mb-6">{post.title}</h1>
           {post.excerpt && <p className="text-xl text-on-surface-variant leading-relaxed">{post.excerpt}</p>}
         </div>
-        {post.body && (
-          <div className="space-y-2">
-            <PortableText value={post.body} components={ptComponents} />
-          </div>
-        )}
+        {post.body && <div className="space-y-2"><PortableText value={post.body} components={ptComponents} /></div>}
         <div className="mt-16 p-8 rounded-xl border-[0.5px] border-[#E8631A]/40 bg-[#E8631A]/5">
           <h3 className="text-xl font-medium text-on-surface mb-3">Bereit für den nächsten Schritt?</h3>
           <p className="text-on-surface-variant mb-6">Testen Sie gutachten-ai.de kostenlos und unverbindlich.</p>
@@ -85,7 +69,7 @@ export default async function BlogPost({ params }: { params: { slug: string } })
         </div>
         <div className="mt-16 pt-8 border-t-[0.5px] border-technical-line">
           <Link href="/blog" className="inline-flex items-center gap-2 text-[#E8631A] hover:gap-4 transition-all">
-            <span className="material-symbols-outlined text-sm">arrow_back</span>
+            <Icon name="arrow_back" size={16} className="icon-orange" />
             <span>Zurück zum Blog</span>
           </Link>
         </div>
