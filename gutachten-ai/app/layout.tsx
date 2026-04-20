@@ -42,6 +42,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="de" className="dark" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: `try{if(localStorage.getItem('theme')==='light'){document.documentElement.classList.remove('dark')}}catch(e){}` }} />
+        {/* Material Symbols — async non-blocking, Icons werden nach paint geladen */}
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=optional"
+          media="print"
+          // @ts-ignore
+          onLoad="this.media='all'"
+        />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
           "@context": "https://schema.org", "@type": "WebSite",
           "name": "gutachten-ai.de", "url": "https://gutachten-ai.de",
