@@ -14,16 +14,6 @@ const nextConfig = {
   },
   compress: true,
   poweredByHeader: false,
-  experimental: {
-    browsersListForSwc: true,
-  },
-  webpack: (config, { isServer }) => {
-    if (!isServer) {
-      // Zwingt Webpack moderne Browser als Target — eliminiert Polyfills
-      config.target = ["web", "es2020"];
-    }
-    return config;
-  },
 };
 
 export default nextConfig;
