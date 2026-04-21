@@ -11,8 +11,34 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://gutachten-ai.de/ablauf" },
 };
 
+const ABLAUF_DEFAULTS = {
+  heroLabel: "Implementierung",
+  heroTitle: "Vom Erstkontakt zur fertigen",
+  heroTitleHighlight: "Expertise.",
+  heroSubtext: "Effizienz beginnt bei der Einführung. Wir haben einen strukturierten Prozess entwickelt, der Ihre bestehenden Workflows respektiert und digital transformiert.",
+  steps: [
+    { number: "01", title: "Anfrage", description: "Wir analysieren Ihren aktuellen Bedarf und prüfen die Kompatibilität Ihrer Datenstruktur mit unserer KI-Engine.", items: ["Erstgespräch & Bedarfsanalyse", "Daten-Checkup"] },
+    { number: "02", title: "Onboarding", description: "Integration der Schnittstellen und Training Ihres Teams auf die spezifischen Module Ihres Fachbereichs.", items: ["Setup & Integration", "Live-Schulung via Web-App"] },
+    { number: "03", title: "Loslegen", description: "Ab Tag 1 profitieren Sie von automatisierten Gutachten-Entwürfen und digitaler Beweissicherung.", items: ["Voller Funktionsumfang", "Support & Optimierung"] },
+  ],
+  timeline: [
+    { day: "0", label: "Tag 0", sublabel: "Kick-off Meeting", isRocket: false },
+    { day: "7", label: "Tag 1", sublabel: "Systemkonfiguration", isRocket: false },
+    { day: "14", label: "Ab Tag 1", sublabel: "Mitarbeiter-Training", isRocket: false },
+    { day: "", label: "Laufend", sublabel: "Skalierung & Updates", isRocket: true },
+  ],
+  trustItems: [
+    { icon: "security", title: "Sicherheit & Datenschutz", description: "Ihre Daten verlassen niemals deutschen Boden. Unsere Server sind ISO 27001 zertifiziert und vollständig DSGVO-konform." },
+    { icon: "settings_input_component", title: "Technische Integration", description: "Dank unserer modernen REST-API lässt sich gutachten-ai.de nahtlos in Ihre bestehende Branchensoftware integrieren." },
+  ],
+  ctaTitle: "Bereit für den digitalen Vorsprung?",
+  ctaSubtext: "Sichern Sie sich jetzt ein unverbindliches Beratungsgespräch und erfahren Sie, wie wir Ihren Arbeitsalltag revolutionieren können.",
+  ctaPrimaryButton: "Kostenloses Gespräch buchen",
+  ctaSecondaryButton: "Funktionen ansehen",
+};
+
 export default async function Ablauf() {
-  const d = await getAblaufPage();
+  const d = (await getAblaufPage()) ?? ABLAUF_DEFAULTS;
 
   return (
     <main className="pt-32 pb-24">
