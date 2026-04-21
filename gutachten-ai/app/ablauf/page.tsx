@@ -69,7 +69,7 @@ export default async function Ablauf() {
           {d.steps?.map((step: { number: string; title: string; description: string; items: string[] }, i: number) => (
             <div key={i} className="bg-surface p-8 flex flex-col h-full">
               <span aria-hidden="true" className="text-4xl font-light text-[#FFB596] mb-6">{step.number}</span>
-              <h3 className="text-2xl font-medium text-on-surface mb-4">{step.title}</h3>
+              <h2 className="text-2xl font-medium text-on-surface mb-4">{step.title}</h2>
               <p className="text-on-surface-variant mb-8 flex-grow leading-relaxed">{step.description}</p>
               <div className="p-6 bg-surface-container-low border-[0.5px] border-outline-variant rounded-lg">
                 <ul className="space-y-3 text-sm text-on-surface">
@@ -98,7 +98,7 @@ export default async function Ablauf() {
                     : <span className={`font-medium text-sm ${i === 0 ? "text-[#FFB596]" : "text-on-surface-variant"}`}>{item.day}</span>
                   }
                 </div>
-                <h4 className="font-medium text-on-surface mb-2">{item.label}</h4>
+                <h3 className="font-medium text-on-surface mb-2">{item.label}</h3>
                 <p className="text-xs text-on-surface-variant uppercase tracking-widest">{item.sublabel}</p>
               </div>
             ))}

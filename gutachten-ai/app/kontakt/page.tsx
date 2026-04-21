@@ -40,7 +40,7 @@ export default async function Kontakt() {
                 <img className="w-full h-full object-cover" alt="Support" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6IwzJ71Te-aDcwhFw-Er9ELQqUbyVk2xwaVsc-0PoyB30rhwznDRTA1tgMkIKpPNX7qC6o20hpLtrWDFJo9dJWNbBrKNBGCjh7ebDlLzWupo_RkHeTsX9yF_Q3V2k3kU1DVKzvuAZd2eqbaaL_63nDtUN-zy9etPvJXAYlfzAoyMOawzCP28NILxPbejZxiT5VuzOwbVcG_mP0PHxzG4kH8s22ewjhTfgRxza0C7nFvEjfmlapqs_mo_IuzYcemwWx_iuB0UMytJX"/>
               </div>
               <div>
-                <h3 className="text-xl font-medium text-on-surface mb-2">{d?.contactName || "Thomas Müller"}</h3>
+                <h2 className="text-xl font-medium text-on-surface mb-2">{d?.contactName || "Thomas Müller"}</h2>
                 <p className="text-xs font-medium text-[#C54F0E] uppercase tracking-widest mb-3">{d?.contactRole || "Leiter Kundenerfolg"}</p>
                 <p className="text-on-surface-variant leading-relaxed text-sm">{d?.contactText || "Wir verstehen, dass im Gutachterwesen jedes Detail zählt. Unser Team steht Ihnen zur Seite."}</p>
               </div>
@@ -54,7 +54,7 @@ export default async function Kontakt() {
                 <div key={i} className="flex items-start gap-4">
                   <span className="material-symbols-outlined text-[#C54F0E]">{item.icon}</span>
                   <div>
-                    <h4 className="text-sm font-medium text-on-surface">{item.title}</h4>
+                    <h3 className="text-sm font-medium text-on-surface">{item.title}</h3>
                     <p className="text-xs text-on-surface-variant mt-1">{item.description}</p>
                   </div>
                 </div>
