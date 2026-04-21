@@ -97,7 +97,7 @@ export function KontaktForm() {
             <input name="datenschutz" checked={form.datenschutz} onChange={handleChange} className="mt-1" id="privacy" type="checkbox" required />
             <label className="text-sm text-on-surface-variant leading-relaxed" htmlFor="privacy">
               Ich stimme der Verarbeitung meiner Daten gemäß der{" "}
-              <a className="text-[#C54F0E] hover:underline" href="/datenschutz">Datenschutzerklärung</a> zu.
+              <a className="text-[#C54F0E] underline" href="/datenschutz">Datenschutzerklärung</a> zu.
             </label>
           </div>
           <p className="text-xs text-[#8A9BB0]">* Pflichtfelder</p>
