@@ -1,7 +1,9 @@
-```
 node_modules/
 .next/
 .env.local
 .env
 *.log
 .DS_Store
+
+# PSI / Lighthouse reports (inkl. Helper-Scripts)
+lighthouse-reports/

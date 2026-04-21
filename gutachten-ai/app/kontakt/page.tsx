@@ -35,13 +35,13 @@ export default async function Kontakt() {
           </div>
           <div className="md:col-span-5 space-y-12">
             <div className="space-y-6">
-              <div className="h-16 w-16 rounded-full overflow-hidden grayscale contrast-125 border-[0.5px] border-[#E8631A]">
+              <div className="h-16 w-16 rounded-full overflow-hidden grayscale contrast-125 border-[0.5px] border-[#C54F0E]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img className="w-full h-full object-cover" alt="Support" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6IwzJ71Te-aDcwhFw-Er9ELQqUbyVk2xwaVsc-0PoyB30rhwznDRTA1tgMkIKpPNX7qC6o20hpLtrWDFJo9dJWNbBrKNBGCjh7ebDlLzWupo_RkHeTsX9yF_Q3V2k3kU1DVKzvuAZd2eqbaaL_63nDtUN-zy9etPvJXAYlfzAoyMOawzCP28NILxPbejZxiT5VuzOwbVcG_mP0PHxzG4kH8s22ewjhTfgRxza0C7nFvEjfmlapqs_mo_IuzYcemwWx_iuB0UMytJX"/>
               </div>
               <div>
                 <h3 className="text-xl font-medium text-on-surface mb-2">{d?.contactName || "Thomas Müller"}</h3>
-                <p className="text-xs font-medium text-[#E8631A] uppercase tracking-widest mb-3">{d?.contactRole || "Leiter Kundenerfolg"}</p>
+                <p className="text-xs font-medium text-[#C54F0E] uppercase tracking-widest mb-3">{d?.contactRole || "Leiter Kundenerfolg"}</p>
                 <p className="text-on-surface-variant leading-relaxed text-sm">{d?.contactText || "Wir verstehen, dass im Gutachterwesen jedes Detail zählt. Unser Team steht Ihnen zur Seite."}</p>
               </div>
             </div>
@@ -52,7 +52,7 @@ export default async function Kontakt() {
                 { icon: "map", title: "Standort Berlin", description: "Technologie entwickelt in Deutschland für den lokalen Markt." },
               ]).map((item: { icon: string; title: string; description: string }, i: number) => (
                 <div key={i} className="flex items-start gap-4">
-                  <span className="material-symbols-outlined text-[#E8631A]">{item.icon}</span>
+                  <span className="material-symbols-outlined text-[#C54F0E]">{item.icon}</span>
                   <div>
                     <h4 className="text-sm font-medium text-on-surface">{item.title}</h4>
                     <p className="text-xs text-on-surface-variant mt-1">{item.description}</p>

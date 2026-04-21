@@ -14,7 +14,7 @@ const navLinks = [
 
 function ArchitectureIcon() {
   return (
-    <svg width="24" height="24" viewBox="0 -960 960 960" fill="#E8631A" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <svg width="24" height="24" viewBox="0 -960 960 960" fill="#C54F0E" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <path d="m270-120-10-88 114-314q15 14 32.5 23.5T444-484L334-182l-64 62Zm420 0-64-62-110-302q20-5 37.5-14.5T586-522l114 314-10 88ZM480-520q-50 0-85-35t-35-85q0-39 22.5-69.5T440-752v-88h80v88q35 12 57.5 42.5T600-640q0 50-35 85t-85 35Zm0-80q17 0 28.5-11.5T520-640q0-17-11.5-28.5T480-680q-17 0-28.5 11.5T440-640q0 17 11.5 28.5T480-600Z"/>
     </svg>
   );
@@ -44,14 +44,14 @@ export function Navigation() {
           <div className="hidden md:flex items-center gap-8 font-medium text-sm tracking-tight">
             {navLinks.map((link) => (
               <Link key={link.href} href={link.href}
-                className={`transition-colors duration-200 hover:text-[#E8631A] ${pathname === link.href ? "text-[#E8631A]" : "text-[#E0C0B3]"}`}>
+                className={`transition-colors duration-200 hover:text-[#C54F0E] ${pathname === link.href ? "text-[#C54F0E]" : "text-[#E0C0B3]"}`}>
                 {link.label}
               </Link>
             ))}
           </div>
           <div className="hidden md:flex items-center gap-3">
             <ThemeToggle />
-            <Link href="/kontakt" className="bg-[#E8631A] text-white px-5 py-2 rounded-lg text-sm font-medium hover:opacity-90 active:scale-95 transition-all">
+            <Link href="/kontakt" className="bg-[#C54F0E] text-white px-5 py-2 rounded-lg text-sm font-medium hover:opacity-90 active:scale-95 transition-all">
               Anfrage stellen
             </Link>
           </div>
@@ -70,11 +70,11 @@ export function Navigation() {
       <div className={`fixed inset-0 z-40 bg-[#101319]/98 backdrop-blur-md flex flex-col items-center justify-center gap-8 transition-all duration-300 md:hidden ${menuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}>
         {navLinks.map((link) => (
           <Link key={link.href} href={link.href}
-            className={`text-2xl font-medium tracking-tight transition-colors duration-200 hover:text-[#E8631A] ${pathname === link.href ? "text-[#E8631A]" : "text-[#F0EDE6]"}`}>
+            className={`text-2xl font-medium tracking-tight transition-colors duration-200 hover:text-[#C54F0E] ${pathname === link.href ? "text-[#C54F0E]" : "text-[#F0EDE6]"}`}>
             {link.label}
           </Link>
         ))}
-        <Link href="/kontakt" className="mt-4 bg-[#E8631A] text-white px-8 py-3 rounded-lg text-base font-medium hover:opacity-90 active:scale-95 transition-all">
+        <Link href="/kontakt" className="mt-4 bg-[#C54F0E] text-white px-8 py-3 rounded-lg text-base font-medium hover:opacity-90 active:scale-95 transition-all">
           Anfrage stellen
         </Link>
       </div>

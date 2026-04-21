@@ -10,8 +10,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Static brand colors — never change
-        "brand-orange": "#E8631A",
+        "brand-orange": "#C54F0E",
         "primary-container": "#EE671F",
         "on-primary-container": "#4D1900",
         "primary": "#FFB596",

@@ -29,7 +29,7 @@ export function Breadcrumb({ items }: { items: BreadcrumbItem[] }) {
             <li key={item.href} className="flex items-center gap-2">
               {index < items.length - 1 ? (
                 <>
-                  <Link href={item.href} className="hover:text-[#E8631A] transition-colors">
+                  <Link href={item.href} className="hover:text-[#C54F0E] transition-colors">
                     {item.label}
                   </Link>
                   <span className="text-[#2A3344]">›</span>

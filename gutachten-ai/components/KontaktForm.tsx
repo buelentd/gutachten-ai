@@ -48,7 +48,7 @@ export function KontaktForm() {
     <Card className="p-10">
       {status === "success" ? (
         <div className="text-center py-12">
-          <span className="material-symbols-outlined text-[#E8631A] text-5xl mb-4 block">check_circle</span>
+          <span className="material-symbols-outlined text-[#C54F0E] text-5xl mb-4 block">check_circle</span>
           <h3 className="text-2xl font-medium text-on-surface mb-2">Anfrage gesendet</h3>
           <p className="text-on-surface-variant">Wir melden uns innerhalb von 24 Stunden bei Ihnen.</p>
         </div>
@@ -97,7 +97,7 @@ export function KontaktForm() {
             <input name="datenschutz" checked={form.datenschutz} onChange={handleChange} className="mt-1" id="privacy" type="checkbox" required />
             <label className="text-sm text-on-surface-variant leading-relaxed" htmlFor="privacy">
               Ich stimme der Verarbeitung meiner Daten gemäß der{" "}
-              <a className="text-[#E8631A] hover:underline" href="/datenschutz">Datenschutzerklärung</a> zu.
+              <a className="text-[#C54F0E] hover:underline" href="/datenschutz">Datenschutzerklärung</a> zu.
             </label>
           </div>
           <p className="text-xs text-[#8A9BB0]">* Pflichtfelder</p>

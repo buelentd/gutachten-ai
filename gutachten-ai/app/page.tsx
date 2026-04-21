@@ -39,7 +39,7 @@ export default async function Home() {
               {d?.heroSubtext}
             </p>
             <div className="flex items-center gap-4">
-              <Link href="/funktionen" className="bg-[#E8631A] text-white px-8 py-4 rounded-xl font-medium hover:bg-[#E8631A]/90 transition-colors">
+              <Link href="/funktionen" className="bg-[#C54F0E] text-white px-8 py-4 rounded-xl font-medium hover:bg-[#C54F0E]/90 transition-colors">
                 {d?.heroPrimaryButton}
               </Link>
               <Link href="/ablauf" className="border-[0.5px] border-[#2A3344] text-[#F0EDE6] px-8 py-4 rounded-xl font-medium hover:bg-[#272A31] transition-colors">
@@ -73,7 +73,7 @@ export default async function Home() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {d?.stats?.map((stat: { value: string; label: string; highlight: boolean }, i: number) => (
               <div key={i} className="text-center md:text-left">
-                <div className={`text-3xl font-medium mb-1 ${stat.highlight ? "text-[#E8631A]" : "text-[#F0EDE6]"}`}>{stat.value}</div>
+                <div className={`text-3xl font-medium mb-1 ${stat.highlight ? "text-[#C54F0E]" : "text-[#F0EDE6]"}`}>{stat.value}</div>
                 <div className="text-xs text-[#8A9BB0] font-medium tracking-wider uppercase">{stat.label}</div>
               </div>
             ))}
@@ -103,7 +103,7 @@ export default async function Home() {
                 ))}
               </ul>
             </div>
-            <div className="p-8 rounded-2xl border-[0.5px] border-[#E8631A]/40 bg-[#E8631A]/5">
+            <div className="p-8 rounded-2xl border-[0.5px] border-[#C54F0E]/40 bg-[#C54F0E]/5">
               <div className="flex items-center gap-3 mb-6">
                 <Icon name="auto_awesome" size={20} className="icon-orange" />
                 <span className="font-medium text-[#F0EDE6]">Mit dem Gutachten Assistenten</span>
@@ -157,7 +157,7 @@ export default async function Home() {
             {d?.ablaufSteps?.map((step: { step: string; icon: string; title: string; description: string }, i: number) => (
               <div key={i} className="relative p-8 rounded-2xl border-[0.5px] border-[#2A3344] bg-[#151B27]">
                 <div className="flex items-center gap-4 mb-6">
-                  <span className="text-4xl font-light text-[#E8631A]/30">{step.step}</span>
+                  <span aria-hidden="true" className="text-4xl font-light text-[#C54F0E]/30">{step.step}</span>
                   <Icon name={step.icon} size={24} className="icon-orange" />
                 </div>
                 <h3 className="text-xl font-medium text-[#F0EDE6] mb-3">{step.title}</h3>
@@ -203,8 +203,8 @@ export default async function Home() {
       {/* 9. OFFER CARD */}
       <section className="py-32 bg-[#101319]">
         <div className="max-w-7xl mx-auto px-6 flex justify-center">
-          <div className="w-full max-w-2xl p-12 rounded-3xl border-[0.5px] border-[#E8631A]/40 bg-[#151921] relative">
-            <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#E8631A] text-white text-[10px] font-bold tracking-[0.2em] uppercase px-4 py-1 rounded-full">
+          <div className="w-full max-w-2xl p-12 rounded-3xl border-[0.5px] border-[#C54F0E]/40 bg-[#151921] relative">
+            <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#C54F0E] text-white text-[10px] font-bold tracking-[0.2em] uppercase px-4 py-1 rounded-full">
               {d?.offerBadge}
             </div>
             <div className="text-center mb-10">
@@ -219,7 +219,7 @@ export default async function Home() {
                 </div>
               ))}
             </div>
-            <Link href="/kontakt" className="block w-full bg-[#E8631A] text-white py-5 rounded-xl font-medium text-lg text-center hover:shadow-[0_0_20px_rgba(232,99,26,0.3)] transition-all">
+            <Link href="/kontakt" className="block w-full bg-[#C54F0E] text-white py-5 rounded-xl font-medium text-lg text-center hover:shadow-[0_0_20px_rgba(197,79,14,0.3)] transition-all">
               {d?.offerButtonText}
             </Link>
           </div>
@@ -232,7 +232,7 @@ export default async function Home() {
           <h2 className="text-4xl md:text-5xl font-normal tracking-tight text-[#F0EDE6] mb-8">{d?.ctaTitle}</h2>
           <p className="text-lg text-[#E0C0B3] mb-12">{d?.ctaSubtext}</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href={d?.ctaPrimaryButtonLink || "/kontakt"} className="bg-[#E8631A] text-white px-10 py-4 rounded-xl font-medium text-lg hover:opacity-90 transition-all">
+            <Link href={d?.ctaPrimaryButtonLink || "/kontakt"} className="bg-[#C54F0E] text-white px-10 py-4 rounded-xl font-medium text-lg hover:opacity-90 transition-all">
               {d?.ctaPrimaryButtonText}
             </Link>
             <Link href={d?.ctaSecondaryButtonLink || "/funktionen"} className="border-[0.5px] border-[#2A3344] text-[#F0EDE6] px-10 py-4 rounded-xl font-medium text-lg hover:bg-[#272A31] transition-all">

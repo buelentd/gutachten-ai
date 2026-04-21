@@ -45,7 +45,7 @@ export default async function Ablauf() {
       <section className="max-w-7xl mx-auto px-6 mb-24 text-center md:text-left">
         <div className="grid md:grid-cols-12 gap-8 items-end">
           <div className="md:col-span-7">
-            <span className="text-[#E8631A] font-medium tracking-widest text-xs uppercase mb-4 block">{d.heroLabel}</span>
+            <span className="text-[#C54F0E] font-medium tracking-widest text-xs uppercase mb-4 block">{d.heroLabel}</span>
             <h1 className="text-5xl md:text-7xl font-normal tracking-tight leading-[1.1] mb-8 text-on-surface">
               {d.heroTitle} <span className="text-[#FFB596] italic">{d.heroTitleHighlight}</span>
             </h1>
@@ -68,7 +68,7 @@ export default async function Ablauf() {
         <div className="grid md:grid-cols-3 gap-px bg-outline-variant border-[0.5px] border-outline-variant overflow-hidden rounded-xl">
           {d.steps?.map((step: { number: string; title: string; description: string; items: string[] }, i: number) => (
             <div key={i} className="bg-surface p-8 flex flex-col h-full">
-              <span className="text-4xl font-light text-[#FFB596] mb-6">{step.number}</span>
+              <span aria-hidden="true" className="text-4xl font-light text-[#FFB596] mb-6">{step.number}</span>
               <h3 className="text-2xl font-medium text-on-surface mb-4">{step.title}</h3>
               <p className="text-on-surface-variant mb-8 flex-grow leading-relaxed">{step.description}</p>
               <div className="p-6 bg-surface-container-low border-[0.5px] border-outline-variant rounded-lg">

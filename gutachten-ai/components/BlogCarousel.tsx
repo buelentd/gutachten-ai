@@ -45,7 +45,7 @@ export function BlogCarousel({ posts, title, subtext, linkText }: Props) {
             <h2 className="text-4xl font-medium text-[#F0EDE6] mb-4">{title}</h2>
             <p className="text-[#8A9BB0]">{subtext}</p>
           </div>
-          <Link href="/blog" className="hidden md:block text-[#E8631A] text-sm font-medium hover:underline">
+          <Link href="/blog" className="hidden md:block text-[#C54F0E] text-sm font-medium hover:underline">
             {linkText}
           </Link>
         </div>
@@ -54,12 +54,12 @@ export function BlogCarousel({ posts, title, subtext, linkText }: Props) {
             <Link
               key={`${post.slug}-${i}`}
               href={`/blog/${post.slug}`}
-              className="group p-8 rounded-2xl border-[0.5px] border-[#2A3344] bg-[#151B27] hover:border-[#E8631A]/40 transition-all"
+              className="group p-8 rounded-2xl border-[0.5px] border-[#2A3344] bg-[#151B27] hover:border-[#C54F0E]/40 transition-all"
             >
-              <span className="text-xs text-[#E8631A] font-medium tracking-wider uppercase mb-4 block">
+              <span className="text-xs text-[#C54F0E] font-medium tracking-wider uppercase mb-4 block">
                 {post.category}
               </span>
-              <h3 className="text-lg font-medium text-[#F0EDE6] mb-3 group-hover:text-[#E8631A] transition-colors leading-snug">
+              <h3 className="text-lg font-medium text-[#F0EDE6] mb-3 group-hover:text-[#C54F0E] transition-colors leading-snug">
                 {post.title}
               </h3>
               <p className="text-sm text-[#8A9BB0] leading-relaxed">{post.excerpt}</p>
@@ -79,7 +79,7 @@ export function BlogCarousel({ posts, title, subtext, linkText }: Props) {
               >
                 <span
                   className={`block rounded-full transition-all ${
-                    i === current ? "w-6 h-2 bg-[#E8631A]" : "w-2 h-2 bg-[#2A3344]"
+                    i === current ? "w-6 h-2 bg-[#C54F0E]" : "w-2 h-2 bg-[#2A3344]"
                   }`}
                 />
               </button>
