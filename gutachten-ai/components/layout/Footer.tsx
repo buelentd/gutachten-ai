@@ -2,6 +2,12 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+declare global {
+  interface Window {
+    Cookiebot?: { renew: () => void };
+  }
+}
+
 const links = [
   { href: "/funktionen", label: "Funktionen" },
   { href: "/ablauf", label: "Ablauf" },
@@ -40,6 +46,13 @@ export function Footer() {
               {link.label}
             </Link>
           ))}
+          <button
+            type="button"
+            onClick={() => window.Cookiebot?.renew()}
+            className="font-normal text-xs text-[#A0AABB] hover:text-[#C54F0E] transition-colors"
+          >
+            Cookie-Einstellungen
+          </button>
         </div>
       </div>
       <div className="max-w-7xl mx-auto px-8 pb-8 text-center">
