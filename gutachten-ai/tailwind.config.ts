@@ -13,9 +13,16 @@ const config: Config = {
         "brand-orange": "#C54F0E",
         "primary-container": "#EE671F",
         "on-primary-container": "#4D1900",
-        "primary": "#FFB596",
-        // outline-variant used in border classes
+        "accent-peach": "#FFB596",
         "outline-variant": "var(--color-outline-variant)",
+        // Light-mode slate tokens (Commit A infrastructure)
+        bg: "var(--bg)",
+        surface: "var(--sf)",
+        "surface-container": "var(--sf2)",
+        "on-surface": "var(--tx)",
+        "on-surface-variant": "var(--mu)",
+        outline: "var(--outline)",
+        primary: "var(--primary)",
       },
       fontFamily: {
         sans: ["Inter", "sans-serif"],

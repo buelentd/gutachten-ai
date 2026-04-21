@@ -13,6 +13,14 @@
     --color-outline: #999999;
     --color-outline-variant: #cccccc;
     --color-technical-line: #cccccc;
+    /* Light-mode slate tokens (Commit A infrastructure) */
+    --bg: #E8ECF2;
+    --sf: #FFFFFF;
+    --sf2: #D4DCE7;
+    --tx: #0F172A;
+    --mu: #334155;
+    --outline: #64748B;
+    --primary: #C54F0E;
   }
 
   .dark {
@@ -25,6 +33,14 @@
     --color-outline: #a88a7f;
     --color-outline-variant: #594238;
     --color-technical-line: #2a3344;
+    /* Dark-mode slate tokens (Commit A infrastructure) */
+    --bg: #101319;
+    --sf: #151B27;
+    --sf2: #1C2333;
+    --tx: #F0EDE6;
+    --mu: #8A9BB0;
+    --outline: #2A3344;
+    --primary: #C54F0E;
   }
 
   html { background-color: #101319; color-scheme: dark; }
