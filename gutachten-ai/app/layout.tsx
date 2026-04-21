@@ -39,9 +39,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="de" className="dark" suppressHydrationWarning>
+    <html lang="de" className="dark">
       <head>
-        <script dangerouslySetInnerHTML={{ __html: `try{if(localStorage.getItem('theme')==='light'){document.documentElement.classList.remove('dark')}}catch(e){}` }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
           "@context": "https://schema.org", "@type": "WebSite",
           "name": "gutachten-ai.de", "url": "https://gutachten-ai.de",

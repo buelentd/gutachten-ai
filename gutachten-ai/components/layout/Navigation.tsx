@@ -2,7 +2,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -50,7 +49,6 @@ export function Navigation() {
             ))}
           </div>
           <div className="hidden md:flex items-center gap-3">
-            <ThemeToggle />
             <Link href="/kontakt" className="bg-[#C54F0E] text-white px-5 py-2 rounded-lg text-sm font-medium hover:opacity-90 active:scale-95 transition-all">
               Anfrage stellen
             </Link>
