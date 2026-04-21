@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { Card } from "@/components/ui/card";
+import { Icon } from "@/components/Icon";
 
 function isValidPhone(value: string): boolean {
   const cleaned = value.replace(/[\s\-().]/g, "");
@@ -48,7 +49,7 @@ export function KontaktForm() {
     <Card className="p-10">
       {status === "success" ? (
         <div className="text-center py-12">
-          <span className="material-symbols-outlined text-[#C54F0E] text-5xl mb-4 block">check_circle</span>
+          <Icon name="check_circle" size={48} className="icon-orange mx-auto mb-4 block" />
           <h3 className="text-2xl font-medium text-on-surface mb-2">Anfrage gesendet</h3>
           <p className="text-on-surface-variant">Wir melden uns innerhalb von 24 Stunden bei Ihnen.</p>
         </div>
@@ -104,7 +105,7 @@ export function KontaktForm() {
           {status === "error" && <p className="text-red-400 text-sm">Fehler beim Senden. Bitte versuchen Sie es erneut.</p>}
           <Button type="submit" size="lg" className="w-full" disabled={status === "loading" || !form.datenschutz}>
             {status === "loading" ? "Wird gesendet..." : "Anfrage senden"}
-            {status !== "loading" && <span className="material-symbols-outlined text-sm">send</span>}
+            {status !== "loading" && <Icon name="send" size={14} className="icon-white" />}
           </Button>
         </form>
       )}

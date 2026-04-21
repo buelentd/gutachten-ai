@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { client } from "@/lib/sanity/client";
 import { groq } from "next-sanity";
 import { KontaktForm } from "@/components/KontaktForm";
+import { Icon } from "@/components/Icon";
 
 export const revalidate = 3600;
 
@@ -52,7 +53,7 @@ export default async function Kontakt() {
                 { icon: "map", title: "Standort Berlin", description: "Technologie entwickelt in Deutschland für den lokalen Markt." },
               ]).map((item: { icon: string; title: string; description: string }, i: number) => (
                 <div key={i} className="flex items-start gap-4">
-                  <span className="material-symbols-outlined text-[#C54F0E]">{item.icon}</span>
+                  <Icon name={item.icon} size={24} className="icon-orange" />
                   <div>
                     <h3 className="text-sm font-medium text-on-surface">{item.title}</h3>
                     <p className="text-xs text-on-surface-variant mt-1">{item.description}</p>
