@@ -1,102 +1,126 @@
-# CLAUDE.md — Projektanweisungen für gutachten-ai
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Projekt
 
-**gutachten-ai.de** — SaaS-Webanwendung für Bausachverständige zur KI-gestützten Gutachtenerstellung.
-Stack: Next.js 14 (App Router), React 18, TypeScript, Tailwind CSS 3, Sanity CMS, Brevo (E-Mail).
+**gutachten-ai.de** — Marketing-Website für den *Gutachten Assistenten*, eine KI-gestützte SaaS-Lösung für Bausachverständige (Betreiber: intersignum UG, Berlin). Auto-Deploy auf Vercel bei Push auf `master`.
 
-## Projektstruktur
+Stack: Next.js 14.2.5 (App Router) · React 18 · TypeScript (strict) · Tailwind CSS 3.4 · Sanity v3 (Studio unter `/studio`) · Brevo (Kontaktformular-E-Mail) · GA4.
+
+## Repo-Layout — WICHTIG
+
+Die Next.js-App liegt **nicht** im Git-Root, sondern in einem gleichnamigen Unterordner:
 
 ```
-gutachten-ai/
-├── app/                  # Next.js App Router (Pages, Layouts, API-Routes)
-│   ├── api/              # Backend-Endpunkte (contact, seed)
-│   ├── blog/             # Blog-Seiten (statisch + dynamisch via [slug])
-│   ├── studio/           # Sanity CMS Studio (/studio)
-│   └── [seite]/page.tsx  # Einzelne Seiten (funktionen, ablauf, kontakt, etc.)
-├── components/
-│   ├── layout/           # Navigation, Footer
-│   └── ui/               # Wiederverwendbare UI-Komponenten (button, card, input, etc.)
-├── lib/
-│   ├── utils.ts          # cn() Hilfsfunktion (clsx + tailwind-merge)
-│   └── sanity/           # Sanity Client, GROQ-Queries
-├── sanity/               # Sanity Studio Config + Schemas
-├── styles/globals.css    # Tailwind Base + CSS Custom Properties (Light/Dark)
-├── tailwind.config.ts
-├── next.config.mjs
-└── package.json
+gutachten-ai/                 ← Git-Repo-Root (.git, README, deploy.ps1, CLAUDE.md)
+└── gutachten-ai/             ← Next.js App Root (package.json, tsconfig, tailwind.config)
+    ├── app/                  ← App Router: pages, api/, studio/, blog/[slug]
+    ├── components/           ← Icon.tsx, KontaktForm.tsx, HeroCrossfade.tsx, BlogCarousel.tsx, layout/, ui/
+    ├── lib/sanity/           ← client.ts (+ urlFor), queries.ts (GROQ)
+    ├── sanity/               ← sanity.config.ts, schemas/
+    ├── public/icons/         ← SVG-Icon-Set (Quelle für <Icon />)
+    └── styles/globals.css    ← Tailwind + CSS Custom Properties (Light/Dark) + .icon-* Filter
 ```
 
-## Regeln bei Änderungen
-
-### Allgemein
-- Sprache im Code: **Englisch** (Variablen, Funktionen, Kommentare)
-- Sprache im UI/Content: **Deutsch**
-- Nur die angeforderte Änderung umsetzen — kein Refactoring, keine "Verbesserungen" nebenbei
-- Keine neuen Dateien erstellen, wenn eine bestehende Datei erweitert werden kann
-- Keine Kommentare oder Docstrings hinzufügen, außer bei komplexer Logik
-
-### Styling
-- **Tailwind CSS** Utility-Klassen verwenden — kein inline CSS, kein CSS-Modules
-- Farben: Brand-Orange `#E8631A`, helles Orange `#FFB596`, dunkle Hintergründe `#101319`, `#0B0E14`
-- CSS Custom Properties aus `styles/globals.css` nutzen (`bg-surface`, `text-on-surface`, etc.)
-- Dark Mode via `class`-Strategie — immer beide Modi berücksichtigen
-- `cn()` aus `lib/utils.ts` für bedingte Klassen verwenden
-- Borders: `0.5px` mit `border-[#2A3344]` oder `border-technical`
-- Icons: **Material Symbols Outlined** (`<span className="material-symbols-outlined">icon_name</span>`)
-
-### Komponenten
-- PascalCase für Komponentendateien (`MeinKomponent.tsx`)
-- camelCase für Utilities und Lib-Dateien
-- `"use client"` nur bei interaktiven Komponenten (State, Events, Browser-APIs)
-- Server Components sind Standard — async Data Fetching direkt in der Page
-- UI-Primitives nutzen `forwardRef` und das CVA-Pattern (class-variance-authority)
-- Props immer mit `...props` weiterreichen für Flexibilität
-
-### CMS (Sanity)
-- Content-Daten über GROQ-Queries in `lib/sanity/queries.ts` abrufen
-- Fallback-Defaults in den Pages bereitstellen, falls CMS nicht erreichbar
-- Neue Content-Typen als Schema in `sanity/schemas/` anlegen und in `index.ts` exportieren
-- Bilder über `urlFor()` aus `lib/sanity/client.ts` laden
-
-### API-Routes
-- Unter `app/api/` ablegen
-- Input validieren (E-Mail, Pflichtfelder)
-- Umgebungsvariablen für externe Services (Brevo API Key, etc.)
-- Keine Secrets hardcoden
-
-### SEO
-- Jede Seite braucht ein `metadata`-Objekt (title, description, openGraph)
-- Canonical URLs setzen
-- JSON-LD Schema wo sinnvoll
+- Alle npm/Next-Befehle **aus dem inneren** `gutachten-ai/` ausführen.
+- TS-Alias `@/*` zeigt auf das innere App-Root (`./*` relativ zu `gutachten-ai/gutachten-ai/`).
+- Im Git-Root liegen außerdem "Staging"-Dateien (`page-final.tsx`, `Navigation-perf.tsx`, `layout-ga.tsx`, …). Das sind Vorlagen für `deploy.ps1`, **kein** aktiver Code — nie von dort importieren und nicht als Quelle für Analysen heranziehen, wenn es um den Live-Stand geht.
 
 ## Commands
 
+Immer erst in die App wechseln (`cd gutachten-ai` vom Repo-Root):
+
 ```bash
-npm run dev       # Entwicklungsserver starten
+npm run dev       # Dev-Server auf http://localhost:3000 (Studio: /studio)
 npm run build     # Production Build
-npm run lint      # ESLint ausführen
-npm run start     # Production Server starten
+npm run lint      # next lint (eslint-config-next)
+npm run start     # Production Server
+```
+
+Deploy: `git push` auf `master` → Vercel deployt automatisch. Optional Helper im Repo-Root: `.\deploy.ps1 -src <datei> -dest <pfad> -message "..."` kopiert eine Datei, committet und pushed.
+
+## Sprache & Code-Stil
+
+- **Code** (Variablen, Funktionen, Kommentare): Englisch.
+- **UI/Content**: Deutsch.
+- Nur die angeforderte Änderung umsetzen — kein Refactoring nebenbei, keine neuen Dateien, wenn eine bestehende erweitert werden kann.
+- Keine Kommentare/Docstrings außer bei komplexer Logik.
+- `"use client"` nur für interaktive Komponenten; alles andere bleibt Server Component mit `async` Data Fetching in der Page.
+- UI-Primitives unter `components/ui/` nutzen `forwardRef` + CVA (class-variance-authority); Props mit `...props` durchreichen.
+- PascalCase für Komponenten, camelCase für Utilities/Lib.
+
+## Styling
+
+- Tailwind Utility-Klassen — kein Inline-Style, keine CSS-Modules.
+- Dark Mode via `class`-Strategie; `<html>` startet mit `className="dark"`, ein Inline-Script im Layout schaltet bei `localStorage.theme === 'light'` um. Immer beide Modi berücksichtigen.
+- **CSS Custom Properties** aus `styles/globals.css` nutzen: `bg-surface`, `bg-surface-container{,-low,-high}`, `text-on-surface`, `text-on-surface-variant`, `border-technical` (0.5px), `border-outline-variant`.
+- **Brand-Farben** (in `tailwind.config.ts` fixiert): `brand-orange #E8631A`, `primary-container #EE671F`, `on-primary-container #4D1900`, `primary #FFB596`, `outline-variant` (CSS-Var).
+- Dunkle Hintergründe: `#101319` (surface dark) und `#0B0E14`.
+- Klassen-Merging via `cn()` aus `lib/utils.ts` (clsx + tailwind-merge).
+- Font: Inter (via `next/font/google`, CSS-Variable `--font-inter`).
+
+## Icons
+
+**Immer** die `<Icon />`-Komponente aus `components/Icon.tsx` verwenden. Sie rendert `<img src="/icons/{name}.svg" />` aus `public/icons/`.
+
+```tsx
+<Icon name="shield" size={24} className="icon-orange" />
+```
+
+Farb-Utilities (SVG-`<img>` wird per CSS-`filter` eingefärbt, definiert in `globals.css`): `icon-orange`, `icon-gray`, `icon-white`, `icon-red`, `icon-dark`.
+
+Material Symbols, `lucide-react` und inline-SVG sind **nicht** mehr im Einsatz — neue Icons als SVG in `public/icons/` ablegen (siehe `download-icons.ps1` für den Bulk-Download von Material-Symbols-Quellen).
+
+## Sanity CMS
+
+Client & Queries: `lib/sanity/client.ts` (`client`, `urlFor`), Queries als GROQ in `lib/sanity/queries.ts`. Schemas: `sanity/schemas/*.ts`, exportiert in `sanity/schemas/index.ts`.
+
+**Singletons** (in `sanity/sanity.config.ts` registriert — keine Duplikate, kein Löschen im Studio): `homePage`, `funktionenPage`, `ablaufPage`, `kontaktPage`, `navigation`, `impressum`.
+
+**Neuer Content-Typ — feste Reihenfolge** (aus `README.md`, nie einen Schritt überspringen):
+
+1. Schema in `sanity/schemas/<typ>.ts` anlegen + in `sanity/schemas/index.ts` registrieren (bei Singletons zusätzlich in die `singletons`-Liste in `sanity.config.ts` aufnehmen).
+2. Page `app/<pfad>/page.tsx` mit Sanity-Fetch bauen — niemals statischer Content, immer mit Fallback-Defaults falls CMS nicht erreichbar.
+3. Seed-Eintrag in `app/api/seed/route.ts` via `client.createOrReplace(...)` ergänzen.
+4. Deployen, dann `https://gutachten-ai.de/api/seed` aufrufen und im Studio verifizieren.
+
+Bilder: via `urlFor(source)`; `cdn.sanity.io` ist in `next.config.mjs` als Remote-Pattern whitelisted.
+
+## API-Routes
+
+- `app/api/contact/route.ts`: POST, validiert `email` + `nachricht`, escaped alle Strings (`escapeHtml`), registriert Kontakt + sendet Mail via Brevo (`/v3/contacts`, `/v3/smtp/email`). Empfänger via `CONTACT_EMAIL` (Fallback `b.duezguen@intersignum.com`).
+- `app/api/seed/route.ts`: GET, nutzt `SANITY_WRITE_TOKEN` und `createOrReplace` für alle Seiten-Dokumente.
+
+## SEO
+
+- Jede Page braucht ein `metadata`-Objekt (title, description, openGraph). Root-`metadata` steht in `app/layout.tsx` mit `metadataBase`, Title-Template und Default-OG.
+- `app/sitemap.ts` und `app/robots.ts` pflegen die Suchmaschinen-Metadaten.
+- JSON-LD (`WebSite` + `SoftwareApplication`) wird im Root-Layout eingebettet.
+- GA4 (`G-MZNP1LYCPH`) wird via `next/script` mit `strategy="lazyOnload"` geladen.
+
+## Umgebungsvariablen
+
+In Vercel gesetzt, nicht im Repo:
+
+```
+NEXT_PUBLIC_SANITY_PROJECT_ID   # 67x2nc7r (auch als Fallback hardcoded)
+NEXT_PUBLIC_SANITY_DATASET      # production
+NEXT_PUBLIC_SANITY_API_VERSION  # 2024-01-01 (Fallback)
+SANITY_WRITE_TOKEN              # nur für /api/seed
+BREVO_API_KEY                   # Kontaktformular
+CONTACT_EMAIL                   # Empfänger Kontaktformular
+NEXT_PUBLIC_GA_ID               # GA4 (Default G-MZNP1LYCPH)
 ```
 
 ## Wichtige Abhängigkeiten
 
 | Paket | Zweck |
 |---|---|
-| `next` 14.2.5 | Framework |
+| `next` 14.2.5 | Framework (App Router) |
 | `tailwindcss` 3.4.1 | Styling |
-| `@sanity/client` | CMS-Zugriff |
-| `next-sanity` | Sanity + Next.js Integration |
-| `class-variance-authority` | Komponenten-Varianten |
-| `clsx` + `tailwind-merge` | Klassen-Merging (`cn()`) |
-| `lucide-react` | Icon-Bibliothek |
-| `@radix-ui/react-slot` | Compound Component Pattern |
-
-## Umgebungsvariablen
-
-```
-NEXT_PUBLIC_SANITY_PROJECT_ID   # Sanity Projekt-ID
-NEXT_PUBLIC_SANITY_DATASET      # Sanity Dataset (default: production)
-BREVO_API_KEY                   # Brevo/Sendinblue API Key
-CONTACT_EMAIL                   # Empfänger-Adresse für Kontaktformular
-```
+| `@sanity/client`, `next-sanity`, `sanity` 3.53 | Headless CMS + eingebettetes Studio |
+| `@sanity/image-url` | `urlFor()` für Bilder |
+| `@portabletext/react` | Rendering für Sanity-Rich-Text |
+| `class-variance-authority`, `clsx`, `tailwind-merge` | UI-Varianten + `cn()` |
+| `@radix-ui/react-slot` | Compound-Component-Pattern in UI-Primitives |
