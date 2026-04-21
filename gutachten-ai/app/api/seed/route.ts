@@ -125,6 +125,35 @@ export async function GET() {
       ],
     });
 
+    // ─── ablaufPage ───────────────────────────────────────────────────────────
+    await client.createOrReplace({
+      _id: "ablaufPage",
+      _type: "ablaufPage",
+      heroLabel: "Implementierung",
+      heroTitle: "Vom Erstkontakt zur fertigen",
+      heroTitleHighlight: "Expertise.",
+      heroSubtext: "Effizienz beginnt bei der Einführung. Wir haben einen strukturierten Prozess entwickelt, der Ihre bestehenden Workflows respektiert und digital transformiert.",
+      steps: [
+        { _key: "step1", number: "01", title: "Anfrage", description: "Wir analysieren Ihren aktuellen Bedarf und prüfen die Kompatibilität Ihrer Datenstruktur mit unserer KI-Engine.", items: ["Erstgespräch & Bedarfsanalyse", "Daten-Checkup"] },
+        { _key: "step2", number: "02", title: "Onboarding", description: "Integration der Schnittstellen und Training Ihres Teams auf die spezifischen Module Ihres Fachbereichs.", items: ["Setup & Integration", "Live-Schulung via Web-App"] },
+        { _key: "step3", number: "03", title: "Loslegen", description: "Ab Tag 1 profitieren Sie von automatisierten Gutachten-Entwürfen und digitaler Beweissicherung.", items: ["Voller Funktionsumfang", "Support & Optimierung"] },
+      ],
+      timeline: [
+        { _key: "t1", day: "0", label: "Tag 0", sublabel: "Kick-off Meeting", isRocket: false },
+        { _key: "t2", day: "7", label: "Tag 1", sublabel: "Systemkonfiguration", isRocket: false },
+        { _key: "t3", day: "14", label: "Ab Tag 1", sublabel: "Mitarbeiter-Training", isRocket: false },
+        { _key: "t4", day: "", label: "Laufend", sublabel: "Skalierung & Updates", isRocket: true },
+      ],
+      trustItems: [
+        { _key: "tr1", icon: "security", title: "Sicherheit & Datenschutz", description: "Ihre Daten verlassen niemals deutschen Boden. Unsere Server sind ISO 27001 zertifiziert und vollständig DSGVO-konform." },
+        { _key: "tr2", icon: "settings_input_component", title: "Technische Integration", description: "Dank unserer modernen REST-API lässt sich gutachten-ai.de nahtlos in Ihre bestehende Branchensoftware integrieren." },
+      ],
+      ctaTitle: "Bereit für den digitalen Vorsprung?",
+      ctaSubtext: "Sichern Sie sich jetzt ein unverbindliches Beratungsgespräch und erfahren Sie, wie wir Ihren Arbeitsalltag revolutionieren können.",
+      ctaPrimaryButton: "Kostenloses Gespräch buchen",
+      ctaSecondaryButton: "Funktionen ansehen",
+    });
+
     // ─── Blog-Posts (unverändert) ─────────────────────────────────────────────
     await client.createOrReplace({ _id: "post-zeitersparnis", _type: "post", title: "85% weniger Zeit für Gutachten: So nutzen Bausachverständige KI richtig", slug: { _type: "slug", current: "zeitersparnis-bausachverstaendige" }, category: "Praxis", publishedAt: "2026-03-15", excerpt: "Eine Zahl, die zunächst unglaubwürdig klingt — und doch der Realität entspricht: Bausachverständige, die KI-gestützte Software einsetzen, berichten von einer Zeitersparnis von bis zu 85 Prozent bei der Gutachtenerstellung.", body: [ b("b1","h2","Wo geht die Zeit wirklich hin?"), b("b2","normal","Um zu verstehen, warum KI so viel Zeit spart, muss man zunächst verstehen, wo die Zeit bei der traditionellen Gutachtenerstellung verloren geht. Eine Analyse zeigt: 35% Texterstellung, 20% Normenrecherche, 15% Fotodokumentation, 10% Formatierung — nur 20% entfallen auf die eigentliche fachliche Bewertung."), b("b3","h2","KI übernimmt die Routinearbeit"), b("b4","normal","Der Sachverständige gibt die Eckdaten ein — Schadensart, betroffene Bauteile, Beobachtungen vor Ort. Die KI generiert daraus einen vollständigen Textbaustein in korrekter Fachsprache. Was früher zwei Stunden Schreibarbeit bedeutete, dauert jetzt fünf Minuten Überprüfung und Freigabe."), b("b5","h2","Normenrecherche: Automatisch und immer aktuell"), b("b6","normal","Statt manuell durch DIN-Kataloge zu blättern, identifiziert die KI automatisch alle relevanten Normen. Die Recherche, die früher 30-60 Minuten dauerte, erledigt das System in Sekunden — und mit höherer Vollständigkeit."), b("b7","h2","Was bedeutet das in der Praxis?"), b("b8","normal","Ein Sachverständiger, der früher vier Arbeitstage für ein komplexes Gutachten benötigte, schafft dasselbe Gutachten heute in einem Tag. 85% Zeitersparnis bedeutet: mehr Aufträge, schnellere Lieferzeiten, weniger Korrekturrunden."), b("b9","h2","Fazit"), b("b10","normal","KI ist kein Ersatz für Expertise. Aber sie gibt Experten ihre Zeit zurück."), ] });
     await client.createOrReplace({ _id: "post-din-normen-ki", _type: "post", title: "DIN-Normen und KI: Wie Software rechtssichere Baugutachten erstellt", slug: { _type: "slug", current: "din-normen-ki" }, category: "Recht & Normen", publishedAt: "2026-03-20", excerpt: "Rechtssicherheit ist das wichtigste Kriterium bei Baugutachten. Wie stellt KI-Software sicher, dass alle relevanten DIN-Normen korrekt angewendet werden?", body: [ b("b1","h2","DIN-Normen im Baugutachten: Die Herausforderung"), b("b2","normal","Ein qualifiziertes Baugutachten muss auf dem aktuellen Stand der anerkannten Regeln der Technik basieren. Allein im Bereich Bauwesen gibt es mehrere tausend relevante DIN-Normen, die sich regelmäßig ändern."), b("b3","h2","Wie KI die Normenrecherche automatisiert"), b("b4","normal","Moderne KI-Gutachtensoftware löst dieses Problem durch eine kontinuierlich aktualisierte Normdatenbank. Das System analysiert Gebäudetyp, Schadensart, Baujahr und betroffene Bauteile — und schlägt automatisch die relevanten Normen vor."), ] });
@@ -136,7 +165,7 @@ export async function GET() {
     await client.createOrReplace({ _id: "post-beweisbeschluss-ki-auswertung", _type: "post", title: "Beweisbeschlüsse strukturiert auswerten: Was KI heute schon kann", slug: { _type: "slug", current: "beweisbeschluss-ki-auswertung" }, category: "Technik", publishedAt: "2026-04-08", excerpt: "Der Beweisbeschluss ist das zentrale Dokument jedes gerichtlichen Gutachtenauftrags. KI-Systeme können dieses Dokument heute automatisch analysieren.", body: [ b("b1","h2","Was ist ein Beweisbeschluss?"), b("b2","normal","Ein Beweisbeschluss ist die gerichtliche Anordnung, durch die ein Sachverständiger mit der Erstellung eines Gutachtens beauftragt wird."), ] });
     await client.createOrReplace({ _id: "post-digitale-akte-sachverstaendige", _type: "post", title: "Digitale Akte statt Papierordner: Wie Sachverständige Zeit gewinnen", slug: { _type: "slug", current: "digitale-akte-sachverstaendige" }, category: "Praxis", publishedAt: "2026-04-03", excerpt: "Wer kennt das nicht: Fotos auf dem Handy, Notizen auf einem Zettel, der Beweisbeschluss als PDF irgendwo im Posteingang.", body: [ b("b1","h2","Das Problem: Verstreute Informationen kosten Zeit"), b("b2","normal","Ein typischer Gutachtenauftrag erzeugt Beweisbeschluss, Unterlagen der Parteien, Fotos vom Ortstermin, Diktate, handschriftliche Notizen, DIN-Normen und frühere Korrespondenz."), ] });
 
-    return NextResponse.json({ success: true, message: "homePage + datenschutz + kontaktPage + 9 Blog-Posts erfolgreich eingespielt." });
+    return NextResponse.json({ success: true, message: "homePage + datenschutz + kontaktPage + ablaufPage + 9 Blog-Posts erfolgreich eingespielt." });
 
   } catch (error) {
     return NextResponse.json({ success: false, error: String(error) }, { status: 500 });
