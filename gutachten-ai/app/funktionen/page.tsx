@@ -13,15 +13,6 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://gutachten-ai.de/funktionen" },
 };
 
-const faqSchema = {
-  "@context": "https://schema.org", "@type": "FAQPage",
-  "mainEntity": [
-    { "@type": "Question", "name": "Sind meine Daten sicher?", "acceptedAnswer": { "@type": "Answer", "text": "Ja. Alle Daten werden auf deutschen Servern verarbeitet und sind vollständig DSGVO-konform verschlüsselt." } },
-    { "@type": "Question", "name": "Ersetzt die KI den menschlichen Gutachter?", "acceptedAnswer": { "@type": "Answer", "text": "Nein. Die KI dient als Assistenzsystem, das zeitaufwendige Recherche- und Schreibarbeiten übernimmt." } },
-    { "@type": "Question", "name": "Wie aktuell sind die DIN-Normen?", "acceptedAnswer": { "@type": "Answer", "text": "Unsere Datenbank wird kontinuierlich aktualisiert." } },
-  ],
-};
-
 const HERO_TITLE_DEFAULT = "Präzise Analysen. Rechtssichere Dokumentation.";
 const HERO_SUBTEXT_DEFAULT = "Alle Werkzeuge für Bausachverständige — vom Beweisbeschluss bis zum fertigen Gutachten.";
 const CTA_TEXT_DEFAULT = "Zugang zum Gutachten Assistenten anfragen";
@@ -50,6 +41,16 @@ export default async function Funktionen() {
   const ctaText = d?.ctaText ?? CTA_TEXT_DEFAULT;
   const features: Feature[] = d?.features ?? FEATURES_DEFAULTS;
   const faq: FaqItem[] = d?.faq ?? FAQ_DEFAULTS;
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faq.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  };
 
   return (
     <main className="pt-32 pb-24">
