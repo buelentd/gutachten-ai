@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import Script from "next/script";
 import "../styles/globals.css";
@@ -22,7 +22,16 @@ export const metadata: Metadata = {
   keywords: ["Gutachtensoftware Bausachverständige", "KI Gutachten", "Beweisbeschluss Software", "Gutachtenerstellung automatisieren", "Gutachten Software Deutschland"],
   authors: [{ name: "gutachten-ai.de" }],
   creator: "gutachten-ai.de",
-  icons: { icon: "/favicon.svg", shortcut: "/favicon.svg" },
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-16.png", sizes: "16x16", type: "image/png" },
+    ],
+    apple: "/apple-touch-icon.png",
+    shortcut: "/favicon.ico",
+  },
+  manifest: "/site.webmanifest",
   robots: { index: true, follow: true, googleBot: { index: true, follow: true } },
   openGraph: {
     type: "website", locale: "de_DE", url: "https://gutachten-ai.de",
@@ -35,6 +44,10 @@ export const metadata: Metadata = {
     title: "Gutachtensoftware für Bausachverständige | gutachten-ai.de",
     description: "KI-gestützte Gutachtenerstellung — strukturiert, nachvollziehbar, rechtssicher.",
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#101319",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
