@@ -21,11 +21,6 @@ export async function getKontaktPage() {
   return client.fetch(groq`*[_type == "kontaktPage"][0]`);
 }
 
-// Navigation
-export async function getNavigation() {
-  return client.fetch(groq`*[_type == "navigation"][0]`);
-}
-
 // Blog
 export async function getAllPosts() {
   return client.fetch(groq`*[_type == "post"] | order(publishedAt desc) {

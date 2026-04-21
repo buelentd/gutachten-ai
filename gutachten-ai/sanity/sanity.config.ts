@@ -3,7 +3,7 @@ import { structureTool } from "sanity/structure";
 import { visionTool } from "@sanity/vision";
 import { schemaTypes } from "./schemas/index";
 
-const singletons = ["homePage", "funktionenPage", "ablaufPage", "kontaktPage", "navigation", "impressum"];
+const singletons = ["homePage", "funktionenPage", "ablaufPage", "kontaktPage", "impressum"];
 
 export default defineConfig({
   name: "gutachten-ai-studio",
@@ -28,9 +28,6 @@ export default defineConfig({
             ),
             S.listItem().title("Kontakt").id("kontaktPage").child(
               S.document().schemaType("kontaktPage").documentId("kontaktPage")
-            ),
-            S.listItem().title("Navigation & Footer").id("navigation").child(
-              S.document().schemaType("navigation").documentId("navigation")
             ),
             S.listItem().title("Impressum").id("impressum").child(
               S.document().schemaType("impressum").documentId("impressum")
