@@ -12,7 +12,7 @@ export default defineType({
       title: "Features",
       type: "array",
       of: [{ type: "object", fields: [
-        { name: "icon", title: "Material Symbol Name", type: "string" },
+        { name: "icon", title: "SVG Icon Name (z.B. sim_card_download)", type: "string" },
         { name: "title", title: "Titel", type: "string" },
         { name: "description", title: "Beschreibung", type: "text" },
         { name: "example", title: "Praxis-Beispiel", type: "text" },
@@ -30,5 +30,6 @@ export default defineType({
         { name: "answer", title: "Antwort", type: "text" },
       ]}],
     }),
+    defineField({ name: "ctaText", title: "CTA Button-Text", type: "string" }),
   ],
 });

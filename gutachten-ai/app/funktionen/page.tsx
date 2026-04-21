@@ -22,29 +22,42 @@ const faqSchema = {
   ],
 };
 
-const features = [
-  { icon: "folder_open", title: "Fallverwaltung", description: "Alle Vorgänge strukturiert an einem Ort: Akte, Beweisbeschluss, Ortstermin und Gutachten sind als eigene Bereiche eines Falls organisiert.", example: "Ein Fall enthält Verfahrensdaten, alle Parteien, Kostenvorschuss und den vollständigen Beweisbeschluss — alles abrufbar mit einem Klick.", image: "/raumplan-feature.webp", imageAlt: "Grundriss-Übersicht — Fallverwaltung", reverse: false },
-  { icon: "inventory_2", title: "Digitale Akte", description: "Fotos, PDFs und Unterlagen werden fallbezogen abgelegt und sind nach Kategorie filterbar.", example: "Unterlagen nach Typ filtern: Grundrisse, Gutachten, Rechnungen oder Schriftverkehr — immer sofort auffindbar.", image: "/Konstruktionsdetail-feature.webp", imageAlt: "Konstruktionsdetail — digitale Akte", reverse: true },
-  { icon: "sim_card_download", title: "Gutachten-Export", description: "Das fertige Gutachten wird direkt aus der App als PDF oder Word-Dokument exportiert — strukturiert nach Beweisfragen.", example: "Export auf Knopfdruck: vollständiges Gutachten als DOCX oder als PDF zur Einreichung beim Gericht.", image: "/Pruefbericht-feature.webp", imageAlt: "Prüfbericht-Formular — Gutachten-Export", reverse: false },
-  { icon: "quiz", title: "Beweisfragen-Editor", description: "Bis zu 18 Beweisfragen pro Fall — jede mit eigenem Editor für Behauptung, Hinweis und Feststellungen.", example: "BF1 mit Unterbeweisfragen a–f: jede Feststellung separat erfasst und beim Export korrekt strukturiert.", image: "/Konstruktionsdetail-feature.webp", imageAlt: "Baufortschritt-Report — Beweisfragen-Editor", reverse: true },
-  { icon: "receipt_long", title: "Rechnungen", description: "Automatisierte Erstellung von JVEG-konformen Rechnungen oder Honorarberechnungen nach Zeitaufwand.", example: "Ein-Klick-Erstellung der Gesamtabrechnung nach Abschluss des Gutachtens inkl. aller Nebenkosten.", image: "/Rechnung-feature.webp", imageAlt: "Rechnungs-Dashboard — JVEG-konforme Honorarabrechnung", reverse: false },
+const HERO_TITLE_DEFAULT = "Präzise Analysen. Rechtssichere Dokumentation.";
+const HERO_SUBTEXT_DEFAULT = "Alle Werkzeuge für Bausachverständige — vom Beweisbeschluss bis zum fertigen Gutachten.";
+const CTA_TEXT_DEFAULT = "Zugang zum Gutachten Assistenten anfragen";
+
+const FEATURES_DEFAULTS = [
+  { icon: "folder_open", title: "Fallverwaltung", description: "Alle Vorgänge strukturiert an einem Ort: Akte, Beweisbeschluss, Ortstermin und Gutachten sind als eigene Bereiche eines Falls organisiert.", example: "Ein Fall enthält Verfahrensdaten, alle Parteien, Kostenvorschuss und den vollständigen Beweisbeschluss — alles abrufbar mit einem Klick.", imageSrc: "/raumplan-feature.webp", imageAlt: "Grundriss-Übersicht — Fallverwaltung", reverse: false },
+  { icon: "inventory_2", title: "Digitale Akte", description: "Fotos, PDFs und Unterlagen werden fallbezogen abgelegt und sind nach Kategorie filterbar.", example: "Unterlagen nach Typ filtern: Grundrisse, Gutachten, Rechnungen oder Schriftverkehr — immer sofort auffindbar.", imageSrc: "/Konstruktionsdetail-feature.webp", imageAlt: "Konstruktionsdetail — digitale Akte", reverse: true },
+  { icon: "sim_card_download", title: "Gutachten-Export", description: "Das fertige Gutachten wird direkt aus der App als PDF oder Word-Dokument exportiert — strukturiert nach Beweisfragen.", example: "Export auf Knopfdruck: vollständiges Gutachten als DOCX oder als PDF zur Einreichung beim Gericht.", imageSrc: "/Pruefbericht-feature.webp", imageAlt: "Prüfbericht-Formular — Gutachten-Export", reverse: false },
+  { icon: "quiz", title: "Beweisfragen-Editor", description: "Bis zu 18 Beweisfragen pro Fall — jede mit eigenem Editor für Behauptung, Hinweis und Feststellungen.", example: "BF1 mit Unterbeweisfragen a–f: jede Feststellung separat erfasst und beim Export korrekt strukturiert.", imageSrc: "/Konstruktionsdetail-feature.webp", imageAlt: "Baufortschritt-Report — Beweisfragen-Editor", reverse: true },
+  { icon: "receipt_long", title: "Rechnungen", description: "Automatisierte Erstellung von JVEG-konformen Rechnungen oder Honorarberechnungen nach Zeitaufwand.", example: "Ein-Klick-Erstellung der Gesamtabrechnung nach Abschluss des Gutachtens inkl. aller Nebenkosten.", imageSrc: "/Rechnung-feature.webp", imageAlt: "Rechnungs-Dashboard — JVEG-konforme Honorarabrechnung", reverse: false },
 ];
 
-const faq = [
+const FAQ_DEFAULTS = [
   { question: "Sind meine Daten sicher?", answer: "Ja. Alle Daten werden auf deutschen Servern verarbeitet und sind vollständig DSGVO-konform verschlüsselt." },
   { question: "Ersetzt die KI den menschlichen Gutachter?", answer: "Nein. Die KI dient als Assistenzsystem, das zeitaufwendige Recherche- und Schreibarbeiten übernimmt, damit Sie sich auf die fachliche Bewertung konzentrieren können." },
   { question: "Wie aktuell sind die DIN-Normen?", answer: "Unsere Datenbank wird kontinuierlich aktualisiert, um stets den neuesten Stand der Technik abzubilden." },
 ];
 
+type Feature = { icon: string; title: string; description: string; example: string; imageSrc: string; imageAlt: string; reverse: boolean };
+type FaqItem = { question: string; answer: string };
+
 export default async function Funktionen() {
-  void await getFunktionenPage().catch(() => null);
+  const d = await getFunktionenPage();
+  const heroTitle = d?.heroTitle ?? HERO_TITLE_DEFAULT;
+  const heroSubtext = d?.heroSubtext ?? HERO_SUBTEXT_DEFAULT;
+  const ctaText = d?.ctaText ?? CTA_TEXT_DEFAULT;
+  const features: Feature[] = d?.features ?? FEATURES_DEFAULTS;
+  const faq: FaqItem[] = d?.faq ?? FAQ_DEFAULTS;
+
   return (
     <main className="pt-32 pb-24">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <section className="max-w-7xl mx-auto px-6 mb-16">
         <Breadcrumb items={[{ label: "Startseite", href: "/" }, { label: "Funktionen", href: "/funktionen" }]} />
-        <h1 className="text-6xl font-normal tracking-tight leading-tight mb-6 max-w-4xl text-on-surface">Präzise Analysen. Rechtssichere Dokumentation.</h1>
-        <p className="text-on-surface-variant text-lg max-w-2xl leading-relaxed">Alle Werkzeuge für Bausachverständige — vom Beweisbeschluss bis zum fertigen Gutachten.</p>
+        <h1 className="text-6xl font-normal tracking-tight leading-tight mb-6 max-w-4xl text-on-surface">{heroTitle}</h1>
+        <p className="text-on-surface-variant text-lg max-w-2xl leading-relaxed">{heroSubtext}</p>
       </section>
       <section className="max-w-7xl mx-auto px-6 space-y-32">
         {features.map((f, i) => (
@@ -61,7 +74,7 @@ export default async function Funktionen() {
               </div>
             </div>
             <div className={`col-span-12 md:col-span-7 rounded-xl overflow-hidden border-[0.5px] border-outline-variant ${f.reverse ? "order-2 md:order-1" : ""}`}>
-              <Image src={f.image} alt={f.imageAlt} width={800} height={450} className="object-cover w-full h-full" />
+              <Image src={f.imageSrc} alt={f.imageAlt} width={800} height={450} className="object-cover w-full h-full" />
             </div>
           </div>
         ))}
@@ -87,7 +100,7 @@ export default async function Funktionen() {
       </section>
       <div className="text-center mt-16">
         <Link href="/kontakt" className="bg-[#E8631A] text-white px-10 py-4 rounded-xl font-medium text-lg hover:opacity-90 transition-all">
-          Zugang zum Gutachten Assistenten anfragen
+          {ctaText}
         </Link>
       </div>
     </main>
