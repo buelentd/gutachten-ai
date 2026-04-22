@@ -51,7 +51,7 @@ export default async function Impressum() {
             <h2 className="text-sm font-medium text-on-surface-variant uppercase tracking-widest mb-4">EU-Streitschlichtung</h2>
             <p className="text-on-surface-variant leading-relaxed text-sm">
               Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:{" "}
-              <a href="https://ec.europa.eu/consumers/odr" className="text-[#C54F0E] underline" target="_blank" rel="noopener noreferrer">https://ec.europa.eu/consumers/odr</a>
+              <a href="https://ec.europa.eu/consumers/odr" className="text-primary underline" target="_blank" rel="noopener noreferrer">https://ec.europa.eu/consumers/odr</a>
             </p>
           </section>
           <section>

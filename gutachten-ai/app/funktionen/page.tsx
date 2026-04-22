@@ -91,16 +91,16 @@ export default async function Funktionen() {
           ))}
         </div>
       </section>
-      <section className="mt-16 max-w-4xl mx-auto px-6 p-6 rounded-xl border-[0.5px] border-[#2A3344] bg-[#151B27]">
-        <p className="text-xs text-[#8A9BB0] font-medium tracking-wider uppercase mb-4">Mehr erfahren</p>
+      <section className="mt-16 max-w-4xl mx-auto px-6 p-6 rounded-xl border-[0.5px] border-outline bg-surface">
+        <p className="text-xs text-on-surface-variant font-medium tracking-wider uppercase mb-4">Mehr erfahren</p>
         <div className="space-y-3">
-          <Link href="/ablauf" className="block text-[#C54F0E] hover:underline text-sm">So funktioniert der Gutachten Assistent →</Link>
-          <Link href="/blog/ki-gutachten-2025" className="block text-[#C54F0E] hover:underline text-sm">KI in der Gutachtenerstellung →</Link>
-          <Link href="/blog/beweisbeschluss-ki-auswertung" className="block text-[#C54F0E] hover:underline text-sm">Beweisbeschlüsse automatisch auswerten →</Link>
+          <Link href="/ablauf" className="block text-primary hover:underline text-sm">So funktioniert der Gutachten Assistent →</Link>
+          <Link href="/blog/ki-gutachten-2025" className="block text-primary hover:underline text-sm">KI in der Gutachtenerstellung →</Link>
+          <Link href="/blog/beweisbeschluss-ki-auswertung" className="block text-primary hover:underline text-sm">Beweisbeschlüsse automatisch auswerten →</Link>
         </div>
       </section>
       <div className="text-center mt-16">
-        <Link href="/kontakt" className="bg-[#C54F0E] text-white px-10 py-4 rounded-xl font-medium text-lg hover:opacity-90 transition-all">
+        <Link href="/kontakt" className="bg-button-bg text-white px-10 py-4 rounded-xl font-medium text-lg hover:opacity-90 transition-all">
           {ctaText}
         </Link>
       </div>

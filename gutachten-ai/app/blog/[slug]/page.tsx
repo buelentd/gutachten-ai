@@ -55,20 +55,20 @@ export default async function BlogPost({ params }: { params: { slug: string } })
       <article className="max-w-3xl mx-auto px-6">
         <div className="mb-12">
           <div className="flex items-center gap-4 mb-6">
-            {post.category && <span className="text-[#C54F0E] text-xs font-medium tracking-widest uppercase">{post.category}</span>}
+            {post.category && <span className="text-primary text-xs font-medium tracking-widest uppercase">{post.category}</span>}
             {date && (<><span className="text-on-surface-variant text-xs">•</span><time className="text-on-surface-variant text-xs">{date}</time></>)}
           </div>
           <h1 className="text-4xl md:text-5xl font-normal tracking-tight leading-tight text-on-surface mb-6">{post.title}</h1>
           {post.excerpt && <p className="text-xl text-on-surface-variant leading-relaxed">{post.excerpt}</p>}
         </div>
         {post.body && <div className="space-y-2"><PortableText value={post.body} components={ptComponents} /></div>}
-        <div className="mt-16 p-8 rounded-xl border-[0.5px] border-[#C54F0E]/40 bg-[#C54F0E]/5">
+        <div className="mt-16 p-8 rounded-xl border-[0.5px] border-primary/40 bg-primary/5">
           <h3 className="text-xl font-medium text-on-surface mb-3">Bereit für den nächsten Schritt?</h3>
           <p className="text-on-surface-variant mb-6">Testen Sie gutachten-ai.de kostenlos und unverbindlich.</p>
-          <Link href="/kontakt" className="inline-block bg-[#C54F0E] text-white px-8 py-3 rounded-lg font-medium hover:opacity-90 transition-all">Kostenlos anfragen</Link>
+          <Link href="/kontakt" className="inline-block bg-button-bg text-white px-8 py-3 rounded-lg font-medium hover:opacity-90 transition-all">Kostenlos anfragen</Link>
         </div>
         <div className="mt-16 pt-8 border-t-[0.5px] border-technical-line">
-          <Link href="/blog" className="inline-flex items-center gap-2 text-[#C54F0E] hover:gap-4 transition-all">
+          <Link href="/blog" className="inline-flex items-center gap-2 text-primary hover:gap-4 transition-all">
             <Icon name="arrow_back" size={16} className="icon-orange" />
             <span>Zurück zum Blog</span>
           </Link>

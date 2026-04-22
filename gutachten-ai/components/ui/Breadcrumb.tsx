@@ -24,18 +24,18 @@ export function Breadcrumb({ items }: { items: BreadcrumbItem[] }) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
       />
       <nav aria-label="Breadcrumb" className="mb-8">
-        <ol className="flex items-center gap-2 text-xs text-[#8A9BB0]">
+        <ol className="flex items-center gap-2 text-xs text-on-surface-variant">
           {items.map((item, index) => (
             <li key={item.href} className="flex items-center gap-2">
               {index < items.length - 1 ? (
                 <>
-                  <Link href={item.href} className="hover:text-[#C54F0E] transition-colors">
+                  <Link href={item.href} className="hover:text-primary transition-colors">
                     {item.label}
                   </Link>
-                  <span className="text-[#2A3344]">›</span>
+                  <span className="text-outline">›</span>
                 </>
               ) : (
-                <span className="text-[#F0EDE6]">{item.label}</span>
+                <span className="text-on-surface">{item.label}</span>
               )}
             </li>
           ))}

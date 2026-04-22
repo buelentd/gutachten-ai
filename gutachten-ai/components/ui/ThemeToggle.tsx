@@ -24,7 +24,7 @@ export function ThemeToggle() {
     <button
       onClick={toggle}
       aria-label="Theme wechseln"
-      className="w-9 h-9 flex items-center justify-center rounded-lg border-[0.5px] border-[#2A3344] hover:bg-[#272A31] transition-colors"
+      className="w-9 h-9 flex items-center justify-center rounded-lg border-[0.5px] border-outline hover:bg-surface-container-high transition-colors"
     >
       <Icon name={dark ? "light_mode" : "dark_mode"} size={20} className="icon-gray" />
     </button>

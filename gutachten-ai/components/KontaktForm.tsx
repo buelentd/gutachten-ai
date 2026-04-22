@@ -98,10 +98,10 @@ export function KontaktForm() {
             <input name="datenschutz" checked={form.datenschutz} onChange={handleChange} className="mt-1" id="privacy" type="checkbox" required />
             <label className="text-sm text-on-surface-variant leading-relaxed" htmlFor="privacy">
               Ich stimme der Verarbeitung meiner Daten gemäß der{" "}
-              <a className="text-[#C54F0E] underline" href="/datenschutz">Datenschutzerklärung</a> zu.
+              <a className="text-primary underline" href="/datenschutz">Datenschutzerklärung</a> zu.
             </label>
           </div>
-          <p className="text-xs text-[#8A9BB0]">* Pflichtfelder</p>
+          <p className="text-xs text-on-surface-variant">* Pflichtfelder</p>
           {status === "error" && <p className="text-red-400 text-sm">Fehler beim Senden. Bitte versuchen Sie es erneut.</p>}
           <Button type="submit" size="lg" className="w-full" disabled={status === "loading" || !form.datenschutz}>
             {status === "loading" ? "Wird gesendet..." : "Anfrage senden"}

@@ -7,3 +7,6 @@ node_modules/
 
 # PSI / Lighthouse reports (inkl. Helper-Scripts)
 lighthouse-reports/
+
+# Claude Code runtime state
+.claude/

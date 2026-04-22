@@ -45,7 +45,7 @@ export default async function Ablauf() {
       <section className="max-w-7xl mx-auto px-6 mb-24 text-center md:text-left">
         <div className="grid md:grid-cols-12 gap-8 items-end">
           <div className="md:col-span-7">
-            <span className="text-[#C54F0E] font-medium tracking-widest text-xs uppercase mb-4 block">{d.heroLabel}</span>
+            <span className="text-primary font-medium tracking-widest text-xs uppercase mb-4 block">{d.heroLabel}</span>
             <h1 className="text-5xl md:text-7xl font-normal tracking-tight leading-[1.1] mb-8 text-on-surface">
               {d.heroTitle} <span className="text-[#FFB596] italic">{d.heroTitleHighlight}</span>
             </h1>
@@ -130,7 +130,7 @@ export default async function Ablauf() {
             <h2 className="text-4xl md:text-5xl font-normal text-[#4D1900] mb-6 tracking-tight">{d.ctaTitle}</h2>
             <p className="text-[#4D1900]/80 text-lg mb-10 leading-relaxed">{d.ctaSubtext}</p>
             <div className="flex flex-wrap gap-4">
-              <Link href="/kontakt" className="bg-[#101319] text-white px-8 py-4 rounded-lg font-medium hover:bg-black transition-colors">{d.ctaPrimaryButton}</Link>
+              <Link href="/kontakt" className="bg-bg text-on-surface px-8 py-4 rounded-lg font-medium hover:bg-black hover:text-white transition-colors">{d.ctaPrimaryButton}</Link>
               <Link href="/funktionen" className="border-[0.5px] border-[#4D1900] text-[#4D1900] px-8 py-4 rounded-lg font-medium hover:bg-[#4D1900] hover:text-white transition-colors">{d.ctaSecondaryButton}</Link>
             </div>
           </div>

@@ -38,14 +38,14 @@ export function BlogCarousel({ posts, title, subtext, linkText }: Props) {
   );
 
   return (
-    <section className="py-24 bg-[#0F1218]">
+    <section className="py-24 bg-bg">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex items-end justify-between mb-16">
           <div>
-            <h2 className="text-4xl font-medium text-[#F0EDE6] mb-4">{title}</h2>
-            <p className="text-[#8A9BB0]">{subtext}</p>
+            <h2 className="text-4xl font-medium text-on-surface mb-4">{title}</h2>
+            <p className="text-on-surface-variant">{subtext}</p>
           </div>
-          <Link href="/blog" className="hidden md:block text-[#C54F0E] text-sm font-medium hover:underline">
+          <Link href="/blog" className="hidden md:block text-primary text-sm font-medium hover:underline">
             {linkText}
           </Link>
         </div>
@@ -54,15 +54,15 @@ export function BlogCarousel({ posts, title, subtext, linkText }: Props) {
             <Link
               key={`${post.slug}-${i}`}
               href={`/blog/${post.slug}`}
-              className="group p-8 rounded-2xl border-[0.5px] border-[#2A3344] bg-[#151B27] hover:border-[#C54F0E]/40 transition-all"
+              className="group p-8 rounded-2xl border-[0.5px] border-outline bg-surface hover:border-primary/40 transition-all"
             >
-              <span className="text-xs text-[#C54F0E] font-medium tracking-wider uppercase mb-4 block">
+              <span className="text-xs text-primary font-medium tracking-wider uppercase mb-4 block">
                 {post.category}
               </span>
-              <h3 className="text-lg font-medium text-[#F0EDE6] mb-3 group-hover:text-[#C54F0E] transition-colors leading-snug">
+              <h3 className="text-lg font-medium text-on-surface mb-3 group-hover:text-primary transition-colors leading-snug">
                 {post.title}
               </h3>
-              <p className="text-sm text-[#8A9BB0] leading-relaxed">{post.excerpt}</p>
+              <p className="text-sm text-on-surface-variant leading-relaxed">{post.excerpt}</p>
             </Link>
           ))}
         </div>
@@ -79,7 +79,7 @@ export function BlogCarousel({ posts, title, subtext, linkText }: Props) {
               >
                 <span
                   className={`block rounded-full transition-all ${
-                    i === current ? "w-6 h-2 bg-[#C54F0E]" : "w-2 h-2 bg-[#2A3344]"
+                    i === current ? "w-6 h-2 bg-button-bg" : "w-2 h-2 bg-outline"
                   }`}
                 />
               </button>

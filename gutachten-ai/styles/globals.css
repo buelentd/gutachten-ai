@@ -3,51 +3,47 @@
 @tailwind utilities;
 
 @layer base {
+  /*
+   * Design-Tokens als raw-RGB-Tripel (Space-Separated), damit Tailwind-
+   * Opacity-Modifier (z.B. bg-bg/95, text-primary/30) auf CSS-Vars wirken.
+   * tailwind.config.ts wrappt sie als rgb(var(--x) / <alpha-value>).
+   */
   :root {
-    --color-surface: #f8f8f8;
+    --bg: 232 236 242;       /* #E8ECF2 slate-200 */
+    --sf: 255 255 255;       /* #FFFFFF */
+    --sf2: 212 220 231;      /* #D4DCE7 */
+    --tx: 15 23 42;          /* #0F172A slate-900 */
+    --mu: 51 65 85;          /* #334155 slate-700 */
+    --outline: 100 116 139;  /* #64748B slate-500 */
+    --primary: 197 79 14;    /* #C54F0E (WCAG AA auf weiß) */
+    /* Legacy tokens (used by @layer utilities below with no Tailwind equivalent) */
     --color-surface-container-low: #efefef;
-    --color-surface-container: #e4e4e4;
     --color-surface-container-high: #d8d8d8;
-    --color-on-surface: #1a1a1a;
-    --color-on-surface-variant: #444444;
-    --color-outline: #999999;
     --color-outline-variant: #cccccc;
     --color-technical-line: #cccccc;
-    /* Light-mode slate tokens (Commit A infrastructure) */
-    --bg: #E8ECF2;
-    --sf: #FFFFFF;
-    --sf2: #D4DCE7;
-    --tx: #0F172A;
-    --mu: #334155;
-    --outline: #64748B;
-    --primary: #C54F0E;
   }
 
   .dark {
-    --color-surface: #101319;
+    --bg: 16 19 25;          /* #101319 */
+    --sf: 21 27 39;          /* #151B27 */
+    --sf2: 28 35 51;         /* #1C2333 */
+    --tx: 240 237 230;       /* #F0EDE6 ivory */
+    --mu: 138 155 176;       /* #8A9BB0 */
+    --outline: 42 51 68;     /* #2A3344 */
+    --primary: 232 99 26;    /* #E8631A (hellere Variante für besseren Text-Kontrast auf Dark) */
+    /* Legacy */
     --color-surface-container-low: #191c22;
-    --color-surface-container: #1d2026;
     --color-surface-container-high: #272a31;
-    --color-on-surface: #e1e2eb;
-    --color-on-surface-variant: #e0c0b3;
-    --color-outline: #a88a7f;
     --color-outline-variant: #594238;
     --color-technical-line: #2a3344;
-    /* Dark-mode slate tokens (Commit A infrastructure) */
-    --bg: #101319;
-    --sf: #151B27;
-    --sf2: #1C2333;
-    --tx: #F0EDE6;
-    --mu: #8A9BB0;
-    --outline: #2A3344;
-    --primary: #C54F0E;
   }
 
-  html { background-color: #101319; color-scheme: dark; }
+  html { color-scheme: light; }
+  html.dark { color-scheme: dark; }
 
   body {
-    background-color: var(--color-surface);
-    color: var(--color-on-surface);
+    background-color: rgb(var(--bg));
+    color: rgb(var(--tx));
     font-family: var(--font-inter, 'Inter', sans-serif);
   }
 
@@ -55,15 +51,9 @@
 }
 
 @layer utilities {
-  .text-surface { color: var(--color-surface); }
-  .bg-surface { background-color: var(--color-surface); }
   .bg-surface-container-low { background-color: var(--color-surface-container-low); }
-  .bg-surface-container { background-color: var(--color-surface-container); }
   .bg-surface-container-high { background-color: var(--color-surface-container-high); }
-  .text-on-surface { color: var(--color-on-surface); }
-  .text-on-surface-variant { color: var(--color-on-surface-variant); }
   .border-technical { border-color: var(--color-technical-line); border-width: 0.5px; }
-  .border-outline-variant { border-color: var(--color-outline-variant); }
 
   /* Icon color utilities — CSS filter für SVG <img> Icons */
   .icon-orange { filter: invert(45%) sepia(80%) saturate(600%) hue-rotate(350deg) brightness(95%) contrast(95%); }

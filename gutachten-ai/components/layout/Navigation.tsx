@@ -35,28 +35,28 @@ export function Navigation() {
 
   return (
     <>
-      <header className={`fixed top-0 w-full z-50 border-b-[0.5px] border-[#2A3344] transition-all duration-300 ${scrolled ? "bg-[#101319]/95 backdrop-blur-md" : "bg-[#101319]"}`}>
+      <header className={`fixed top-0 w-full z-50 border-b-[0.5px] border-outline transition-all duration-300 ${scrolled ? "bg-bg/95 backdrop-blur-md" : "bg-bg"}`}>
         <nav className="flex justify-between items-center max-w-7xl mx-auto px-6 h-16">
           <Link href="/" className="flex items-center gap-2">
             <ArchitectureIcon />
-            <span className="text-xl font-medium tracking-tighter text-[#F0EDE6]">gutachten-ai.de</span>
+            <span className="text-xl font-medium tracking-tighter text-on-surface">gutachten-ai.de</span>
           </Link>
           <div className="hidden md:flex items-center gap-8 font-medium text-sm tracking-tight">
             {navLinks.map((link) => (
               <Link key={link.href} href={link.href}
-                className={`transition-colors duration-200 hover:text-[#C54F0E] ${pathname === link.href ? "text-[#C54F0E]" : "text-[#E0C0B3]"}`}>
+                className={`transition-colors duration-200 hover:text-primary ${pathname === link.href ? "text-primary" : "text-on-surface-variant"}`}>
                 {link.label}
               </Link>
             ))}
           </div>
           <div className="hidden md:flex items-center gap-3">
             <ThemeToggle />
-            <Link href="/kontakt" className="bg-[#C54F0E] text-white px-5 py-2 rounded-lg text-sm font-medium hover:opacity-90 active:scale-95 transition-all">
+            <Link href="/kontakt" className="bg-button-bg text-white px-5 py-2 rounded-lg text-sm font-medium hover:opacity-90 active:scale-95 transition-all">
               Anfrage stellen
             </Link>
           </div>
           <button
-            className="md:hidden flex flex-col gap-1.5 p-2 text-[#F0EDE6]"
+            className="md:hidden flex flex-col gap-1.5 p-2 text-on-surface"
             onClick={() => setMenuOpen((prev) => !prev)}
             aria-label="Menü öffnen"
           >
@@ -67,14 +67,14 @@ export function Navigation() {
         </nav>
       </header>
 
-      <div className={`fixed inset-0 z-40 bg-[#101319]/98 backdrop-blur-md flex flex-col items-center justify-center gap-8 transition-all duration-300 md:hidden ${menuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}>
+      <div className={`fixed inset-0 z-40 bg-bg/98 backdrop-blur-md flex flex-col items-center justify-center gap-8 transition-all duration-300 md:hidden ${menuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}>
         {navLinks.map((link) => (
           <Link key={link.href} href={link.href}
-            className={`text-2xl font-medium tracking-tight transition-colors duration-200 hover:text-[#C54F0E] ${pathname === link.href ? "text-[#C54F0E]" : "text-[#F0EDE6]"}`}>
+            className={`text-2xl font-medium tracking-tight transition-colors duration-200 hover:text-primary ${pathname === link.href ? "text-primary" : "text-on-surface"}`}>
             {link.label}
           </Link>
         ))}
-        <Link href="/kontakt" className="mt-4 bg-[#C54F0E] text-white px-8 py-3 rounded-lg text-base font-medium hover:opacity-90 active:scale-95 transition-all">
+        <Link href="/kontakt" className="mt-4 bg-button-bg text-white px-8 py-3 rounded-lg text-base font-medium hover:opacity-90 active:scale-95 transition-all">
           Anfrage stellen
         </Link>
       </div>
