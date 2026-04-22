@@ -56,7 +56,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <script dangerouslySetInnerHTML={{ __html: `try{if(localStorage.getItem('theme')==='light'){document.documentElement.classList.remove('dark')}}catch(e){}` }} />
         <link rel="preconnect" href="https://consent.cookiebot.com" />
-        <Script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="47368974-d32e-42ef-9015-2635f0457cb4" data-blockingmode="auto" strategy="beforeInteractive" />
+        <Script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="47368974-d32e-42ef-9015-2635f0457cb4" data-blockingmode="auto" strategy="afterInteractive" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
           "@context": "https://schema.org", "@type": "WebSite",
           "name": "gutachten-ai.de", "url": "https://gutachten-ai.de",
