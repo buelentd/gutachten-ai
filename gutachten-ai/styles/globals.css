@@ -19,8 +19,8 @@
     /* Legacy tokens (used by @layer utilities below with no Tailwind equivalent) */
     --color-surface-container-low: #efefef;
     --color-surface-container-high: #d8d8d8;
-    --color-outline-variant: #cccccc;
-    --color-technical-line: #cccccc;
+    --color-outline-variant: #94A3B8;  /* slate-400 — Light-Card-Borders sichtbar */
+    --color-technical-line: #94A3B8;   /* slate-400 — dito für Card-Primitive + Badge */
   }
 
   .dark {
