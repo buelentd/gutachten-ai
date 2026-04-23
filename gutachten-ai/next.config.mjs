@@ -18,6 +18,9 @@ const nextConfig = {
       },
     ],
   },
+  experimental: {
+    optimizeCss: true,
+  },
   compress: true,
   poweredByHeader: false,
 };
