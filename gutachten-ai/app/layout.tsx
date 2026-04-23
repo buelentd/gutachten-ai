@@ -54,9 +54,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="de" className="dark" suppressHydrationWarning>
       <head>
-        <script dangerouslySetInnerHTML={{ __html: `try{if(localStorage.getItem('theme')==='light'){document.documentElement.classList.remove('dark')}}catch(e){}` }} />
         <link rel="preconnect" href="https://consent.cookiebot.com" />
-        <Script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="47368974-d32e-42ef-9015-2635f0457cb4" data-blockingmode="auto" strategy="afterInteractive" />
+        <Script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="47368974-d32e-42ef-9015-2635f0457cb4" data-blockingmode="auto" strategy="beforeInteractive" />
+        <script dangerouslySetInnerHTML={{ __html: `try{if(localStorage.getItem('theme')==='light'){document.documentElement.classList.remove('dark')}}catch(e){}` }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
           "@context": "https://schema.org", "@type": "WebSite",
           "name": "gutachten-ai.de", "url": "https://gutachten-ai.de",
@@ -78,8 +78,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Navigation />
         {children}
         <Footer />
-        <Script src="https://www.googletagmanager.com/gtag/js?id=G-MZNP1LYCPH" strategy="lazyOnload" />
-        <Script id="ga4-init" strategy="lazyOnload">
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-MZNP1LYCPH"
+          strategy="afterInteractive"
+          type="text/plain"
+          data-cookieconsent="statistics"
+        />
+        <Script
+          id="ga4-init"
+          strategy="afterInteractive"
+          type="text/plain"
+          data-cookieconsent="statistics"
+        >
           {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MZNP1LYCPH');`}
         </Script>
       </body>
