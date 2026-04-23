@@ -1,8 +1,12 @@
 "use client";
 
-import { NextStudio } from "next-sanity/studio";
-import config from "@/sanity/sanity.config";
+import dynamic from "next/dynamic";
+
+const StudioContainer = dynamic(() => import("./StudioContainer"), {
+  ssr: false,
+  loading: () => <div style={{ padding: "2rem", textAlign: "center" }}>Studio wird geladen…</div>,
+});
 
 export default function StudioPage() {
-  return <NextStudio config={config} />;
+  return <StudioContainer />;
 }
