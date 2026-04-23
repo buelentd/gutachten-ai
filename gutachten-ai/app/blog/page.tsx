@@ -33,7 +33,7 @@ export default async function Blog() {
       </div>
       {featured && (
         <Link href={`/blog/${featured.slug}`} className="block group mb-24">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center p-8 rounded-2xl border-[0.5px] border-technical-line hover:border-primary/40 transition-colors bg-surface-container-low">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center p-8 rounded-2xl border-[0.5px] border-slate-600 hover:border-primary/40 transition-colors bg-surface-container-low">
             <div className="md:col-span-8">
               <div className="flex items-center gap-4 mb-4">
                 {featured.category && <span className="text-primary text-xs font-medium tracking-widest uppercase">{featured.category}</span>}
@@ -53,7 +53,7 @@ export default async function Blog() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {rest.map((post: { slug: string; title: string; excerpt: string; category: string; publishedAt: string }) => (
           <Link key={post.slug} href={`/blog/${post.slug}`} className="group block">
-            <article className="h-full p-6 rounded-xl border-[0.5px] border-technical-line hover:border-primary/40 transition-colors bg-surface-container-low">
+            <article className="h-full p-6 rounded-xl border-[0.5px] border-slate-600 hover:border-primary/40 transition-colors bg-surface-container-low">
               {post.category && <span className="text-primary text-xs font-medium tracking-widest uppercase mb-4 block">{post.category}</span>}
               <time className="text-on-surface-variant text-xs mb-3 block">{formatDate(post.publishedAt)}</time>
               <h3 className="text-lg font-medium text-on-surface mb-3 group-hover:text-primary transition-colors leading-snug">{post.title}</h3>
