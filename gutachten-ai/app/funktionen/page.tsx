@@ -9,7 +9,7 @@ export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "Funktionen — Gutachtensoftware für Bausachverständige",
-  description: "Fallverwaltung, digitale Akte, Beweisfragen-Editor, Ortstermin-Modus und Gutachten-Export als PDF und Word — alle Funktionen des Gutachten Assistenten im Überblick.",
+  description: "Fallverwaltung, digitale Akte, Beweisfragen-Editor, Ortstermin-Modus und Gutachten-Export als PDF und Word im Überblick.",
   alternates: { canonical: "https://gutachten-ai.de/funktionen" },
 };
 
@@ -57,7 +57,7 @@ export default async function Funktionen() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <section className="max-w-7xl mx-auto px-6 mb-16">
         <Breadcrumb items={[{ label: "Startseite", href: "/" }, { label: "Funktionen", href: "/funktionen" }]} />
-        <h1 className="text-6xl font-normal tracking-tight leading-tight mb-6 max-w-4xl text-on-surface">{heroTitle}</h1>
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-normal tracking-tight leading-tight mb-6 max-w-4xl text-on-surface">{heroTitle}</h1>
         <p className="text-on-surface-variant text-lg max-w-2xl leading-relaxed">{heroSubtext}</p>
       </section>
       <section className="max-w-7xl mx-auto px-6 space-y-32">

@@ -15,10 +15,10 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL("https://gutachten-ai.de"),
   title: {
-    default: "Gutachtensoftware für Bausachverständige | gutachten-ai.de",
-    template: "%s | gutachten-ai.de",
+    default: "Gutachtensoftware für Bausachverständige",
+    template: "%s",
   },
-  description: "KI-gestützte Gutachtenerstellung für Bausachverständige. Fallverwaltung, digitale Akte und rechtssicherer Export — strukturiert vom Beweisbeschluss bis zum fertigen Gutachten.",
+  description: "KI-gestützte Gutachtenerstellung für Bausachverständige. Fallverwaltung, digitale Akte und rechtssicherer Export bis zum fertigen Gutachten.",
   keywords: ["Gutachtensoftware Bausachverständige", "KI Gutachten", "Beweisbeschluss Software", "Gutachtenerstellung automatisieren", "Gutachten Software Deutschland"],
   authors: [{ name: "gutachten-ai.de" }],
   creator: "gutachten-ai.de",
@@ -36,12 +36,12 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website", locale: "de_DE", url: "https://gutachten-ai.de",
     siteName: "gutachten-ai.de",
-    title: "Gutachtensoftware für Bausachverständige | gutachten-ai.de",
+    title: "Gutachtensoftware für Bausachverständige",
     description: "Fallverwaltung, digitale Akte und rechtssicherer Export — strukturiert vom Beweisbeschluss bis zum fertigen Gutachten.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Gutachtensoftware für Bausachverständige | gutachten-ai.de",
+    title: "Gutachtensoftware für Bausachverständige",
     description: "KI-gestützte Gutachtenerstellung — strukturiert, nachvollziehbar, rechtssicher.",
   },
 };
