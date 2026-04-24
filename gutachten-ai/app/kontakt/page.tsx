@@ -7,7 +7,7 @@ import { Icon } from "@/components/Icon";
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Kontakt — gutachten-ai.de",
+  title: "Kontakt",
   description: "Nehmen Sie Kontakt mit uns auf. Wir melden uns innerhalb von 24 Stunden.",
   alternates: { canonical: "https://gutachten-ai.de/kontakt" },
 };
@@ -38,7 +38,7 @@ export default async function Kontakt() {
             <div className="space-y-6">
               <div className="h-16 w-16 rounded-full overflow-hidden grayscale contrast-125 border-[0.5px] border-primary">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img className="w-full h-full object-cover" alt="Support" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6IwzJ71Te-aDcwhFw-Er9ELQqUbyVk2xwaVsc-0PoyB30rhwznDRTA1tgMkIKpPNX7qC6o20hpLtrWDFJo9dJWNbBrKNBGCjh7ebDlLzWupo_RkHeTsX9yF_Q3V2k3kU1DVKzvuAZd2eqbaaL_63nDtUN-zy9etPvJXAYlfzAoyMOawzCP28NILxPbejZxiT5VuzOwbVcG_mP0PHxzG4kH8s22ewjhTfgRxza0C7nFvEjfmlapqs_mo_IuzYcemwWx_iuB0UMytJX"/>
+                <img className="w-full h-full object-cover" alt={`${d?.contactName || "Thomas Müller"}, ${d?.contactRole || "Leiter Kundenerfolg"}`} src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6IwzJ71Te-aDcwhFw-Er9ELQqUbyVk2xwaVsc-0PoyB30rhwznDRTA1tgMkIKpPNX7qC6o20hpLtrWDFJo9dJWNbBrKNBGCjh7ebDlLzWupo_RkHeTsX9yF_Q3V2k3kU1DVKzvuAZd2eqbaaL_63nDtUN-zy9etPvJXAYlfzAoyMOawzCP28NILxPbejZxiT5VuzOwbVcG_mP0PHxzG4kH8s22ewjhTfgRxza0C7nFvEjfmlapqs_mo_IuzYcemwWx_iuB0UMytJX"/>
               </div>
               <div>
                 <h2 className="text-xl font-medium text-on-surface mb-2">{d?.contactName || "Thomas Müller"}</h2>

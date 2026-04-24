@@ -75,7 +75,7 @@ export default async function Funktionen() {
               </div>
             </div>
             <div className={`col-span-12 md:col-span-7 rounded-xl overflow-hidden border-[0.5px] border-outline-variant ${f.reverse ? "order-2 md:order-1" : ""}`}>
-              <Image src={f.imageSrc} alt={f.imageAlt} width={800} height={450} className="object-cover w-full h-full" />
+              <Image src={f.imageSrc} alt={f.imageAlt} width={800} height={450} sizes="(max-width: 768px) 100vw, 58vw" className="object-cover w-full h-full" />
             </div>
           </div>
         ))}
