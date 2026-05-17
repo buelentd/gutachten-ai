@@ -4,7 +4,7 @@ import { Icon } from "@/components/Icon";
 import { client } from "@/lib/sanity/client";
 import { groq } from "next-sanity";
 
-export const revalidate = 60;
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Blog — KI im Bauwesen und Gutachtenwesen",

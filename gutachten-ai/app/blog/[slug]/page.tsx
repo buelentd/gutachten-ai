@@ -6,7 +6,7 @@ import { groq } from "next-sanity";
 import { PortableText } from "@portabletext/react";
 import { notFound } from "next/navigation";
 
-export const revalidate = 60;
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const post = await getPost(params.slug);
