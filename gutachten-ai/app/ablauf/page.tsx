@@ -10,6 +10,14 @@ export const metadata: Metadata = {
   title: "Ablauf — So funktioniert die KI-Gutachten Integration",
   description: "In 3 Schritten zur digitalen Gutachtenerstellung: Anfrage, Onboarding, Loslegen.",
   alternates: { canonical: "https://gutachten-ai.de/ablauf" },
+  openGraph: {
+    type: "website",
+    locale: "de_DE",
+    url: "https://gutachten-ai.de/ablauf",
+    siteName: "gutachten-ai.de",
+    title: "Ablauf — So funktioniert die KI-Gutachten Integration",
+    description: "In 3 Schritten zur digitalen Gutachtenerstellung: Anfrage, Onboarding, Loslegen.",
+  },
 };
 
 const ABLAUF_DEFAULTS = {

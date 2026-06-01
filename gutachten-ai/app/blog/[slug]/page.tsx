@@ -16,7 +16,15 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     title: post.title,
     description: post.excerpt,
     alternates: { canonical: `https://gutachten-ai.de/blog/${params.slug}` },
-    openGraph: { url: `https://gutachten-ai.de/blog/${params.slug}` },
+    openGraph: {
+      type: "article",
+      locale: "de_DE",
+      url: `https://gutachten-ai.de/blog/${params.slug}`,
+      siteName: "gutachten-ai.de",
+      title: post.title,
+      description: post.excerpt,
+      publishedTime: post.publishedAt,
+    },
   };
 }
 
@@ -51,8 +59,21 @@ export default async function BlogPost({ params }: { params: { slug: string } })
   if (!post) notFound();
   const date = post.publishedAt ? new Date(post.publishedAt).toLocaleDateString("de-DE", { day: "numeric", month: "long", year: "numeric" }) : "";
 
+  const articleSchema = {
+    "@context": "https://schema.org", "@type": "Article",
+    "headline": post.title,
+    "description": post.excerpt,
+    "datePublished": post.publishedAt,
+    "dateModified": post.publishedAt,
+    "author": { "@type": "Organization", "name": "gutachten-ai.de", "url": "https://gutachten-ai.de" },
+    "publisher": { "@type": "Organization", "name": "gutachten-ai.de", "url": "https://gutachten-ai.de" },
+    "mainEntityOfPage": { "@type": "WebPage", "@id": `https://gutachten-ai.de/blog/${params.slug}` },
+    "inLanguage": "de-DE",
+  };
+
   return (
     <main className="pt-32 pb-24">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
       <article className="max-w-3xl mx-auto px-6">
         <Breadcrumb items={[{ label: "Startseite", href: "/" }, { label: "Blog", href: "/blog" }, { label: post.title, href: `/blog/${params.slug}` }]} />
         <div className="mb-12">

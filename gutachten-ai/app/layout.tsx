@@ -65,6 +65,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           "publisher": { "@type": "Organization", "name": "gutachten-ai.de", "url": "https://gutachten-ai.de" }
         })}}/>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org", "@type": "Organization",
+          "name": "intersignum UG", "url": "https://gutachten-ai.de",
+          "logo": "https://gutachten-ai.de/favicon.svg",
+          "address": { "@type": "PostalAddress", "addressLocality": "Berlin", "addressCountry": "DE" },
+          "contactPoint": { "@type": "ContactPoint", "contactType": "customer support", "email": "info@gutachten-ai.de", "availableLanguage": "German" },
+          "sameAs": ["https://gutachten-ai.de"]
+        })}}/>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
           "@context": "https://schema.org", "@type": "SoftwareApplication",
           "name": "Gutachten Assistent",
           "description": "KI-gestützte Gutachtenerstellung für Bausachverständige — Fallverwaltung, digitale Akte, Beweisfragen-Editor und Export als PDF oder Word.",

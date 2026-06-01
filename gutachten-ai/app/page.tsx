@@ -12,6 +12,14 @@ export const metadata: Metadata = {
   title: "Gutachtensoftware für Bausachverständige",
   description: "KI-gestützte Gutachtenerstellung für Bausachverständige. Fallverwaltung, digitale Akte und rechtssicherer Export — strukturiert vom Beweisbeschluss bis zum fertigen Gutachten.",
   alternates: { canonical: "https://gutachten-ai.de" },
+  openGraph: {
+    type: "website",
+    locale: "de_DE",
+    url: "https://gutachten-ai.de",
+    siteName: "gutachten-ai.de",
+    title: "Gutachtensoftware für Bausachverständige",
+    description: "KI-gestützte Gutachtenerstellung für Bausachverständige. Fallverwaltung, digitale Akte und rechtssicherer Export — strukturiert vom Beweisbeschluss bis zum fertigen Gutachten.",
+  },
 };
 
 async function getHomeData() {

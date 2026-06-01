@@ -11,6 +11,14 @@ export const metadata: Metadata = {
   title: "Blog — KI im Bauwesen und Gutachtenwesen",
   description: "Fachwissen für Bausachverständige: KI-Technologie, DIN-Normen, JVEG-Abrechnung und digitale Transformation im Gutachtenwesen.",
   alternates: { canonical: "https://gutachten-ai.de/blog" },
+  openGraph: {
+    type: "website",
+    locale: "de_DE",
+    url: "https://gutachten-ai.de/blog",
+    siteName: "gutachten-ai.de",
+    title: "Blog — KI im Bauwesen und Gutachtenwesen",
+    description: "Fachwissen für Bausachverständige: KI-Technologie, DIN-Normen, JVEG-Abrechnung und digitale Transformation im Gutachtenwesen.",
+  },
 };
 
 async function getAllPosts() {

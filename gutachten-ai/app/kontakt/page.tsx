@@ -8,9 +8,17 @@ import { Breadcrumb } from "@/components/ui/Breadcrumb";
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Kontakt",
+  title: "Kontakt — Gutachten Assistent anfragen",
   description: "Nehmen Sie Kontakt mit uns auf. Wir melden uns innerhalb von 24 Stunden.",
   alternates: { canonical: "https://gutachten-ai.de/kontakt" },
+  openGraph: {
+    type: "website",
+    locale: "de_DE",
+    url: "https://gutachten-ai.de/kontakt",
+    siteName: "gutachten-ai.de",
+    title: "Kontakt — Gutachten Assistent anfragen",
+    description: "Nehmen Sie Kontakt mit uns auf. Wir melden uns innerhalb von 24 Stunden.",
+  },
 };
 
 async function getKontaktPage() {

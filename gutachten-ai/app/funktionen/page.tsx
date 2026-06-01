@@ -11,6 +11,14 @@ export const metadata: Metadata = {
   title: "Funktionen — Gutachtensoftware für Bausachverständige",
   description: "Fallverwaltung, digitale Akte, Beweisfragen-Editor, Ortstermin-Modus und Gutachten-Export als PDF und Word im Überblick.",
   alternates: { canonical: "https://gutachten-ai.de/funktionen" },
+  openGraph: {
+    type: "website",
+    locale: "de_DE",
+    url: "https://gutachten-ai.de/funktionen",
+    siteName: "gutachten-ai.de",
+    title: "Funktionen — Gutachtensoftware für Bausachverständige",
+    description: "Fallverwaltung, digitale Akte, Beweisfragen-Editor, Ortstermin-Modus und Gutachten-Export als PDF und Word im Überblick.",
+  },
 };
 
 const HERO_TITLE_DEFAULT = "Präzise Analysen. Rechtssichere Dokumentation.";
