@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Icon } from "@/components/Icon";
 import { getAblaufPage } from "@/lib/sanity/queries";
+import { Breadcrumb } from "@/components/ui/Breadcrumb";
 
 export const revalidate = 3600;
 
@@ -42,6 +43,9 @@ export default async function Ablauf() {
 
   return (
     <main className="pt-32 pb-24">
+      <div className="max-w-7xl mx-auto px-6">
+        <Breadcrumb items={[{ label: "Startseite", href: "/" }, { label: "Ablauf", href: "/ablauf" }]} />
+      </div>
       <section className="max-w-7xl mx-auto px-6 mb-24 text-center md:text-left">
         <div className="grid md:grid-cols-12 gap-8 items-end">
           <div className="md:col-span-7">

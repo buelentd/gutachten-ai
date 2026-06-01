@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { client } from "@/lib/sanity/client";
 import { groq } from "next-sanity";
+import { Breadcrumb } from "@/components/ui/Breadcrumb";
 
 export const revalidate = 86400;
 
@@ -21,6 +22,7 @@ export default async function Datenschutz() {
   return (
     <main className="pt-32 pb-24">
       <div className="max-w-3xl mx-auto px-6">
+        <Breadcrumb items={[{ label: "Startseite", href: "/" }, { label: "Datenschutzerklärung", href: "/datenschutz" }]} />
         <h1 className="text-4xl font-normal tracking-tight text-on-surface mb-12">Datenschutzerklärung</h1>
         <div className="space-y-10 text-on-surface">
           {d?.sections?.map((section: { title: string; content: string }, i: number) => (

@@ -5,6 +5,7 @@ import { client } from "@/lib/sanity/client";
 import { groq } from "next-sanity";
 import { PortableText } from "@portabletext/react";
 import { notFound } from "next/navigation";
+import { Breadcrumb } from "@/components/ui/Breadcrumb";
 
 export const dynamic = "force-dynamic";
 
@@ -53,6 +54,7 @@ export default async function BlogPost({ params }: { params: { slug: string } })
   return (
     <main className="pt-32 pb-24">
       <article className="max-w-3xl mx-auto px-6">
+        <Breadcrumb items={[{ label: "Startseite", href: "/" }, { label: "Blog", href: "/blog" }, { label: post.title, href: `/blog/${params.slug}` }]} />
         <div className="mb-12">
           <div className="flex items-center gap-4 mb-6">
             {post.category && <span className="text-primary text-xs font-medium tracking-widest uppercase">{post.category}</span>}

@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Icon } from "@/components/Icon";
 import { client } from "@/lib/sanity/client";
 import { groq } from "next-sanity";
+import { Breadcrumb } from "@/components/ui/Breadcrumb";
 
 export const dynamic = "force-dynamic";
 
@@ -27,6 +28,7 @@ export default async function Blog() {
 
   return (
     <main className="pt-32 pb-24 max-w-7xl mx-auto px-6">
+      <Breadcrumb items={[{ label: "Startseite", href: "/" }, { label: "Blog", href: "/blog" }]} />
       <div className="mb-20">
         <h1 className="text-5xl md:text-6xl font-normal tracking-tight text-on-surface mb-6 max-w-3xl">Expertise im digitalen Zeitalter.</h1>
         <p className="text-on-surface-variant text-lg max-w-2xl leading-relaxed">Aktuelle Einblicke in KI-gestützte Gutachtenerstellung, rechtliche Rahmenbedingungen und digitale Transformation im Bauwesen.</p>

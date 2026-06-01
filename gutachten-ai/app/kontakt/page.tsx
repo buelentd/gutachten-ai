@@ -3,6 +3,7 @@ import { client } from "@/lib/sanity/client";
 import { groq } from "next-sanity";
 import { KontaktForm } from "@/components/KontaktForm";
 import { Icon } from "@/components/Icon";
+import { Breadcrumb } from "@/components/ui/Breadcrumb";
 
 export const revalidate = 3600;
 
@@ -25,6 +26,7 @@ export default async function Kontakt() {
   return (
     <main className="pt-32 pb-24">
       <div className="max-w-7xl mx-auto px-6">
+        <Breadcrumb items={[{ label: "Startseite", href: "/" }, { label: "Kontakt", href: "/kontakt" }]} />
         <div className="mb-16">
           <h1 className="text-5xl md:text-6xl font-normal tracking-tight leading-tight max-w-3xl text-on-surface">
             {d?.heroTitle || "Präzision beginnt beim ersten Gespräch."}
