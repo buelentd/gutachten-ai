@@ -95,7 +95,7 @@ export default async function BlogPost({ params }: { params: { slug: string } })
         <div className="mt-16 p-8 rounded-xl border-[0.5px] border-primary/40 bg-primary/5">
           <h3 className="text-xl font-medium text-on-surface mb-3">Bereit für den nächsten Schritt?</h3>
           <p className="text-on-surface-variant mb-6">Testen Sie gutachten-ai.de kostenlos und unverbindlich.</p>
-          <Link href="/kontakt" className="inline-block bg-button-bg text-white px-8 py-3 rounded-lg font-medium hover:opacity-90 transition-all">Kostenlos anfragen</Link>
+          <Link href="/kontakt#formular" className="inline-block bg-button-bg text-white px-8 py-3 rounded-lg font-medium hover:opacity-90 transition-all">Kostenlos anfragen</Link>
         </div>
         {related.length > 0 && (
           <div className="mt-16 pt-8 border-t-[0.5px] border-technical-line">
