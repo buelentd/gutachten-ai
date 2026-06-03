@@ -74,6 +74,34 @@ export default async function Kontakt() {
           </div>
         </div>
       </div>
+
+      <div className="max-w-7xl mx-auto px-6 mt-32 pt-16 border-t-[0.5px] border-technical-line">
+        <p className="text-xs uppercase tracking-widest text-primary mb-4">Für professionelle Bausachverständige</p>
+        <h2 className="text-3xl md:text-4xl font-normal text-on-surface mb-12">Anfragen — wir melden uns innerhalb von 24 Stunden</h2>
+        <p className="text-on-surface-variant mb-12 max-w-2xl">Gutachten Assistent ist spezialisiert auf die Anforderungen professioneller Bausachverständiger.</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-surface-container-low rounded-xl p-8 border-[0.5px] border-outline-variant">
+            <Icon name="verified" size={32} className="icon-orange mb-4 block" />
+            <h3 className="text-lg font-medium text-on-surface mb-3">Öffentlich bestellte und vereidigte Bausachverständige</h3>
+            <p className="text-sm text-on-surface-variant leading-relaxed">Als ö.b.u.v. Bausachverständiger tragen Sie gegenüber Gericht und Parteien volle Verantwortung für Methodik und Quellenangabe. Der Gutachten Assistent dokumentiert jeden Arbeitsschritt nachvollziehbar — normkonform, revisionssicher, gerichtstauglich.</p>
+          </div>
+          <div className="bg-surface-container-low rounded-xl p-8 border-[0.5px] border-outline-variant">
+            <Icon name="gavel" size={32} className="icon-orange mb-4 block" />
+            <h3 className="text-lg font-medium text-on-surface mb-3">Baugutachter im selbständigen Beweisverfahren</h3>
+            <p className="text-sm text-on-surface-variant leading-relaxed">Beweisbeschlüsse nach § 485 ZPO haben ein festes Schema. Die Software strukturiert Ihre Beweisfragen, führt Sie durch jeden Feststellungspunkt und bereitet den Gutachten-Export für die Gerichtseinreichung vor.</p>
+          </div>
+          <div className="bg-surface-container-low rounded-xl p-8 border-[0.5px] border-outline-variant">
+            <Icon name="home_repair_service" size={32} className="icon-orange mb-4 block" />
+            <h3 className="text-lg font-medium text-on-surface mb-3">Spezialgutachter für Bauschäden und Baumängel</h3>
+            <p className="text-sm text-on-surface-variant leading-relaxed">Schimmel, Feuchte, Wärmebrücken, Risse, Bauausführungsmängel — jede Schadensart erfordert spezifische Normen. Der Assistent stellt relevante DIN- und WTA-Merkblätter kontextbezogen bereit, ohne manuelle Recherche.</p>
+          </div>
+          <div className="bg-surface-container-low rounded-xl p-8 border-[0.5px] border-outline-variant">
+            <Icon name="groups" size={32} className="icon-orange mb-4 block" />
+            <h3 className="text-lg font-medium text-on-surface mb-3">Sachverständigenbüros im Bauwesen</h3>
+            <p className="text-sm text-on-surface-variant leading-relaxed">Mehrere Bausachverständige, gemeinsame Entwürfe, getrennte Aufträge. Strikter Mehrbenutzer-Zugang mit Auftragsisolierung — kein geteiltes Laufwerk, keine Versionskonflikte.</p>
+          </div>
+        </div>
+      </div>
     </main>
   );
 }

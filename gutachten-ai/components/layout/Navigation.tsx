@@ -51,7 +51,7 @@ export function Navigation() {
           </div>
           <div className="hidden md:flex items-center gap-3">
             <ThemeToggle />
-            <Link href="/kontakt" className="bg-button-bg text-white px-5 py-2 rounded-lg text-sm font-medium hover:opacity-90 active:scale-95 transition-all">
+            <Link href="/kontakt#formular" className="bg-button-bg text-white px-5 py-2 rounded-lg text-sm font-medium hover:opacity-90 active:scale-95 transition-all">
               Anfrage stellen
             </Link>
           </div>
@@ -74,7 +74,7 @@ export function Navigation() {
             {link.label}
           </Link>
         ))}
-        <Link href="/kontakt" className="mt-4 bg-button-bg text-white px-8 py-3 rounded-lg text-base font-medium hover:opacity-90 active:scale-95 transition-all">
+        <Link href="/kontakt#formular" className="mt-4 bg-button-bg text-white px-8 py-3 rounded-lg text-base font-medium hover:opacity-90 active:scale-95 transition-all">
           Anfrage stellen
         </Link>
       </div>

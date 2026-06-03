@@ -108,7 +108,7 @@ export default async function Funktionen() {
         </div>
       </section>
       <div className="text-center mt-16">
-        <Link href="/kontakt" className="bg-button-bg text-white px-10 py-4 rounded-xl font-medium text-lg hover:opacity-90 transition-all">
+        <Link href="/kontakt#formular" className="bg-button-bg text-white px-10 py-4 rounded-xl font-medium text-lg hover:opacity-90 transition-all">
           {ctaText}
         </Link>
       </div>

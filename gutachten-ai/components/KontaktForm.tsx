@@ -46,7 +46,7 @@ export function KontaktForm() {
   };
 
   return (
-    <Card className="p-10">
+    <Card id="formular" className="p-10">
       {status === "success" ? (
         <div className="text-center py-12">
           <Icon name="check_circle" size={48} className="icon-orange mx-auto mb-4 block" />

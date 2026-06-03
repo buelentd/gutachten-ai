@@ -227,7 +227,7 @@ export default async function Home() {
                 </div>
               ))}
             </div>
-            <Link href="/kontakt" className="block w-full bg-button-bg text-white py-5 rounded-xl font-medium text-lg text-center hover:shadow-[0_0_20px_rgba(197,79,14,0.3)] transition-all">
+            <Link href="/kontakt#formular" className="block w-full bg-button-bg text-white py-5 rounded-xl font-medium text-lg text-center hover:shadow-[0_0_20px_rgba(197,79,14,0.3)] transition-all">
               {d?.offerButtonText}
             </Link>
           </div>
@@ -240,7 +240,7 @@ export default async function Home() {
           <h2 className="text-4xl md:text-5xl font-normal tracking-tight text-on-surface mb-8">{d?.ctaTitle}</h2>
           <p className="text-lg text-on-surface-variant mb-12">{d?.ctaSubtext}</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href={d?.ctaPrimaryButtonLink || "/kontakt"} className="bg-button-bg text-white px-10 py-4 rounded-xl font-medium text-lg hover:opacity-90 transition-all">
+            <Link href={d?.ctaPrimaryButtonLink || "/kontakt#formular"} className="bg-button-bg text-white px-10 py-4 rounded-xl font-medium text-lg hover:opacity-90 transition-all">
               {d?.ctaPrimaryButtonText}
             </Link>
             <Link href={d?.ctaSecondaryButtonLink || "/funktionen"} className="border-[0.5px] border-outline text-on-surface px-10 py-4 rounded-xl font-medium text-lg hover:bg-surface-container-high transition-all">
