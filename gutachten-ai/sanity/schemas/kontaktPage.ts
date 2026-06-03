@@ -27,5 +27,22 @@ export default defineType({
         ],
       }],
     }),
+    defineField({ name: "zielgruppenLabel", title: "Zielgruppen Eyebrow", type: "string" }),
+    defineField({ name: "zielgruppenTitle", title: "Zielgruppen Überschrift", type: "string" }),
+    defineField({ name: "zielgruppenSubtext", title: "Zielgruppen Untertext", type: "text" }),
+    defineField({
+      name: "zielgruppen",
+      title: "Zielgruppen-Karten",
+      type: "array",
+      of: [{
+        type: "object",
+        preview: { select: { title: "title" } },
+        fields: [
+          { name: "icon", title: "Material Symbol Name", type: "string" },
+          { name: "title", title: "Titel", type: "string" },
+          { name: "description", title: "Beschreibung", type: "text" },
+        ],
+      }],
+    }),
   ],
 });

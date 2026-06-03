@@ -123,6 +123,15 @@ export async function GET() {
         { _key: "k2", icon: "timer", title: "Reaktionszeit", description: "Rückmeldung innerhalb von 24 Stunden an Werktagen." },
         { _key: "k3", icon: "map", title: "Standort Berlin", description: "Technologie entwickelt in Deutschland für den lokalen Markt." },
       ],
+      zielgruppenLabel: "Für professionelle Bausachverständige",
+      zielgruppenTitle: "Anfragen — wir melden uns innerhalb von 24 Stunden",
+      zielgruppenSubtext: "Gutachten Assistent ist spezialisiert auf die Anforderungen professioneller Bausachverständiger.",
+      zielgruppen: [
+        { _key: "z1", icon: "verified", title: "Öffentlich bestellte und vereidigte Bausachverständige", description: "Als ö.b.u.v. Bausachverständiger tragen Sie gegenüber Gericht und Parteien volle Verantwortung für Methodik und Quellenangabe. Der Gutachten Assistent dokumentiert jeden Arbeitsschritt nachvollziehbar — normkonform, revisionssicher, gerichtstauglich." },
+        { _key: "z2", icon: "gavel", title: "Baugutachter im selbständigen Beweisverfahren", description: "Beweisbeschlüsse nach § 485 ZPO haben ein festes Schema. Die Software strukturiert Ihre Beweisfragen, führt Sie durch jeden Feststellungspunkt und bereitet den Gutachten-Export für die Gerichtseinreichung vor." },
+        { _key: "z3", icon: "home_repair_service", title: "Spezialgutachter für Bauschäden und Baumängel", description: "Schimmel, Feuchte, Wärmebrücken, Risse, Bauausführungsmängel — jede Schadensart erfordert spezifische Normen. Der Assistent stellt relevante DIN- und WTA-Merkblätter kontextbezogen bereit, ohne manuelle Recherche." },
+        { _key: "z4", icon: "groups", title: "Sachverständigenbüros im Bauwesen", description: "Mehrere Bausachverständige, gemeinsame Entwürfe, getrennte Aufträge. Strikter Mehrbenutzer-Zugang mit Auftragsisolierung — kein geteiltes Laufwerk, keine Versionskonflikte." },
+      ],
     });
 
     // ─── ablaufPage ───────────────────────────────────────────────────────────
