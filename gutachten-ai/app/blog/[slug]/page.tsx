@@ -35,6 +35,13 @@ async function getPost(slug: string) {
   );
 }
 
+async function getRelatedPosts(slug: string) {
+  return await client.fetch(
+    groq`*[_type == "post" && slug.current != $slug] | order(publishedAt desc) [0...3]{ title, slug, category, excerpt }`,
+    { slug }
+  );
+}
+
 export async function generateStaticParams() {
   try {
     const posts = await client.fetch(groq`*[_type == "post"]{ "slug": slug.current }`);
@@ -55,7 +62,7 @@ const ptComponents = {
 };
 
 export default async function BlogPost({ params }: { params: { slug: string } }) {
-  const post = await getPost(params.slug);
+  const [post, related] = await Promise.all([getPost(params.slug), getRelatedPosts(params.slug)]);
   if (!post) notFound();
   const date = post.publishedAt ? new Date(post.publishedAt).toLocaleDateString("de-DE", { day: "numeric", month: "long", year: "numeric" }) : "";
 
@@ -90,7 +97,21 @@ export default async function BlogPost({ params }: { params: { slug: string } })
           <p className="text-on-surface-variant mb-6">Testen Sie gutachten-ai.de kostenlos und unverbindlich.</p>
           <Link href="/kontakt" className="inline-block bg-button-bg text-white px-8 py-3 rounded-lg font-medium hover:opacity-90 transition-all">Kostenlos anfragen</Link>
         </div>
-        <div className="mt-16 pt-8 border-t-[0.5px] border-technical-line">
+        {related.length > 0 && (
+          <div className="mt-16 pt-8 border-t-[0.5px] border-technical-line">
+            <h2 className="text-xl font-medium text-on-surface mb-6">Weitere Artikel</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {related.map((r: { slug: { current: string }; category: string; title: string; excerpt: string }) => (
+                <Link key={r.slug.current} href={`/blog/${r.slug.current}`} className="block bg-surface-container-low rounded-xl p-6 border-[0.5px] border-outline-variant hover:border-primary/40 transition-colors">
+                  {r.category && <span className="text-primary text-xs font-medium tracking-widest uppercase block mb-2">{r.category}</span>}
+                  <h3 className="text-sm font-medium text-on-surface leading-snug mb-2">{r.title}</h3>
+                  <p className="text-xs text-on-surface-variant leading-relaxed line-clamp-3">{r.excerpt}</p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
+        <div className="mt-8 pt-8 border-t-[0.5px] border-technical-line">
           <Link href="/blog" className="inline-flex items-center gap-2 text-primary hover:gap-4 transition-all">
             <Icon name="arrow_back" size={16} className="icon-orange" />
             <span>Zurück zum Blog</span>
