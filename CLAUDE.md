@@ -2,6 +2,18 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## ⛔ PFLICHT-CHECKLISTE — VOR JEDEM COMMIT ZWINGEND PRÜFEN
+
+**Jeder dieser Punkte muss erfüllt sein. Kein Commit ohne grüne Checkliste.**
+
+- [ ] Kein UI-Text hardcoded — jeder sichtbare String kommt aus Sanity mit Fallback-Default
+- [ ] Neues Feld im Schema (`sanity/schemas/*.ts`) angelegt
+- [ ] Neues Feld im Seed (`app/api/seed/route.ts`) ergänzt
+- [ ] Page fetcht das Feld via GROQ und rendert `d?.feld || "Fallback"`
+- [ ] Kein `/kontakt`-Link ohne `#formular` bei CTA-Buttons
+
+**Verstoss gegen diese Regel = falscher Commit. Rückgängig machen und neu machen.**
+
 ## Projekt
 
 **gutachten-ai.de** — Marketing-Website für den *Gutachten Assistenten*, eine KI-gestützte SaaS-Lösung für Bausachverständige (Betreiber: intersignum UG, Berlin). Auto-Deploy auf Vercel bei Push auf `master`.
