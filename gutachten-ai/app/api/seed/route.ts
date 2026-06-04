@@ -93,6 +93,10 @@ export async function GET() {
       ctaPrimaryButtonLink: "/kontakt",
       ctaSecondaryButtonText: "Alle Funktionen ansehen",
       ctaSecondaryButtonLink: "/funktionen",
+      blogPostCtaTitle: "Bereit für den nächsten Schritt?",
+      blogPostCtaText: "Testen Sie gutachten-ai.de kostenlos und unverbindlich.",
+      blogPostCtaButton: "Kostenlos anfragen",
+      blogWeitereArtikelTitle: "Weitere Artikel",
     });
 
     // ─── datenschutz ──────────────────────────────────────────────────────────

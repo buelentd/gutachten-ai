@@ -126,5 +126,11 @@ export default defineType({
     defineField({ name: "ctaPrimaryButtonLink", title: "CTA Button 1 Link", type: "string" }),
     defineField({ name: "ctaSecondaryButtonText", title: "CTA Button 2 Text", type: "string" }),
     defineField({ name: "ctaSecondaryButtonLink", title: "CTA Button 2 Link", type: "string" }),
+
+    // Blog Post CTA
+    defineField({ name: "blogPostCtaTitle", title: "Blog Artikel CTA Titel", type: "string" }),
+    defineField({ name: "blogPostCtaText", title: "Blog Artikel CTA Text", type: "string" }),
+    defineField({ name: "blogPostCtaButton", title: "Blog Artikel CTA Button Text", type: "string" }),
+    defineField({ name: "blogWeitereArtikelTitle", title: "Blog 'Weitere Artikel' Überschrift", type: "string" }),
   ],
 });

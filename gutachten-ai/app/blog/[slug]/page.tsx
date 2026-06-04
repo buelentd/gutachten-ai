@@ -42,6 +42,10 @@ async function getRelatedPosts(slug: string) {
   );
 }
 
+async function getBlogUiTexts() {
+  return await client.fetch(groq`*[_type == "homePage"][0]{ blogPostCtaTitle, blogPostCtaText, blogPostCtaButton, blogWeitereArtikelTitle }`);
+}
+
 export async function generateStaticParams() {
   try {
     const posts = await client.fetch(groq`*[_type == "post"]{ "slug": slug.current }`);
@@ -62,7 +66,7 @@ const ptComponents = {
 };
 
 export default async function BlogPost({ params }: { params: { slug: string } }) {
-  const [post, related] = await Promise.all([getPost(params.slug), getRelatedPosts(params.slug)]);
+  const [post, related, ui] = await Promise.all([getPost(params.slug), getRelatedPosts(params.slug), getBlogUiTexts()]);
   if (!post) notFound();
   const date = post.publishedAt ? new Date(post.publishedAt).toLocaleDateString("de-DE", { day: "numeric", month: "long", year: "numeric" }) : "";
 
@@ -93,13 +97,13 @@ export default async function BlogPost({ params }: { params: { slug: string } })
         </div>
         {post.body && <div className="space-y-2"><PortableText value={post.body} components={ptComponents} /></div>}
         <div className="mt-16 p-8 rounded-xl border-[0.5px] border-primary/40 bg-primary/5">
-          <h3 className="text-xl font-medium text-on-surface mb-3">Bereit für den nächsten Schritt?</h3>
-          <p className="text-on-surface-variant mb-6">Testen Sie gutachten-ai.de kostenlos und unverbindlich.</p>
-          <Link href="/kontakt#formular" className="inline-block bg-button-bg text-white px-8 py-3 rounded-lg font-medium hover:opacity-90 transition-all">Kostenlos anfragen</Link>
+          <h3 className="text-xl font-medium text-on-surface mb-3">{ui?.blogPostCtaTitle || "Bereit für den nächsten Schritt?"}</h3>
+          <p className="text-on-surface-variant mb-6">{ui?.blogPostCtaText || "Testen Sie gutachten-ai.de kostenlos und unverbindlich."}</p>
+          <Link href="/kontakt#formular" className="inline-block bg-button-bg text-white px-8 py-3 rounded-lg font-medium hover:opacity-90 transition-all">{ui?.blogPostCtaButton || "Kostenlos anfragen"}</Link>
         </div>
         {related.length > 0 && (
           <div className="mt-16 pt-8 border-t-[0.5px] border-technical-line">
-            <h2 className="text-xl font-medium text-on-surface mb-6">Weitere Artikel</h2>
+            <h2 className="text-xl font-medium text-on-surface mb-6">{ui?.blogWeitereArtikelTitle || "Weitere Artikel"}</h2>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {related.map((r: { slug: { current: string }; category: string; title: string; excerpt: string }) => (
                 <Link key={r.slug.current} href={`/blog/${r.slug.current}`} className="block bg-surface-container-low rounded-xl p-6 border-[0.5px] border-outline-variant hover:border-primary/40 transition-colors">
