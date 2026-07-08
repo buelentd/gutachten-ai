@@ -6,6 +6,13 @@ const withBundleAnalyzer = withBundleAnalyzerInit({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  async redirects() {
+    return [
+      { source: "/datenschutz.html", destination: "/datenschutz", permanent: true },
+      { source: "/impressum.html", destination: "/impressum", permanent: true },
+      { source: "/kontakt.html", destination: "/kontakt", permanent: true },
+    ];
+  },
   images: {
     remotePatterns: [
       {
